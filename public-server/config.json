@@ -1,0 +1,21 @@
+{
+  "public_server": {
+    "tcp_port": 8084,
+    "thread_pool": 10,
+    "debug_mode": false
+  },
+  "database_clients": {
+    "ip": "localhost",
+    "port": 3306,
+    "database": "XXXXXX",
+    "account": "XXXXXX",
+    "password": "XXXXXX"
+  },
+  "database_traffic_logs": {
+    "ip": "localhost",
+    "port": 3306,
+    "database": "XXXXXX",
+    "account": "XXXXXX",
+    "password": "XXXXXX"
+  }
+}
