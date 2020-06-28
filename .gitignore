@@ -1,8 +1,9 @@
 # ALMA user specific data
 home-server/gadgets.json
 home-server/config.json
+home-server/**/JSON/
 public-server/config.json
-**/JSON/
+public-server/**JSON/
 
 #Compiler output (IntelliJ)
 **/out/
