@@ -11,11 +11,11 @@ public class Gadget_ALMA extends Gadget {
     private BufferedWriter output;
     private BufferedReader input;
 
-    public Gadget_ALMA(int gadgetID, String name, GadgetType type, long pollDelaySeconds, String IP, int port, String request_spec) {
+    public Gadget_ALMA(int gadgetID, String name, GadgetType type, long pollDelaySeconds, String IP, int port, String requestSpec) {
         super(gadgetID, name, type, pollDelaySeconds);
         this.IP = IP;
         this.port = port;
-        this.requestSpec = request_spec;
+        this.requestSpec = requestSpec;
     }
 
     // =================================== GADGET COMMUNICATION ================================================
