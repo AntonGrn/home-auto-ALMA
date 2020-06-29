@@ -18,9 +18,9 @@ public class JSON_reader {
 
     public JSON_reader() {
         // Specify path to JSON file 'gadgets.json':
-        gadgetFileJSON = "/path/to/gadgets.JSON";
+        gadgetFileJSON = "/home/anton/projectALMA/gadgets.json";
         // Specify path to JSON file 'config.json':
-        configFileJSON = "/path/to/config.JSON";
+        configFileJSON = "/home/anton/projectALMA/config.json";
         lock_gadgetFile = new Object();
         lock_configFile = new Object();
     }
