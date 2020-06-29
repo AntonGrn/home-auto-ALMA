@@ -18,7 +18,7 @@ public abstract class Gadget {
      */
 
     public final int gadgetID;
-    public final String name;
+    public final String alias;
     public final GadgetType type;
     private int state;
     public long lastPollTime;
@@ -26,9 +26,9 @@ public abstract class Gadget {
     public boolean isPresent;
 
     // Gadgets are instantiated from JSON file (gadgets.json) at system boot
-    public Gadget(int gadgetID, String name, GadgetType type, long pollDelaySeconds) {
+    public Gadget(int gadgetID, String alias, GadgetType type, long pollDelaySeconds) {
         this.gadgetID = gadgetID;
-        this.name = name;
+        this.alias = alias;
         this.type = type;
         state = -1;
         pollDelayMs = pollDelaySeconds * 1000;

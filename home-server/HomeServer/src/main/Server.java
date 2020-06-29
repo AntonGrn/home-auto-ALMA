@@ -275,15 +275,15 @@ public class Server {
                             // Poll the gadget:
                             gadget.poll();
                             gadget.lastPollTime = currentMillis;
-                            debugLog("Polling gadget", gadget.name + (gadget.isPresent ? " [present]"+ "[state:"+gadget.getState()+"]":" [not present]"));
+                            debugLog("Polling gadget", gadget.alias + (gadget.isPresent ? " [present]"+ "[state:"+gadget.getState()+"]":" [not present]"));
                             // Verify if gadget states changed by the poll() operation:
                             if (gadget.isPresent != expectedPresence || gadget.getState() != expectedState) {
                                 updateClients = true;
                                 // Log changes in gadget connectivity (presence):
                                 if (!expectedPresence && gadget.isPresent) {
-                                    System.out.println("Connection established with gadget: " + gadget.name);
+                                    System.out.println("Connection established with gadget: " + gadget.alias);
                                 } else if (expectedPresence && !gadget.isPresent) {
-                                    System.out.println("Connection lost to gadget: " + gadget.name);
+                                    System.out.println("Connection lost to gadget: " + gadget.alias);
                                 }
                             }
                         }
@@ -347,7 +347,7 @@ public class Server {
                         sendAllGadgetsToPublicServer("-1");
                     } catch (Exception e) {
                         gadget.isPresent = false;
-                        String exceptionMessage = "Unable to reach gadget " + gadget.name;
+                        String exceptionMessage = "Unable to reach gadget " + gadget.alias;
                         System.out.println(exceptionMessage);
                         sendAllGadgetsToPublicServer(androidID);
                         writeEncryptedToServer(String.format("%s%s%s%s", "19:", exceptionMessage, ":", androidID));
@@ -377,7 +377,7 @@ public class Server {
                     Gadget gadget = gadgetList.get(i);
                     if (gadget.isPresent) {
                         int gadgetID = gadget.gadgetID;
-                        String gadgetName = gadget.name;
+                        String gadgetName = gadget.alias;
                         String type = gadget.type.toString();
                         String currentState = String.valueOf(gadget.getState());
 
