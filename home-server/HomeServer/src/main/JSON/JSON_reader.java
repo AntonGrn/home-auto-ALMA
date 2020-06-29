@@ -113,8 +113,22 @@ public class JSON_reader {
     }
 
     private ArrayList<Gadget> loadGadgets_rf433MHz(JSONArray gadgets) {
-        // Not yet implemented
-        return new ArrayList<Gadget>();
+        ArrayList<Gadget> gadgets_rf433MHz = new ArrayList<>();
+        for(Object object : gadgets) {
+            JSONObject jsonGadget = (JSONObject) object;
+            if((Boolean)jsonGadget.get("enabled")) {
+                int gadgetID = ((Long)jsonGadget.get("gadget_id")).intValue();
+                String alias = (String)jsonGadget.get("alias");
+                String pathToScript = (String)jsonGadget.get("path_rpi-rf_send");
+                int gpio = ((Long)jsonGadget.get("gpio")).intValue();
+                int protocol = ((Long)jsonGadget.get("protocol")).intValue();
+                int pulseLength = ((Long)jsonGadget.get("pulse_length")).intValue();
+                int codeON = ((Long)jsonGadget.get("code_ON")).intValue();
+                int codeOFF = ((Long)jsonGadget.get("code_OFF")).intValue();
+                gadgets_rf433MHz.add(new Gadget_rf433MHz(gadgetID, alias, pathToScript, gpio, protocol, pulseLength, codeON, codeOFF));
+            }
+        }
+        return gadgets_rf433MHz;
     }
 
    // ===================================== UTILITY METHODS ========================================================
