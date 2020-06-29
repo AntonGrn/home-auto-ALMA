@@ -2,7 +2,6 @@
 home-server/gadgets.json
 home-server/automations.json
 home-server/config.json
-home-server/**/JSON/
 home-server/**/gadgets/custom/
 public-server/config.json
 public-server/**JSON/
