@@ -79,8 +79,9 @@ public class JSON_reader {
                 long pollDelaySeconds = (Long)jsonGadget.get("poll_delay_seconds");
                 String IP = (String)jsonGadget.get("IP_address");
                 int port = ((Long)jsonGadget.get("TCP_port")).intValue();
+                String requestSpec = (String)jsonGadget.get("request_spec");
                 // Add gadget to list
-                gadgets_ALMA.add(new Gadget_ALMA(gadgetID, alias, gadgetType, pollDelaySeconds, IP, port));
+                gadgets_ALMA.add(new Gadget_ALMA(gadgetID, alias, gadgetType, pollDelaySeconds, IP, port, requestSpec));
             }
         }
         return gadgets_ALMA;
