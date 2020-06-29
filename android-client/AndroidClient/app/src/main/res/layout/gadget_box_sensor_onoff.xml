@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/gadget_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gadget name"
+            android:textColor="@android:color/white"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="end"
+        android:layout_gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="105dp"
+            android:layout_height="45dp"
+            android:background="@drawable/gadget_display_background_onoff"
+            android:checkedButton="@+id/off"
+            android:stateListAnimator="@null"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <RadioButton
+                android:id="@+id/off"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="O"
+                android:textColor="@android:color/white"/>
+
+            <RadioButton
+                android:id="@+id/on"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="I"
+                android:textColor="@android:color/white" />
+        </RadioGroup>
+    </LinearLayout>
+
+</LinearLayout>

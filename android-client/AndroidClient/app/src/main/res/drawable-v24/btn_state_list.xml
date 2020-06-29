@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- When the system looks for appropriate drawable, it starts
+      searching from the top until a match is found: Order matters-->
+
+    <item
+        android:state_pressed="true"
+        android:drawable="@drawable/btn_pressed"/>
+    <item
+        android:state_enabled="false"
+        android:drawable="@drawable/btn_disabled"/>
+    <item
+        android:drawable="@drawable/btn_default"/>
+
+</selector>
+
+
+
