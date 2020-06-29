@@ -6,15 +6,15 @@ import java.net.Socket;
 
 /**
  * A native SENSOR_VALUE ALMA gadget.
- * 
+ *
  * Monitors the CPU temperature of a Raspberry Pi:
  * - Monitor: Remote Pi (reachable by IP) OR local Pi (HomeServer hub).
  * - Note: for monitoring CPU temperature of local Pi (HomeServer hub),
- * consider instead using ALMA plugin 'local_pi_cpu_temp', which doesn't
- * require setting up an additional Linux daemon other than the HomeServer service.
+ * consider instead using ALMA HomeServer plugin 'local_pi_cpu_temp',
+ * which doesn't require setting up an additional Linux daemon service.
  * *
  * SETUP:
- * 1. Run Pi_CPU_temp_SENSOR_VALUE as Linux daemon service on remote/hub Raspberry Pi.
+ * 1. Run Pi_CPU_temp_SENSOR_VALUE as Linux daemon service on remote/local Raspberry Pi.
  * 2. Add json record for gadget in 'gadgets.json' (HomeServer), under "alma".
  * e.g:
  * {

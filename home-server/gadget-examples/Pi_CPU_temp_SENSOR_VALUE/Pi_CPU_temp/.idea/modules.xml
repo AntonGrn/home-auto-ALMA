@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Pi_CPU_temp_SENSOR_VALUE.iml" filepath="$PROJECT_DIR$/Pi_CPU_temp_SENSOR_VALUE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Pi_CPU_temp.iml" filepath="$PROJECT_DIR$/Pi_CPU_temp.iml" />
     </modules>
   </component>
 </project>
