@@ -74,10 +74,11 @@ void loop() {
         if (serverRequest.startsWith("10") || serverRequest.startsWith("15")) {
           // 10: Request to alter state. 15: Poll request.
           if (serverRequest.startsWith("10")) {
-            //Request to set new state
+            // Derive requested state from ALMA command, format: 10:state[DERIVE]:request_spec[IGNORE]
             int indexOfColon = serverRequest.indexOf(":");
             int fromIndex = indexOfColon + 1;
-            String requestedState = serverRequest.substring(fromIndex);
+            int toIndex = fromIndex + 1;
+            String requestedState = serverRequest.substring(fromIndex, toIndex);
             Serial.print("Requested state: ");
             Serial.println(requestedState);
             if (requestedState.equals("1")) {

@@ -7,13 +7,15 @@ import java.net.Socket;
 public class Gadget_ALMA extends Gadget {
     private final String IP;
     private final int port;
+    private final String requestSpec;
     private BufferedWriter output;
     private BufferedReader input;
 
-    public Gadget_ALMA(int gadgetID, String name, GadgetType type, long pollDelaySeconds, String IP, int port) {
+    public Gadget_ALMA(int gadgetID, String name, GadgetType type, long pollDelaySeconds, String IP, int port, String request_spec) {
         super(gadgetID, name, type, pollDelaySeconds);
         this.IP = IP;
         this.port = port;
+        this.requestSpec = request_spec;
     }
 
     // =================================== GADGET COMMUNICATION ================================================
@@ -21,7 +23,7 @@ public class Gadget_ALMA extends Gadget {
 
     @Override
     public void poll() {
-        String pollRequest = String.format("%s%n", "15");
+        String pollRequest = String.format("%s%s%n", "15:", requestSpec);
         try {
             String[] response = (sendCommand(pollRequest)).split(":");
             if (response[0].equals("16")) {
@@ -38,7 +40,7 @@ public class Gadget_ALMA extends Gadget {
     @Override
     public void alterState(int requestedState) throws Exception {
         if (type == GadgetType.CONTROL_ONOFF || type == GadgetType.CONTROL_VALUE) {
-            String almaCommand = String.format("%s%s%n", "10:", requestedState);
+            String almaCommand = String.format("%s%s%s%s%n", "10:", requestedState, ":", requestSpec);
             String[] response = (sendCommand(almaCommand)).split(":");
             if (response[0].equals("16")) {
                 setState(Integer.parseInt(response[1]));
