@@ -45,11 +45,11 @@ public class Server {
     private final Object lock_closeServer;
     private final Object lock_debugLogs;
 
-    // Threads aside from main thread
+    // Worker threads
     private Thread pollGadgetsThread;
     private Thread processRequestsThread;
 
-    // Make Server object Singleton
+    // Make Singleton
     private static Server instance = null;
 
     public static Server getInstance() {
