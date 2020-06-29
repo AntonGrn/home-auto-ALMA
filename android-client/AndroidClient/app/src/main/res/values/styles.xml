@@ -1,0 +1,37 @@
+<resources>
+    <!-- NOTE! ActionBar removed, so that Toolbar can be used instead-->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/backgroundColor</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="buttonStyle">@style/CustomButton</item>
+        <!-- To alter default item menu (overflow menu) icon in Toolbar/ActionBar-->
+        <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
+        <!-- To place overflow menu below Toolbar, instead of overlapping-->
+        <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
+    </style>
+
+    <!-- To alter default item menu (overflow menu) icon in Toolbar/ActionBar-->
+    <style name="MyActionButtonOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/icon_menu</item>
+    </style>
+
+    <!-- To place overflow menu below Toolbar, instead of overlapping-->
+    <style name="OverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <!-- Required for pre-Lollipop.
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">-4.0dip</item> -->
+        <!-- Required for Lollipop. -->
+        <item name="android:overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">4.0dip</item>
+    </style>
+
+    <style name="CustomButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/btn_state_list</item>
+        <item name="android:textColor">@drawable/btn_text_style</item>
+    </style>
+
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="colorPrimary">#161616</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="backgroundColor">#303030</color>
+    <color name="colorAccent">#7C3030</color>
+    <color name="cursorColor">#DBDBDB</color>
+    <color name="headerColor">#161616</color>
+    <color name="colorRadioBtnOn">#326832</color>
+    <color name="colorRadioBtnOff">#7C3030</color>
+    <color name="colorRadioBtnChecked">#727272</color>
+    <color name="strokeColorRedLight">@android:color/holo_red_light</color>
+    <color name="strokeColorRedDark">@android:color/holo_red_dark</color>
+    <color name="colorGradientStart">#303030</color>
+    <color name="colorGradientMiddle">#99161616</color>
+    <color name="colorGradientEnd">#97000000</color>
+</resources>

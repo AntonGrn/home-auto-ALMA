@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AndroidClient</string>
+    <string name="demo_mode_info">Demo Mode will not interact with the ALMA public server or any real gadgets.</string>
+
+    <string name="about_info">
+        ALMA is a full scale home automation system.\n\nUsers interact with an Android device to remotely control and/or monitor gadgets located inside the user’s home network.\n\nThe user is free to implement a wide variety of gadget types, providing great modularity for the user. Gadgets may be all from lamps to temperature sensors or software implementations like CPU load or Wi-Fi strength.\n\nThe Android devices communicate with a public server, which in turn interacts with a home system server (hub) located inside the user’s local area network. The connections are of Server-Client architecture realized with TCP Sockets.
+    </string>
+</resources>
