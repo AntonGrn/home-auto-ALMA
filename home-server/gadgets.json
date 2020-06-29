@@ -18,7 +18,7 @@
       "enabled": false,
       "IP_address": "192.168.0.121",
       "TCP_port": 8082,
-      "request_spec": null
+      "request_spec": "temp"
     }
   ],
   "tp_link": [
