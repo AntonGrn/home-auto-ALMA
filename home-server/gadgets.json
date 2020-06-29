@@ -7,7 +7,8 @@
       "poll_delay_seconds": 30,
       "enabled": true,
       "IP_address": "192.168.0.120",
-      "TCP_port": 8082
+      "TCP_port": 8082,
+      "request_spec": null
     },
     {
       "gadget_id": 4,
@@ -16,7 +17,8 @@
       "poll_delay_seconds": 30,
       "enabled": false,
       "IP_address": "192.168.0.121",
-      "TCP_port": 8082
+      "TCP_port": 8082,
+      "request_spec": "temp"
     }
   ],
   "tp_link": [
