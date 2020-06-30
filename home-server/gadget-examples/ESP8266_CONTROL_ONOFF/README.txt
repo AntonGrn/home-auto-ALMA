@@ -1,4 +1,7 @@
 A native CONTROL_ONOFF ALMA gadget to control ESP8266 GPIO.
+
+HARDWARE REQUIREMENTS:
+- ESP8266 WiFi microchip
  
 SETUP:
 1. In code: Assign values to ssid and password (for network connection).
