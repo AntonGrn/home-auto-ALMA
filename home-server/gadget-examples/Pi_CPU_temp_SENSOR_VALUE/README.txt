@@ -6,6 +6,7 @@ Monitors the CPU temperature of a Raspberry Pi:
 consider instead using ALMA HomeServer plugin 'local_pi_cpu_temp',
 which doesn't require setting up an additional Linux daemon service.
 
+
 SETUP:
 1. Run Pi_CPU_temp_SENSOR_VALUE as Linux daemon service on remote/local 
    Raspberry Pi.
