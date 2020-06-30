@@ -50,7 +50,7 @@ public class Gadget_rf433MHz extends Gadget {
     }
 
     @Override
-    public String sendCommand(String command) throws Exception {
+    protected String sendCommand(String command) throws Exception {
         Runtime.getRuntime().exec(command);
         return null;
     }
