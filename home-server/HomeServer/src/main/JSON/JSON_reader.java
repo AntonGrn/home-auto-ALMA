@@ -2,6 +2,7 @@ package main.JSON;
 
 import main.gadgets.*;
 import main.gadgets.plugins.Gadget_local_Pi_CPU_temp;
+import main.gadgets.plugins.Gadget_local_Pi_GPIO_onoff;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -123,7 +124,7 @@ public class JSON_reader {
                 int gadgetID = ((Long)jsonGadget.get("gadget_id")).intValue();
                 String alias = (String)jsonGadget.get("alias");
                 String pathToScript = (String)jsonGadget.get("path_rpi-rf_send");
-                int gpio = ((Long)jsonGadget.get("gpio")).intValue();
+                int gpio = ((Long)jsonGadget.get("gpio_BCM")).intValue();
                 int protocol = ((Long)jsonGadget.get("protocol")).intValue();
                 int pulseLength = ((Long)jsonGadget.get("pulse_length")).intValue();
                 int codeON = ((Long)jsonGadget.get("code_ON")).intValue();
@@ -147,6 +148,9 @@ public class JSON_reader {
                         gadgets_plugin.add(new Gadget_local_Pi_CPU_temp(gadgetID, alias, pollDelaySeconds));
                         break;
                     case "local_pi_gpio_onoff":
+                        int gpio = ((Long)jsonGadget.get("gpio_BCM")).intValue();
+                        String pathToScript = (String)jsonGadget.get("path_gpio-local-onoff.py");
+                        gadgets_plugin.add(new Gadget_local_Pi_GPIO_onoff(gadgetID, alias, pathToScript, gpio));
                         break;
                 }
             }
