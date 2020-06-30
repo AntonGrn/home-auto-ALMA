@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 # Script used by ALMA plugin gadget: 'local_pi_gpio_onoff'
+# Execution call: python3 gpio-local-onoff.py [BCM pin] [ON/OFF]
 
 # Import Pi GPIO library, to initialize the GPIO ports.
 import RPi.GPIO as GPIO
