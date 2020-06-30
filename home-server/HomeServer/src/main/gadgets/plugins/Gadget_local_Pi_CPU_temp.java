@@ -38,7 +38,7 @@ public class Gadget_local_Pi_CPU_temp extends Gadget {
     }
 
     @Override
-    public String sendCommand(String command) throws Exception {
+    protected String sendCommand(String command) throws Exception {
         // Not called.
         return null;
     }
