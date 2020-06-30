@@ -49,7 +49,7 @@ public class Gadget_ALMA extends Gadget {
     }
 
     @Override
-    public String sendCommand(String command) throws Exception {
+    protected String sendCommand(String command) throws Exception {
         // Connect to gadget's TCP  server socket
         try (Socket gadgetSocket = new Socket()) {
             // Limits the time allowed to establish a connection

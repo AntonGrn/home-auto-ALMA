@@ -19,8 +19,8 @@ public class Gadget_HS100 extends Gadget {
     private static final String COMMAND_SWITCH_OFF = "{\"system\":{\"set_relay_state\":{\"state\":0}}}}";
     private static final String COMMAND_INFO = "{\"system\":{\"get_sysinfo\":null}}";
 
-    public Gadget_HS100(int gadgetID, String name, GadgetType type, long pollDelaySeconds, String IP, int port) {
-        super(gadgetID, name, type, pollDelaySeconds);
+    public Gadget_HS100(int gadgetID, String name, long pollDelaySeconds, String IP, int port) {
+        super(gadgetID, name, GadgetType.CONTROL_ONOFF, pollDelaySeconds);
         this.IP = IP;
         this.port = port;
     }
@@ -64,7 +64,7 @@ public class Gadget_HS100 extends Gadget {
     }
 
     @Override
-    public String sendCommand(String command) throws Exception {
+    protected String sendCommand(String command) throws Exception {
         //Socket gadgetSocket;
         OutputStream output = null;
         InputStream input = null;

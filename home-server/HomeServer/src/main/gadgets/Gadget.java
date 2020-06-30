@@ -37,7 +37,7 @@ public abstract class Gadget {
 
     public abstract void poll();
     public abstract void alterState(int requestedState) throws Exception;
-    public abstract String sendCommand(String command) throws Exception;
+    protected abstract String sendCommand(String command) throws Exception;
 
     public int getState() {
         return state;
