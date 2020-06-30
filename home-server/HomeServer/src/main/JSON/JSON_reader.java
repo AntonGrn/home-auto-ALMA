@@ -1,6 +1,7 @@
 package main.JSON;
 
 import main.gadgets.*;
+import main.gadgets.plugins.Gadget_local_Pi_CPU_temp;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -56,11 +57,13 @@ public class JSON_reader {
             ArrayList<Gadget> gadgets_ALMA = loadGadgets_ALMA((JSONArray)jsonGadgets.get("alma"));
             ArrayList<Gadget> gadgets_TP_Link = loadGadgets_TP_Link((JSONArray)jsonGadgets.get("tp_link"));
             ArrayList<Gadget> gadgets_rf433MHz = loadGadgets_rf433MHz((JSONArray)jsonGadgets.get("rf433MHz"));
+            ArrayList<Gadget> gadgets_plugin = loadGadgets_plugins((JSONArray)jsonGadgets.get("plugins"));
             // Concat all architectures
             ArrayList<Gadget> allGadgets = new ArrayList<>();
             allGadgets.addAll(gadgets_ALMA);
             allGadgets.addAll(gadgets_TP_Link);
             allGadgets.addAll(gadgets_rf433MHz);
+            allGadgets.addAll(gadgets_plugin);
             // Return entire gadgetList
             return allGadgets;
         }
@@ -94,7 +97,6 @@ public class JSON_reader {
             if((Boolean)jsonGadget.get("enabled")) {
                 int gadgetID = ((Long)jsonGadget.get("gadget_id")).intValue();
                 String alias = (String)jsonGadget.get("alias");
-                GadgetType gadgetType = GadgetType.valueOf((String)jsonGadget.get("type"));
                 long pollDelaySeconds = (Long)jsonGadget.get("poll_delay_seconds");
                 String IP = (String)jsonGadget.get("IP_address");
                 int port = ((Long)jsonGadget.get("TCP_port")).intValue();
@@ -102,10 +104,10 @@ public class JSON_reader {
                 // Add gadget to list
                 switch (model) {
                     case "HS100":
-                        gadgets_TP_Link.add(new Gadget_HS100(gadgetID, alias, gadgetType, pollDelaySeconds, IP, port));
+                        gadgets_TP_Link.add(new Gadget_HS100(gadgetID, alias, pollDelaySeconds, IP, port));
                         break;
                     case "HS110":
-                        gadgets_TP_Link.add(new Gadget_HS110(gadgetID, alias, gadgetType, pollDelaySeconds, IP, port));
+                        gadgets_TP_Link.add(new Gadget_HS110(gadgetID, alias, pollDelaySeconds, IP, port));
                         break;
                 }
             }
@@ -130,6 +132,26 @@ public class JSON_reader {
             }
         }
         return gadgets_rf433MHz;
+    }
+
+    private ArrayList<Gadget> loadGadgets_plugins(JSONArray gadgets) {
+        ArrayList<Gadget> gadgets_plugin = new ArrayList<>();
+        for(Object object : gadgets) {
+            JSONObject jsonGadget = (JSONObject) object;
+            int gadgetID = ((Long)jsonGadget.get("gadget_id")).intValue();
+            String alias = (String)jsonGadget.get("alias");
+            if((Boolean)jsonGadget.get("enabled")) {
+                switch ((String)jsonGadget.get("plugin_id")) {
+                    case "local_pi_cpu_temp":
+                        long pollDelaySeconds = (Long)jsonGadget.get("poll_delay_seconds");
+                        gadgets_plugin.add(new Gadget_local_Pi_CPU_temp(gadgetID, alias, pollDelaySeconds));
+                        break;
+                    case "local_pi_gpio_onoff":
+                        break;
+                }
+            }
+        }
+        return gadgets_plugin;
     }
 
    // ===================================== UTILITY METHODS ========================================================
