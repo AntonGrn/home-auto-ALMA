@@ -1,4 +1,4 @@
-A native CONTROL_ONOFF ALMA gadget to control ESP8266 GPIO
+A native CONTROL_ONOFF ALMA gadget to control ESP8266 GPIO.
 
 HARDWARE REQUIREMENTS:
 - ESP8266 WiFi microchip
