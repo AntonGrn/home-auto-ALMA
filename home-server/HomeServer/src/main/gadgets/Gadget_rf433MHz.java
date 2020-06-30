@@ -5,6 +5,7 @@ public class Gadget_rf433MHz extends Gadget {
     /**
      * Control of rf (433MHz) outlets from Raspberry Pi ALMA HomeServer hub,
      * using python module rpi-rf:
+     *
      * @see <a href="https://pypi.org/project/rpi-rf/"/a>
      */
     // Absolute path to python script 'rpi-rf_send' (inclusive)
@@ -24,12 +25,13 @@ public class Gadget_rf433MHz extends Gadget {
         this.pulseLength = pulseLength;
         this.CODE_ON = codeON;
         this.CODE_OFF = codeOFF;
+        setState(0); // Assumed initial state of non-feedback gadget.
     }
 
     @Override
     public void poll() {
         // 433MHz plugs are one way communication (no feedback).
-        // = Ignore poll
+        isPresent = true;
         // Another approach would be to use the poll to re-assure
         // that the gadget is at the last requested state, by
         // sending a new request of that state at every poll.
@@ -37,16 +39,13 @@ public class Gadget_rf433MHz extends Gadget {
 
     @Override
     public void alterState(int requestedState) throws Exception {
-        if (type == GadgetType.CONTROL_ONOFF || type == GadgetType.CONTROL_VALUE) {
-            int stateCode = (requestedState == 1 ? CODE_ON : CODE_OFF);
-            // Create 'rpi-rf_send' command, format:
-            //  python3 rpi-rf_send CODE [-g GPIO] [-p PULSELENGTH] [-t PROTOCOL]
-            String rpi_rf_send = String.format("%s%s%s%s%s%s%s%s%s%s",
-                    "python3 ", pathTo433MHzSendScript, " ",stateCode, " -g ", GPIO, " -p ", pulseLength, " -t ", protocol);
-            sendCommand(rpi_rf_send);
-            // No feedback from 433MHz switches.
-            setState(requestedState);
-        }
+        int stateCode = (requestedState == 1 ? CODE_ON : CODE_OFF);
+        //  format: python3 rpi-rf_send [CODE] [-g GPIO] [-p PULSELENGTH] [-t PROTOCOL]
+        String systemRequest = String.format("%s %s %s %s %s %s %s %s %s",
+                "python3", pathTo433MHzSendScript, stateCode, "-g", GPIO, "-p", pulseLength, "-t", protocol);
+        sendCommand(systemRequest);
+        // No feedback requested from 433MHz switches.
+        setState(requestedState);
     }
 
     @Override
