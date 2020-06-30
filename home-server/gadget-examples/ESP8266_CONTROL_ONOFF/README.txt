@@ -6,8 +6,9 @@ HARDWARE REQUIREMENTS:
 SETUP:
 1. In code: Assign values to ssid and password (for network connection).
 2. Upload code ESP8266_CONTROL_ONOFF to ESP8266 WiFi microchip.
-3. In HomeServer:
-   - Add json record for gadget in 'gadgets.json', under "alma".
+3. Run ESP8266 to capture its IP (for setup in 'gadgets.json)
+4. In HomeServer:
+   - Add gadget record in 'gadgets.json', under "alma".
    e.g:
    {
     "gadget_id": 5,
