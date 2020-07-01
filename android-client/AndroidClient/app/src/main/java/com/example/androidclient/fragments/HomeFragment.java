@@ -1,6 +1,7 @@
 package com.example.androidclient.fragments;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -30,6 +32,8 @@ import com.example.androidclient.R;
 import com.example.androidclient.Updatable;
 
 import java.util.ArrayList;
+
+import static android.text.InputType.TYPE_CLASS_NUMBER;
 
 public class HomeFragment extends Fragment implements Updatable {
 
@@ -190,6 +194,7 @@ public class HomeFragment extends Fragment implements Updatable {
 
     // =========================== CONTROL_VALUE ===================================================
 
+    @SuppressLint("ClickableViewAccessibility")
     private void addGadgetToBody2(final Gadget gadget) {
         // Create a gadget_box view
         View gadgetBox = (View) getLayoutInflater().inflate(R.layout.gadget_box_control_value, null);
@@ -198,7 +203,8 @@ public class HomeFragment extends Fragment implements Updatable {
 
         // Initiate EditText for user to request new gadget value
         final EditText gadgetValueField = (EditText) gadgetBox.findViewById(R.id.value);
-        gadgetValueField.setText(String.valueOf(gadget.getState())); // ???
+        gadgetValueField.setInputType(TYPE_CLASS_NUMBER); // Number field
+        gadgetValueField.setText(String.valueOf(gadget.getState()));
 
         //Assign the Button for submitting a new value
         final Button submitValueBtn = (Button) gadgetBox.findViewById(R.id.btn_submit_value);
@@ -211,6 +217,15 @@ public class HomeFragment extends Fragment implements Updatable {
 
         // Set default visibility to false
         submitValueBtn.setEnabled(false);
+
+        // Clear edit text field when clicked (touched).
+        gadgetValueField.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                gadgetValueField.setText(null);
+                return false;
+            }
+        });
 
         // Enable the button only when a valid integer value has been typed
         gadgetValueField.addTextChangedListener(new TextWatcher() {
@@ -319,7 +334,7 @@ public class HomeFragment extends Fragment implements Updatable {
     public void onSubmitValueBtnClicked(View view) {
 
         // Get the gadget id attached to the button
-        String gadgetId = (String) view.getTag();
+        int gadgetId = (Integer) view.getTag();
 
         // Identify the button and the associated EditText view
         Button btn = (Button)view;
