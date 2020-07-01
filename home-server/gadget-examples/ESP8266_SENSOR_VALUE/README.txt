@@ -10,7 +10,7 @@ Each gadget service is represented by its own gadget record in
 HARDWARE REQUIREMENTS:
 - ESP8266 WiFi microchip
 - DHT11 Temperature & humidity sensor
- 
+
 SETUP:
 1. In code: Assign values to ssid and password (for network connection).
 2. Upload code ESP8266_SENSOR_VALUE to ESP8266 WiFi microchip.
