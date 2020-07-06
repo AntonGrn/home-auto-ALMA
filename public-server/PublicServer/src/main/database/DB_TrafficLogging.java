@@ -97,7 +97,7 @@ public class DB_TrafficLogging {
         // 3. If client is not recognized: Create new record
         connect();
         try {
-            preparedStatement = connection.prepareStatement("SELECT nbrOfConnections FROM ClientTraffic WHERE clientName = ? AND clientIP = ?;");
+            preparedStatement = connection.prepareStatement("SELECT nbrOfConnections FROM Client_Traffic WHERE clientName = ? AND clientIP = ?;");
             preparedStatement.setString(1, clientName);
             preparedStatement.setString(2, clientIP);
             resultSet = preparedStatement.executeQuery();
@@ -111,7 +111,7 @@ public class DB_TrafficLogging {
 
             if (clientRecognized == 1) {
                 // Update currently existing record
-                preparedStatement = connection.prepareStatement("UPDATE ClientTraffic SET nbrOfConnections = ?, lastConnStart = ? WHERE clientName = ? AND clientIP = ?;");
+                preparedStatement = connection.prepareStatement("UPDATE Client_Traffic SET nbrOfConnections = ?, lastConnStart = ? WHERE clientName = ? AND clientIP = ?;");
                 preparedStatement.setInt(1, ++nbrOfConnections);
                 preparedStatement.setString(2, getTimeStamp());
                 preparedStatement.setString(3, clientName);
@@ -122,7 +122,7 @@ public class DB_TrafficLogging {
 
             } else {
                 // Create new record
-                preparedStatement = connection.prepareStatement("INSERT INTO ClientTraffic (clientName, clientType, clientIP, nbrOfConnections, lastConnStart, lastConnClose, firstConn) VALUES (?,?,?,?,?,'-',?);");
+                preparedStatement = connection.prepareStatement("INSERT INTO Client_Traffic (clientName, clientType, clientIP, nbrOfConnections, lastConnStart, lastConnClose, firstConn) VALUES (?,?,?,?,?,'-',?);");
                 preparedStatement.setString(1, clientName);
                 preparedStatement.setString(2, clientType);
                 preparedStatement.setString(3, clientIP);
@@ -142,7 +142,7 @@ public class DB_TrafficLogging {
     public void clientConnectionClose(String clientName, String clientIP) throws Exception {
         connect();
         try {
-            preparedStatement = connection.prepareStatement("UPDATE ClientTraffic SET lastConnClose = ? WHERE clientName = ? AND clientIP = ?;");
+            preparedStatement = connection.prepareStatement("UPDATE Client_Traffic SET lastConnClose = ? WHERE clientName = ? AND clientIP = ?;");
             preparedStatement.setString(1, getTimeStamp());
             preparedStatement.setString(2, clientName);
             preparedStatement.setString(3, clientIP);
