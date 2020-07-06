@@ -3,6 +3,7 @@ package main;
 import main.JSON.JSON_reader;
 import main.cryptography.ClientCryptography;
 import main.gadgets.Gadget;
+import main.gadgets.automations.AutomationHandler;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -34,8 +35,9 @@ public class Server {
     private DataOutputStream publicServerOutput;
     private ClientCryptography crypto;
     private List<Gadget> gadgetList;
+    private volatile AutomationHandler automations;
     private final JSON_reader JSON_reader;
-    public BlockingQueue<String> requestsFromPublicServer;
+    public BlockingQueue<String> requestsToHomeServer;
 
     // Lock objects
     private final Object lock_gadgetList;
@@ -66,8 +68,9 @@ public class Server {
         publicServerOutput = null;
         crypto = new ClientCryptography();
         gadgetList = Collections.synchronizedList(new ArrayList<>());
+        automations = null;
         JSON_reader = new JSON_reader();
-        requestsFromPublicServer = new ArrayBlockingQueue<>(10);
+        requestsToHomeServer = new ArrayBlockingQueue<>(10);
         terminateServer = false;
         debugMode = false;
 
@@ -121,6 +124,7 @@ public class Server {
                     public_server_IP, String.valueOf(public_server_port));
 
             populateGadgetList();
+            automations = new AutomationHandler(JSON_reader.loadAutomations());
             connectToPublicServer(hub_ID, hub_password, public_server_IP, public_server_port);
             //Deploy worker threads
             pollGadgetsThread.start();
@@ -190,7 +194,7 @@ public class Server {
         try {
             while (!terminateServer) {
                 request = readDecryptedFromServer();
-                requestsFromPublicServer.put(request);
+                requestsToHomeServer.put(request);
             }
         } catch (Exception e) {
             throw new Exception("Unable to read request from server: " + request);
@@ -255,6 +259,7 @@ public class Server {
         }
     }
 
+    // Executed by worker thread: pollGadgetsThread
     private void pollGadgets() throws Exception {
         synchronized (lock_pollGadgets) {
             int nbrOfGadgets = 0;
@@ -274,16 +279,17 @@ public class Server {
                             boolean expectedPresence = gadget.isPresent;
                             // Poll the gadget:
                             gadget.poll();
-                            gadget.lastPollTime = currentMillis;
-                            debugLog("Polling gadget", gadget.alias + (gadget.isPresent ? " [present]"+ "[state:"+gadget.getState()+"]":" [not present]"));
+                            // Upon successful poll: Set timestamp. Else: Try again at next iteration.
+                            if(gadget.isPresent) {
+                                gadget.lastPollTime = currentMillis;
+                            }
+                            debugLog(gadget.alias, gadget.isPresent, gadget.getState());
                             // Verify if gadget states changed by the poll() operation:
                             if (gadget.isPresent != expectedPresence || gadget.getState() != expectedState) {
                                 updateClients = true;
-                                // Log changes in gadget connectivity (presence):
-                                if (!expectedPresence && gadget.isPresent) {
-                                    System.out.println("Connection established with gadget: " + gadget.alias);
-                                } else if (expectedPresence && !gadget.isPresent) {
-                                    System.out.println("Connection lost to gadget: " + gadget.alias);
+                                if(gadget.getState() != expectedState) {
+                                    // Check if gadget state change triggers any automations
+                                    automations.newEvent(gadget.gadgetID, gadget.getState());
                                 }
                             }
                         }
@@ -291,6 +297,7 @@ public class Server {
                     if (terminateServer) {
                         return;
                     }
+                    Thread.sleep(50);
                 }
                 if (updateClients) {
                     sendAllGadgetsToPublicServer("-1");
@@ -298,20 +305,23 @@ public class Server {
                 // Minimum poll delay: 2 sec
                 // Only place where pollGadgets() may throw exception (InterruptedException)
                 Thread.sleep(2000);
+                // Check if any automations should fire.
+                automations.runTimeScan();
             }
         }
     }
 
     //========================= PROCESS REQUESTS FROM PUBLIC SERVER ==================================
 
+    // Executed by worker thread: processRequestsThread
     private void processRequests() throws Exception {
         while (!terminateServer) {
             synchronized (lock_processRequests) {
                 try {
-                    String request = requestsFromPublicServer.take();
+                    String request = requestsToHomeServer.take();
                     String[] commands = request.split(":");
 
-                    debugLog("Request from public server", request);
+                    debugLog("Request to home server", request);
 
                     switch (commands[0]) {
                         case "9":
@@ -345,12 +355,20 @@ public class Server {
                     try {
                         gadget.alterState(requestedState);
                         sendAllGadgetsToPublicServer("-1");
+                        // Check if gadget change triggers any automations.
+                        automations.newEvent(gadget.gadgetID, gadget.getState());
                     } catch (Exception e) {
                         gadget.isPresent = false;
-                        String exceptionMessage = "Unable to reach gadget " + gadget.alias;
-                        System.out.println(exceptionMessage);
-                        sendAllGadgetsToPublicServer(androidID);
-                        writeEncryptedToServer(String.format("%s%s%s%s", "19:", exceptionMessage, ":", androidID));
+                        if(androidID.equals("-1")) {
+                            // Request comes from home server automation instance
+                            System.out.println("Automation unable to reach gadget " + gadget.alias);
+                        } else {
+                            // Request comes from single Android client
+                            String exceptionMessage = "Unable to reach gadget " + gadget.alias;
+                            System.out.println(exceptionMessage);
+                            sendAllGadgetsToPublicServer(androidID);
+                            writeEncryptedToServer(String.format("%s%s%s%s", "19:", exceptionMessage, ":", androidID));
+                        }
                     }
                     break;
                 }
@@ -395,7 +413,7 @@ public class Server {
         writeEncryptedToServer(gadgetString);
     }
 
-    // =========================== CLOSE RESOURCES ====================================================
+    // ============================== CLOSE RESOURCES =================================================
 
     public void closeHomeServer() {
         synchronized (lock_closeServer) {
@@ -464,8 +482,18 @@ public class Server {
             if(debugMode) {
                 for (String log : content) {
                     // Note: Standard output stream writes to log file.
-                    System.out.println(String.format("%s%s%s", title, ": ", log));
+                    System.out.println(String.format("%-40s%s", title.concat(":"), (log.length() > 60 ? log.substring(0, 59)+" [...]" : log )));
                 }
+            }
+        }
+    }
+
+    private void debugLog(String gadgetName, boolean presence, int state) {
+        synchronized (lock_debugLogs) {
+            if(debugMode) {
+                String log = String.format("%-39s [%s][state:%s]",
+                        "Polling gadget: ".concat(gadgetName), (presence ? "present" : "not present"), state);
+                System.out.println(log);
             }
         }
     }
