@@ -36,11 +36,6 @@ Information of how to run a Java project as a Linux daemon can be found online. 
 java -jar HomeServer.jar
 ```
 - Create a systemd service in which you specify the path to the bash-file and set up additonal parameters of your liking.
+- Launch the service.
 
-```
-folder-ALMA
-- HomeServer.jar
-- config.json
-- automations.json
-- gadgets.json
-```
+Your HomeServer is now running and you can start adding gadgets and automations.
