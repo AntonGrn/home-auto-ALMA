@@ -19,8 +19,14 @@ Download [compiled version](link) of HomeServer including all required configura
 1. Create the following JSON files:
 - `config.json`:
 ```yaml
+config.json:
 {
-  "alma": []
+  "hub_ID": 107,
+  "hub_alias": "My House",
+  "hub_password": "XXXXXXXXXX",
+  "hub_debug_mode": false,
+  "public_server_IP": "XXX.XXX.XXX.XXX",
+  "public_server_port": 8084
 }
 ```
 - `gadgets.json`:
