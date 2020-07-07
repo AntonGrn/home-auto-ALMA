@@ -42,5 +42,7 @@ Once the HomeServer is running inside your LAN with a successful connection to a
 
 ## TP-Link gadgets
 
+## RF 433 MHz gadgets
+
 # Get started with Automations
 See main page.
