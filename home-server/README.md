@@ -29,8 +29,11 @@ Information of how to run a Java project as a Linux daemon can be found online. 
 
 ```
 - Create a bash script which launches the jar. E.g:
-```
-bash script example
+```bash
+#!/bin/bash
+
+#Run the application
+java -jar HomeServer.jar
 ```
 - Create a systemd service in which you specify the path to the bash-file and set up additonal parameters of your liking.
 
