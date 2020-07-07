@@ -16,10 +16,9 @@ Download [compiled version](link) of HomeServer including all required configura
 
 **Approach 2:** Manual files setup
 
-1. Create the following JSON files:
+1. Create the following JSON files:/
 `config.json`:
 ```yaml
-config.json:
 {
   "hub_ID": 107,
   "hub_alias": "My House",
