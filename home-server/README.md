@@ -16,8 +16,14 @@ Download [compiled version](link) of HomeServer including all required configura
 
 **Approach 2:** Manual files setup
 
-1. Create the following JSON files: `config.json`, `gadgets.json` and `automations.json`. See [main page](link) for more information about purpose and format.
+1. Create the following JSON files:
 - `config.json`:
+```yaml
+{
+  "alma": []
+}
+```
+- `gadgets.json`:
 ```yaml
 {
   "alma": [],
@@ -26,11 +32,11 @@ Download [compiled version](link) of HomeServer including all required configura
   "plugins": []
 }
 ```
-- `gadgets.json`:
+- `automations.json`:
 ```yaml 
 []
 ```
-   - See [main page](link) for more information about purpose and format.
+- See [main page](link) for more information about the JSON files.
 2. Create a JAR-file from the HomeServer [java project](link).
 3. Place the JAR-file in the same directory as the HomeServer JSON files created above. Required structure:
 ```
