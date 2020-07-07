@@ -8,6 +8,7 @@ Additional information about the HomeServer and other ALMA nodes can be found on
 There are no hard-coding requirements involved in setting up your ALMA HomeServer. However, there are some configurations needed.
 
 1. Create JSON files named `config.json`, `gadgets.json` and `automations.json`
+  * Location requirement: Same directory as the running PublicServer instance.
   - Read about the JSON files on the repository main page.
   - See full/extended examples of the required JSON files below.
 2. Place the files accessible for the HomeServer application.
