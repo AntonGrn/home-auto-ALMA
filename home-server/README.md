@@ -15,3 +15,10 @@ automationsFileJSON = "/path/to/automations.json";
 ```java
 configFileJSON = "/path/to/config.json";
 ```
+```
+folder-ALMA
+- HomeServer.jar
+- config.json
+- automations.json
+- gadgets.json
+```
