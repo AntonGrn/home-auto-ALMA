@@ -2,7 +2,7 @@
 # About HomeServer
 The HomeServer instance is the key component of your ALMA home automation system. In fact, if you register your homeServer instance to an active ALMA PublicServer, the HomeServer instance is all you need to start automating you home. With the ALMA AndroidClient you can also control and monitor your smart home remotely.
 
-Additional information about the HomeServer and other ALMA nodes can be found on the repository main page.
+See [main page](link) for more information about the HomeServer instance.
 
 # Get started with your ALMA HomeServer
 
@@ -30,7 +30,7 @@ For easy, plug-and-play setup, download compiled version of HomeServer including
 ```
 ## Step 2: config.json
 
-Specify the connection credentials to the PublicServer in `config.json`. See main page.
+Specify the connection credentials to the PublicServer in `config.json`. See [main page](link).
 
 ## Step 3:  Run HomeServer
 Since the ALMA home server is intended to be run on a Raspberry Pi acting as the hub of your smart home system, the HomeServer application should be configured to launch as a Linux daemon. One suggested approach is to set it up as a `systemd` background service on your Raspberry Pi. This setup allows easy managagement and debugging with real-time log tracking, while still leaving your Pi availbale to run other services and operations of your liking in parrallel.  to serve additional purposes of your liking
@@ -38,7 +38,10 @@ Since the ALMA home server is intended to be run on a Raspberry Pi acting as the
 # Get started with Gadgets
 Once the HomeServer is running inside your LAN with a successful connection to a PublicServer instance, you can start introducing and configuring gadgets.
 
+See [main page](link) for information about gadgets.
+
 ## Native ALMA gadgets
+Any software capable to setup a Socket TCP Server instance can confirm to native ALMA gadgets to gather integer value states.
 
 ## TP-Link gadgets
 
