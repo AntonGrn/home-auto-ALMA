@@ -1,9 +1,13 @@
 The HomeServer instance is the key component of your ALMA home automation system. In fact, if you register you homeServer instance to an active ALMA PublicServer (to obtain remote login credentials), the HomeServer instance is all you need to start automating you home. With the ALMA AndroidClient you can also control and monitor your smart home remotely.
 
+Additional information about the HomeServer and other ALMA nodes can be found on the repository main page.
+
 # Get started with your ALMA HomeServer
 There are no hard-coding requirements involved in setting up your ALMA HomeServer. However, there are some configurations needed.
 
 1. Create JSON files named `config.json`, `gadgets.json` and `automations.json`
+  - Read about the JSON files on the repository main page.
+  - See full/extended examples of the required JSON files below.
 2. Place the files accessible for the HomeServer application.
 3. Specify the paths to the files in HomeServer class `JSON_reader`:
 ```java
