@@ -1,3 +1,4 @@
+# Get strated with HomeServer
 1. Create JSON files named `config.json`, `gadgets.json` and `automations.json`
 2. Place the files accessible for the HomeServer application.
 3. Specify the paths to the files in HomeServer class `JSON_reader`:
