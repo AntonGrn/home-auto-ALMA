@@ -27,9 +27,10 @@ Download [compiled version](link) of HomeServer including all required configura
 }
 ```
    - Empty automations.json:
-```yaml
+```yaml 
 []
 ```
+   - See [main page](link) for more information about purpose and format.
 2. Create a JAR-file from the HomeServer [java project](link).
 3. Place the JAR-file in the same directory as the HomeServer JSON files created above. Required structure:
 ```
