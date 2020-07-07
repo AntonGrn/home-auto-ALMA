@@ -16,8 +16,7 @@ Download [compiled version](link) of HomeServer including all required configura
 
 **Approach 2:** Manual files setup
 
-1. Create required JSON files named `config.json`, `gadgets.json` and `automations.json`
-   - See [main page](link) for information about the required JSON files.
+1. Create required JSON files named `config.json`, `gadgets.json` and `automations.json`. See [main page](link) for more information.
 2. Create a JAR-file from the HomeServer [java project](link).
 3. Place the JAR-file in the same directory as the HomeServer JSON files created above. Required structure:
 ```
