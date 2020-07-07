@@ -6,7 +6,7 @@ See [main page](link) for more information about the HomeServer instance.
 
 # Get started with your ALMA HomeServer
 
-There are no hard-coding requirements involved in setting up your ALMA HomeServer. However, there are some configurations needed.
+There are no hard-coding involved in setting up your ALMA HomeServer. However, there are some configurations needed.
 
 ## Step 1: Required files
 
