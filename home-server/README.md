@@ -7,11 +7,8 @@ There are no hard-coding requirements involved in setting up your ALMA HomeServe
 2. Place the files accessible for the HomeServer application.
 3. Specify the paths to the files in HomeServer class `JSON_reader`:
 ```java
-// Specify path to JSON file 'gadgets.json':
 gadgetFileJSON = "/path/to/gadgets.json";
-// Specify path to JSON file 'config.json':
 configFileJSON = "/path/to/config.json";
-// Specify path to JSON 'automations.json'
 automationsFileJSON = "/path/to/automations.json";
 ```
 Since the ALMA home server is intended to be run on a Raspberry Pi acting as the hub of your smart home system, the HomeServer application should be configured to launch as a Linux daemon. One suggested approach is to set it up as a `systemd` background service on your Raspberry Pi. This setup allows easy managagement and debugging with real-time log tracking, while still leaving your Pi availbale to run other services and operations of your liking in parrallel.  to serve additional purposes of your liking
