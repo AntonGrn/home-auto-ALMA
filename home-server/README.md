@@ -17,7 +17,7 @@ Download [compiled version](link) of HomeServer including all required configura
 **Approach 2:** Manual files setup
 
 1. Create the following JSON files: `config.json`, `gadgets.json` and `automations.json`. See [main page](link) for more information about purpose and format.
-   - `config.json`:
+- `config.json`:
 ```yaml
 {
   "alma": [],
@@ -26,7 +26,7 @@ Download [compiled version](link) of HomeServer including all required configura
   "plugins": []
 }
 ```
-    - `gadgets.json`:
+- `gadgets.json`:
 ```yaml 
 []
 ```
