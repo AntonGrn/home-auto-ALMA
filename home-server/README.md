@@ -5,14 +5,16 @@ The HomeServer instance is the key component of your ALMA home automation system
 Additional information about the HomeServer and other ALMA nodes can be found on the repository main page.
 
 # Get started with your ALMA HomeServer
+
 There are no hard-coding requirements involved in setting up your ALMA HomeServer. However, there are some configurations needed.
 
 ## Step 1: Obtaining the required files
 
 **Approach 1: Download complete packet**
+
 For easy, plug-and-play setup, download compiled version of HomeServer including all required configuration files.
 
-**Approach 2: Manual setup**
+**Approach 2: Manually**
 
 1. Create required JSON files named `config.json`, `gadgets.json` and `automations.json`
    - Read about the JSON files on the repository main page.
@@ -28,20 +30,15 @@ For easy, plug-and-play setup, download compiled version of HomeServer including
 ```
 ## Step 2: config.json
 
+* Specify the connection credentials to the PublicServer.
+* Specify the IP-address and TCP port number to the PublicServer.
+
 
 ## Step 3:  Run HomeServer
 Since the ALMA home server is intended to be run on a Raspberry Pi acting as the hub of your smart home system, the HomeServer application should be configured to launch as a Linux daemon. One suggested approach is to set it up as a `systemd` background service on your Raspberry Pi. This setup allows easy managagement and debugging with real-time log tracking, while still leaving your Pi availbale to run other services and operations of your liking in parrallel.  to serve additional purposes of your liking
 
-Information of how to run a Java project as a Linux daemon can be found online. Here is a suggested approach:
-
-- Create a bash script which launches the jar. E.g:
-```bash
-#!/bin/bash
-
-#Run the application
-java -jar HomeServer.jar
-```
-- Create a systemd service in which you specify the path to the bash-file and set up additonal parameters of your liking.
+# Setup gadgets
+- Once the HomeServer is running inside your LAN with a
 - Launch the service.
 
 Your HomeServer is now running and you can start adding gadgets and automations.
