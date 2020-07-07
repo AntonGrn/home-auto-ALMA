@@ -16,33 +16,7 @@ Download [compiled version](link) of HomeServer including all required configura
 
 **Approach 2:** Manual files setup
 
-1. Create the following JSON files:
-
-`config.json`:
-```yaml
-{
-  "hub_ID": 107,
-  "hub_alias": "My House",
-  "hub_password": "XXXXXXXXXX",
-  "hub_debug_mode": false,
-  "public_server_IP": "XXX.XXX.XXX.XXX",
-  "public_server_port": 8084
-}
-```
-- `gadgets.json`:
-```yaml
-{
-  "alma": [],
-  "tp_link": [],
-  "rf433MHz": [],
-  "plugins": []
-}
-```
-- `automations.json`:
-```yaml 
-[]
-```
-- See [main page](link) for more information about the JSON files.
+1. Create JSON files `config.json`, `gadgets.json` and `automations.json`. See [main page](link) for valid formats.
 2. Create a JAR-file from the HomeServer [java project](link).
 3. Place the JAR-file in the same directory as the HomeServer JSON files created above. Required structure:
 ```
