@@ -10,20 +10,24 @@ There are no hard-coding involved in setting up your ALMA HomeServer. However, t
 
 ## Step 1: Required files
 
-**Approach 1:** Unzip complete files setup
+**Approach 1:** Complete files setup (ready to deploy)
 
-Unzip [compiled version (jar)](link) of HomeServer including all required configuration files.
+Unzip [homeServerALMA.zip](link), containing:
+* Required files and file structure 
+* Executable JAR instance of the HomeServer application.
 
 **Approach 2:** Manual files setup
 
 1. Copy the [*json* folder](link) and the [*python-scripts* folder](link) into a directory of your choosing.
-2. Create a JAR-file from the HomeServer [java project](link).
-3. Place the JAR-file in the same directory as the *json* folder and *python-scripts* folder. 
+2. Create an executable JAR file from the HomeServer [java project](link).
+3. (Optional) For daemon deployment; create a bash script that can be called to launch the executable JAR.
+4. Place the JAR-file (and the optional bash script) in the same directory as the *json* folder and *python-scripts* folder. 
 
 Required project structure:
 ```
-/home-auto-ALMA (name of your choosing)
+/home-server-ALMA (name of your choosing)
 ├── HomeServer.jar
+├── homeServer.sh (optional)
 ├── json
 │   ├── automations.json
 │   ├── config.json
@@ -32,6 +36,15 @@ Required project structure:
     ├── config.json (optional)
     └── rpi-rf_send (optional)
 ```
+
+Example bash script:
+```bash
+#!/bin/bash
+
+#Run the application
+java -jar HomeServer.jar
+```
+
 ## Step 2: Connection to PublicServer
 
 Specify connection credentials in `config.json`. See [main page](link).
