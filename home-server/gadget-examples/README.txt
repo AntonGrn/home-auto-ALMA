@@ -1,4 +1,4 @@
-Native ALMA gadget software for creating gadget nodes, with which HomeServer can communicate.
+Native ALMA software for creating gadget nodes, which communicate with HomeServer inside home LAN.
 Each gadget may run as a standalone device (e.g. ESP8266) or as incorporated computer software
 (e.g. for web scraping, computer status or database queries). 
 
