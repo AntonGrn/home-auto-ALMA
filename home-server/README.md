@@ -50,7 +50,7 @@ Specify connection credentials in `config.json`. See [main page](link).
 Since the ALMA home server is intended to be run on a Raspberry Pi (acting as the hub of your smart home system), the HomeServer application should be configured to launch as a Linux daemon. One suggested approach is to set it up as a `systemd` background service on your Raspberry Pi. This setup allows easy managagement and debugging with real-time log tracking, while still leaving your Pi available to run other services and operations of your liking in parrallel.  to serve additional purposes of your liking
 
 # Get started with Gadgets and Automations
-Once the HomeServer is running inside your LAN with a successful connection to a PublicServer instance, you can start introducing and configuring gadgets and automations via their respective json files.
+Once the HomeServer is running inside your LAN with a successful connection to a PublicServer instance, you can start introducing and configuring gadgets and automations via their respective json files (`gadgets.json` and `automations.json`).
 
 See [main page](link) for information about gadgets and automations.
 
