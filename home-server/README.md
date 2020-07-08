@@ -34,7 +34,7 @@ Required project structure:
 ```
 ## Step 2: Connection to PublicServer
 
-Specify connection credentials in `json/config.json`. See [main page](link).
+Specify connection credentials in `config.json`. See [main page](link).
 ```yaml
 {
   "hub_ID": Integer. Unique ID of your home server instance (hub),
