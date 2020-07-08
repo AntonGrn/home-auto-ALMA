@@ -56,6 +56,8 @@ See [main page](link) for information about gadgets and automations.
 
 ### Example of `gadgets.json`
 
+### Example of `automations.json`
+
 ## Native ALMA gadgets
 Any software capable to setup a Socket TCP Server instance can confirm to native ALMA gadgets to gather integer value states.
 
