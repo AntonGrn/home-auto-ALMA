@@ -12,7 +12,7 @@ There are no hard-coding involved in setting up your ALMA HomeServer. However, t
 
 **Approach 1:** Complete files setup (ready to deploy)
 
-Unzip [homeServerALMA.zip](link), containing:
+Unzip [home-server-ALMA.zip](link), containing:
 * Required files and file structure 
 * Executable JAR instance of the HomeServer application.
 
