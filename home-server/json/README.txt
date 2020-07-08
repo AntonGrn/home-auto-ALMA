@@ -1,0 +1,1 @@
+Templates of required JSON files.

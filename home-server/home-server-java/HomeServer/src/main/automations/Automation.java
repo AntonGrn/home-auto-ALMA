@@ -1,4 +1,4 @@
-package main.gadgets.automations;
+package main.automations;
 
 import java.util.ArrayList;
 

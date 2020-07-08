@@ -1,4 +1,4 @@
-package main.gadgets.automations;
+package main.automations;
 
 public class Timer {
     private long delayActionMs;

@@ -1,7 +1,7 @@
 package main.JSON;
 
 import main.gadgets.*;
-import main.gadgets.automations.*;
+import main.automations.*;
 import main.gadgets.plugins.Gadget_local_Pi_CPU_temp;
 import main.gadgets.plugins.Gadget_local_Pi_GPIO_onoff;
 import org.json.simple.JSONArray;
@@ -22,12 +22,10 @@ public class JSON_reader {
     private final Object lock_automationsFile;
 
     public JSON_reader() {
-        // Specify path to JSON file 'gadgets.json':
-        gadgetFileJSON = "/path/to/gadgets.json";
-        // Specify path to JSON file 'config.json':
-        configFileJSON = "/path/to/config.json";
-        // Specify path to JSON 'automations.json'
-        automationsFileJSON = "/path/to/automations.json";
+        // JSON file paths
+        gadgetFileJSON = "./gadgets.json";
+        configFileJSON = "./config.json";
+        automationsFileJSON = "./automations.json";
         // Lock objects
         lock_gadgetFile = new Object();
         lock_configFile = new Object();

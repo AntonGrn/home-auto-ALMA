@@ -1,7 +1,6 @@
-package main.gadgets.automations;
+package main.automations;
 
 import main.Server;
-
 import java.time.LocalTime;
 import java.util.ArrayList;
 
