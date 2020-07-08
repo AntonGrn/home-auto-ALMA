@@ -14,13 +14,12 @@ public class Gadget_local_Pi_GPIO_onoff extends Gadget {
      * running on a Raspberry Pi 3 Model B+.
      */
 
-    private int pinGPIO;
     private final String pathToGpioLocalOnoffPy;
     private final int GPIO;
 
-    public Gadget_local_Pi_GPIO_onoff(int gadgetID, String alias, String pathToScript, int GPIO) {
+    public Gadget_local_Pi_GPIO_onoff(int gadgetID, String alias, int GPIO) {
         super(gadgetID, alias, GadgetType.CONTROL_ONOFF, 120);
-        this.pathToGpioLocalOnoffPy = pathToScript;
+        this.pathToGpioLocalOnoffPy = "./python-scripts/gpio-local-onoff.py";
         this.GPIO = GPIO;
         setState(0); // Assumed initial state of non-feedback gadget.
     }
