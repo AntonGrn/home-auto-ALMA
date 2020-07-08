@@ -6,6 +6,8 @@ public class Gadget_rf433MHz extends Gadget {
      * Control of rf (433MHz) outlets from Raspberry Pi ALMA HomeServer hub,
      * using python module rpi-rf:
      *
+     * Note: rpi-rf script 'rpi-rf_send' must be added to directory 'python-scripts'
+     *
      * @see <a href="https://pypi.org/project/rpi-rf/"/a>
      */
     // Absolute path to python script 'rpi-rf_send' (inclusive)
@@ -17,9 +19,9 @@ public class Gadget_rf433MHz extends Gadget {
     private final int CODE_ON;
     private final int CODE_OFF;
 
-    public Gadget_rf433MHz(int gadgetID, String name, String pathToScript, int gpio, int protocol, int pulseLength, int codeON, int codeOFF) {
+    public Gadget_rf433MHz(int gadgetID, String name, int gpio, int protocol, int pulseLength, int codeON, int codeOFF) {
         super(gadgetID, name, GadgetType.CONTROL_ONOFF, 120);
-        pathTo433MHzSendScript = pathToScript;
+        pathTo433MHzSendScript = "./python-scripts/rpi-rf_send";
         this.GPIO = gpio;
         this.protocol = protocol;
         this.pulseLength = pulseLength;

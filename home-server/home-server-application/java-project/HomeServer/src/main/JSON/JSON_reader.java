@@ -23,9 +23,9 @@ public class JSON_reader {
 
     public JSON_reader() {
         // JSON file paths
-        gadgetFileJSON = "./gadgets.json";
-        configFileJSON = "./config.json";
-        automationsFileJSON = "./automations.json";
+        gadgetFileJSON = "./json/gadgets.json";
+        configFileJSON = "./json/config.json";
+        automationsFileJSON = "./json/automations.json";
         // Lock objects
         lock_gadgetFile = new Object();
         lock_configFile = new Object();
@@ -129,13 +129,12 @@ public class JSON_reader {
             if ((Boolean) jsonGadget.get("enabled")) {
                 int gadgetID = ((Long) jsonGadget.get("gadget_id")).intValue();
                 String alias = (String) jsonGadget.get("alias");
-                String pathToScript = (String) jsonGadget.get("path_rpi-rf_send");
                 int gpio = ((Long) jsonGadget.get("gpio_BCM")).intValue();
                 int protocol = ((Long) jsonGadget.get("protocol")).intValue();
                 int pulseLength = ((Long) jsonGadget.get("pulse_length")).intValue();
                 int codeON = ((Long) jsonGadget.get("code_ON")).intValue();
                 int codeOFF = ((Long) jsonGadget.get("code_OFF")).intValue();
-                gadgets_rf433MHz.add(new Gadget_rf433MHz(gadgetID, alias, pathToScript, gpio, protocol, pulseLength, codeON, codeOFF));
+                gadgets_rf433MHz.add(new Gadget_rf433MHz(gadgetID, alias, gpio, protocol, pulseLength, codeON, codeOFF));
             }
         }
         return gadgets_rf433MHz;
@@ -155,8 +154,7 @@ public class JSON_reader {
                         break;
                     case "local_pi_gpio_onoff":
                         int gpio = ((Long) jsonGadget.get("gpio_BCM")).intValue();
-                        String pathToScript = (String) jsonGadget.get("path_gpio-local-onoff.py");
-                        gadgets_plugin.add(new Gadget_local_Pi_GPIO_onoff(gadgetID, alias, pathToScript, gpio));
+                        gadgets_plugin.add(new Gadget_local_Pi_GPIO_onoff(gadgetID, alias, gpio));
                         break;
                 }
             }
