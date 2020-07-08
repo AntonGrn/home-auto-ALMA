@@ -54,7 +54,7 @@ Once the HomeServer is running inside your LAN with a successful connection to a
 
 See [main page](link) for information about gadgets and automations.
 
-## Example of `gadgets.json`
+### Example of `gadgets.json`
 
 ## Native ALMA gadgets
 Any software capable to setup a Socket TCP Server instance can confirm to native ALMA gadgets to gather integer value states.
