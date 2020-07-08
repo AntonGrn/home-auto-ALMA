@@ -8,6 +8,6 @@ Deployable HomeServer setup, containing:
 │   ├── config.json (template)
 │   └── gadgets.json (template)
 └── python-scripts
-    └──  config.json (optional)
+    └──  gpio-local-onoff.py (optional)
 ```
 See [Home Server setup](link) for more information.
