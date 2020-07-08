@@ -1,4 +1,4 @@
-package main.gadgets.automations;
+package main.automations;
 
 /**
  * Used by Automation_Event to set condition for a gadget state trigger.

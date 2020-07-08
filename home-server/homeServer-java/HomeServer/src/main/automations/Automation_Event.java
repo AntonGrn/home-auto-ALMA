@@ -1,7 +1,6 @@
-package main.gadgets.automations;
+package main.automations;
 
 import main.Server;
-
 import java.util.ArrayList;
 
 public class Automation_Event extends Automation {

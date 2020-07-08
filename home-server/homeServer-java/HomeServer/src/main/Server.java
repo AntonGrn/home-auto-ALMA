@@ -3,8 +3,7 @@ package main;
 import main.JSON.JSON_reader;
 import main.cryptography.ClientCryptography;
 import main.gadgets.Gadget;
-import main.gadgets.automations.AutomationHandler;
-
+import main.automations.AutomationHandler;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;

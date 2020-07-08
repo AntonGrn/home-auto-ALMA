@@ -1,8 +1,8 @@
 {
-  "hub_ID": 107,
+  "hub_ID": 0,
   "hub_alias": "My House",
   "hub_password": "XXXXXXXXXX",
   "hub_debug_mode": false,
   "public_server_IP": "XXX.XXX.XXX.XXX",
-  "public_server_port": 8084
+  "public_server_port": 0
 }
