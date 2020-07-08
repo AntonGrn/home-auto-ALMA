@@ -13,7 +13,7 @@ There are no hard-coding involved in setting up your ALMA HomeServer. However, t
 **Approach 1:** Complete files setup (ready to deploy)
 
 Unzip [home-server-ALMA.zip](link), containing:
-* Required files and file structure 
+* Required files and file structure.
 * Executable JAR instance of the HomeServer application.
 
 **Approach 2:** Manual files setup
@@ -33,7 +33,7 @@ Required project structure:
 │   ├── config.json
 │   └── gadgets.json
 └── python-scripts
-    ├── config.json (optional)
+    ├── gpio-local-onoff.py (optional)
     └── rpi-rf_send (optional)
 ```
 
