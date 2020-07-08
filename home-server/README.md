@@ -10,25 +10,41 @@ There are no hard-coding involved in setting up your ALMA HomeServer. However, t
 
 ## Step 1: Required files
 
-**Approach 1:** Download complete packet
+**Approach 1:** Unzip complete files setup
 
-Download [compiled version](link) of HomeServer including all required configuration files.
+Unzip [compiled version (jar)](link) of HomeServer including all required configuration files.
 
 **Approach 2:** Manual files setup
 
-1. Create JSON files `config.json`, `gadgets.json` and `automations.json`. See [main page](link) for valid formats.
+1. Copy the [*json* folder](link) and the [*python-scripts* folder](link) into a directory of your choosing.
 2. Create a JAR-file from the HomeServer [java project](link).
-3. Place the JAR-file in the same directory as the HomeServer JSON files created above. Required structure:
+3. Place the JAR-file in the same directory as the *json* folder and *python-scripts* folder. 
+
+Required project structure:
 ```
 /home-auto-ALMA (name of your choosing)
 ├── HomeServer.jar
-├── automations.json
-├── config.json
-└── gadgets.json
+├── json
+│   ├── automations.json
+│   ├── config.json
+│   └── gadgets.json
+└── python-scripts
+    ├── config.json (optional)
+    └── rpi-rf_send (optional)
 ```
 ## Step 2: Connection to PublicServer
 
-Specify connection credentials in `config.json`. See [main page](link).
+Specify connection credentials in `json/config.json`. See [main page](link).
+```yaml
+{
+  "hub_ID": Integer. Unique ID of your home server instance (hub),
+  "hub_alias": String. Optional name of your home server,
+  "hub_password": String. Password for public server authentication,
+  "hub_debug_mode": Boolean. Trigger additional log generations,
+  "public_server_IP": String. IP-address of public server,
+  "public_server_port": Integer. TCP-port of public server
+}
+```
 
 ## Step 3:  Run HomeServer
 Since the ALMA home server is intended to be run on a Raspberry Pi (acting as the hub of your smart home system), the HomeServer application should be configured to launch as a Linux daemon. One suggested approach is to set it up as a `systemd` background service on your Raspberry Pi. This setup allows easy managagement and debugging with real-time log tracking, while still leaving your Pi available to run other services and operations of your liking in parrallel.  to serve additional purposes of your liking
