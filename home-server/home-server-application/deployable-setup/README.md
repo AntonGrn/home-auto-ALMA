@@ -1,7 +1,7 @@
 Deployable HomeServer setup, containing:
 ```
 /home-server-ALMA
-├── HomeServer.jar (executable jar)
+├── HomeServer.jar (executable JAR)
 ├── homeServer.sh (optional, for Linux dameon launch)
 ├── json
 │   ├── automations.json (template)
