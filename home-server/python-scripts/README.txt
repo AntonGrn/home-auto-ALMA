@@ -1,7 +1,14 @@
-Python scripts executed by ALMA gadget(s)
-
-If a gadget requires a particular python script, the requested script 
-will be stated as a property of that gadget architecture in 'gadgets.json'.
 Requirements: Python 3 installed on HomeServer device.
 
-Path to requested python script must be specified in 'gadgets.json'.
+Python scripts required to operate the following ALMA gadget(s):
+---------------------------------------------------------------
+GADGET:          Plugin; plugin_id: "local_pi_gpio_onoff"
+REQUIRED SCRIPT: gpio-local-onoff.py
+STATUS:          Included by default. 
+---------------------------------------------------------------
+GADGET:          rf433MHz
+REQUIRED SCRIPT: rpi-rf_send
+STATUS:          Not included by default.
+WEB SITE:        https://pypi.org/project/rpi-rf/
+NOTE:            Only needed for 433MHz switch communication.
+---------------------------------------------------------------
