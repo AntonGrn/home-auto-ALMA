@@ -10,4 +10,4 @@ Deployable HomeServer setup, containing:
 └── python-scripts
     └──  gpio-local-onoff.py (optional)
 ```
-See [Home Server setup](link) for more information.
+See [HomeServer setup](link) for more information.
