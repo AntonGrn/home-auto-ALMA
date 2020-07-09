@@ -67,7 +67,7 @@ Once the HomeServer is running inside your LAN with a successful connection to a
 
 See [main page](link) for information about gadgets and automations.
 
-### Example of `gadgets.json`
+#### Example of `gadgets.json`
 
-### Example of `automations.json`
+#### Example of `automations.json`
 
