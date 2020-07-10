@@ -58,7 +58,7 @@ Specify connection credentials in `config.json`. See [main page](link).
   "public_server_port": Integer. TCP-port of public server
 }
 ```
-**Note:** With the connection to a PublicServer instance, no port-forwarding is needed for remote access from an AndroidClient.
+**Note:** With the connection to a PublicServer estabslished, no port-forwarding is needed for remote access from an AndroidClient.
 
 ## Step 3:  Run HomeServer
 Since the ALMA home server is intended to be run on a Raspberry Pi (acting as the hub of your smart home system), the HomeServer application should be configured to launch as a Linux daemon. One suggested approach is to set it up as a `systemd` background service on your Raspberry Pi. This setup allows easy managagement and debugging with real-time log tracking, while still leaving your Pi available to run other/additional services and operations of your liking in parrallel.  to serve additional purposes of your liking
