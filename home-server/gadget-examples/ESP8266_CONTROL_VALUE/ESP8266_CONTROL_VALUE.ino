@@ -77,7 +77,8 @@ void loop() {
       // While there are something to read from the client:
       while (client.available() > 0) { // Returns 0 until you read something
         Serial.println("Message from home server available:");
-        String serverRequest = client.readStringUntil('\n');
+        String encryptedRequest = client.readStringUntil('\n');
+        String serverRequest = encryptDecrypt(encryptedRequest);
         Serial.print("Command: ");
         Serial.println(serverRequest);
 
@@ -96,7 +97,7 @@ void loop() {
           }
           // Respond with current state
           String response = "16:" + String(currentPos);
-          client.println(response);
+          client.println(encryptDecrypt(response));
           client.flush();
           Serial.print("Response sent to home server");
           Serial.println(response);
@@ -115,4 +116,13 @@ void movePointer(int requestedPos) {
   // Move the servo pointer.
   servo.write(requestedPos);
   currentPos = requestedPos;
+}
+
+String encryptDecrypt(String input) {
+  char key[3] = {'F', 'K', 'Q'};
+  String output = "";
+  for(int i = 0 ; i < input.length() ; i++) {
+    output += (char) (input.charAt(i) ^ key[i % (sizeof(key))]);
+  }
+  return output;
 }
