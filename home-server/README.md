@@ -8,6 +8,8 @@ See [main page](link) for more information.
 
 There are no hard-coding involved in setting up your ALMA HomeServer. However, there are some configurations needed.
 
+Because of the services provided by [PublicServer](link), no port-forwarding is needed for remote access using the [AndroidClient](link).
+
 ## Step 1: Required files
 
 **Approach 1:** Complete files setup (ready to deploy)
