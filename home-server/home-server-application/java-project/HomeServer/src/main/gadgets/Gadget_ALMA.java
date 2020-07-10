@@ -23,7 +23,7 @@ public class Gadget_ALMA extends Gadget {
 
     @Override
     public void poll() {
-        String pollRequest = String.format("%s%s%n", "15:", requestSpec);
+        String pollRequest = String.format("%s%s", "15:", requestSpec);
         try {
             String[] response = (sendCommand(pollRequest)).split(":");
             if (response[0].equals("16")) {
@@ -40,7 +40,7 @@ public class Gadget_ALMA extends Gadget {
     @Override
     public void alterState(int requestedState) throws Exception {
         if (type == GadgetType.CONTROL_ONOFF || type == GadgetType.CONTROL_VALUE) {
-            String almaCommand = String.format("%s%s%s%s%n", "10:", requestedState, ":", requestSpec);
+            String almaCommand = String.format("%s%s%s%s", "10:", requestedState, ":", requestSpec);
             String[] response = (sendCommand(almaCommand)).split(":");
             if (response[0].equals("16")) {
                 setState(Integer.parseInt(response[1]));
@@ -59,16 +59,25 @@ public class Gadget_ALMA extends Gadget {
             // Obtain output & input streams
             output = new BufferedWriter(new OutputStreamWriter(gadgetSocket.getOutputStream()));
             input = new BufferedReader(new InputStreamReader(gadgetSocket.getInputStream()));
-            // Write request (ALMA protocol)
-            output.write(command);
+            // Write encrypted request (ALMA protocol)
+            output.write(encryptDecrypt(command).concat(String.format("%n")));
             output.flush();
-            // Read response (ALMA protocol)
-            return input.readLine();
+            // Read encrypted response and decrypt it (to ALMA protocol format)
+            return encryptDecrypt(input.readLine());
         } catch (IOException e) {
             return null;
         } finally {
             input.close();
             output.close();
         }
+    }
+
+    private String encryptDecrypt(String input) {
+        char[] key = {'F', 'K', 'Q'};
+        StringBuilder output = new StringBuilder();
+        for(int i = 0 ; i < input.length() ; i++) {
+            output.append((char)(input.charAt(i) ^ key[i % key.length]));
+        }
+        return output.toString();
     }
 }

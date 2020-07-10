@@ -62,7 +62,8 @@ void loop() {
       // While there are something to read from the client:
       while (client.available() > 0) { // Returns 0 until you read something
         Serial.println("Message from home server available:");
-        String serverRequest = client.readStringUntil('\n');
+        String encryptedRequest = client.readStringUntil('\n');
+        String serverRequest = encryptDecrypt(encryptedRequest);
         Serial.print("Command: ");
         Serial.println(serverRequest);
 
@@ -76,15 +77,17 @@ void loop() {
           Serial.print("request_spec: ");
           Serial.println(request_spec);
           String requested_data = "0";
-          if (request_spec.equals("temperature")) {
+          if (request_spec.startsWith("temperature")) {
             requested_data = getTemperature();
-          } else if (request_spec.equals("humidity")) {
+          } else if (request_spec.startsWith("humidity")) {
             requested_data = getHumidity();
           }
           // Respond with requested data
           String response = "16:" + requested_data;
-          client.println(response);
+          client.println(encryptDecrypt(response));
           client.flush();
+          Serial.print("Response sent to home server");
+          Serial.println(response);
         }
       }
       delay(10);
@@ -110,4 +113,13 @@ String getHumidity() {
   Serial.print(stringHumid);
   Serial.println(" %");
   return stringHumid.substring(0, indexOfDecimal);
+}
+
+String encryptDecrypt(String input) {
+  char key[3] = {'F', 'K', 'Q'};
+  String output = "";
+  for(int i = 0 ; i < input.length() ; i++) {
+    output += (char) (input.charAt(i) ^ key[i % (sizeof(key))]);
+  }
+  return output;
 }

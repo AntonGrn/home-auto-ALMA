@@ -59,12 +59,12 @@ public class TempReader {
                 output = new BufferedWriter(new OutputStreamWriter(homeServerConnection.getOutputStream()));
 
                 while ((request = input.readLine()) != null) {
-                    String[] almaRequest = request.split(":");
+                    String[] almaRequest = encryptDecrypt(request).split(":");
                     if (almaRequest[0].equals("15")) {
                         // if request: poll gadget state
                         try {
-                            String pollResponse = String.format("%s%s%n", "16:", String.valueOf(read_CPU_temp()));
-                            output.write(pollResponse);
+                            String pollResponse = String.format("%s%s", "16:", String.valueOf(read_CPU_temp()));
+                            output.write(encryptDecrypt(pollResponse).concat("\n"));
                             output.flush();
                         } catch (Exception e) {
                             System.out.println(e.getMessage());
@@ -109,5 +109,14 @@ public class TempReader {
                 bufferedReader.close();
             }
         }
+    }
+
+    private static String encryptDecrypt(String input) {
+        char[] key = {'F', 'K', 'Q'};
+        StringBuilder output = new StringBuilder();
+        for(int i = 0 ; i < input.length() ; i++) {
+            output.append((char)(input.charAt(i) ^ key[i % key.length]));
+        }
+        return output.toString();
     }
 }

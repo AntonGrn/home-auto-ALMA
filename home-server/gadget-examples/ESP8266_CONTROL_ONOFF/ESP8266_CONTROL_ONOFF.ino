@@ -66,7 +66,8 @@ void loop() {
       // While there are something to read from the client:
       while (client.available() > 0) { // Returns 0 until you read something
         Serial.println("Message from home server available:");
-        String serverRequest = client.readStringUntil('\n');
+        String encryptedRequest = client.readStringUntil('\n');
+        String serverRequest = encryptDecrypt(encryptedRequest);
         Serial.print("Command: ");
         Serial.println(serverRequest);
 
@@ -89,8 +90,10 @@ void loop() {
           }
           // Respond with current state
           String response = "16:" + currentState;
-          client.println(response);
+          client.println(encryptDecrypt(response));
           client.flush();
+          Serial.print("Response sent to home server");
+          Serial.println(response);
         }
       }
       delay(10);
@@ -111,4 +114,13 @@ void pinOFF() {
   digitalWrite(BUILTIN_LED1, OFF);
   digitalWrite(BUILTIN_LED2, OFF);
   currentState = "0";
+}
+
+String encryptDecrypt(String input) {
+  char key[3] = {'F', 'K', 'Q'};
+  String output = "";
+  for(int i = 0 ; i < input.length() ; i++) {
+    output += (char) (input.charAt(i) ^ key[i % (sizeof(key))]);
+  }
+  return output;
 }
