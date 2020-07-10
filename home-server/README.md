@@ -8,8 +8,6 @@ See [main page](link) for more information.
 
 There are no hard-coding involved in setting up your ALMA HomeServer. However, there are some configurations needed.
 
-Because of the services provided by [PublicServer](link), no port-forwarding is needed for remote access using the [AndroidClient](link).
-
 ## Step 1: Required files
 
 **Approach 1:** Complete files setup (ready to deploy)
@@ -60,6 +58,7 @@ Specify connection credentials in `config.json`. See [main page](link).
   "public_server_port": Integer. TCP-port of public server
 }
 ```
+**Note:** Because of the services provided by [PublicServer](link), no port-forwarding is needed for remote access using the [AndroidClient](link).
 
 ## Step 3:  Run HomeServer
 Since the ALMA home server is intended to be run on a Raspberry Pi (acting as the hub of your smart home system), the HomeServer application should be configured to launch as a Linux daemon. One suggested approach is to set it up as a `systemd` background service on your Raspberry Pi. This setup allows easy managagement and debugging with real-time log tracking, while still leaving your Pi available to run other/additional services and operations of your liking in parrallel.  to serve additional purposes of your liking
