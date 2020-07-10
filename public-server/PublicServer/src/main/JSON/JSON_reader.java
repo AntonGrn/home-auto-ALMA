@@ -7,9 +7,8 @@ import java.io.FileReader;
 import java.io.Reader;
 
 public class JSON_reader {
-
-    // Specify path to JSON file 'config.json':
-    private static final String configFileJSON = "/home/anton/projectALMA/config.json";
+    
+    private static final String configFileJSON = "./config.json";
     private static final Object lock_configFile = new Object();
 
     public static int[] loadServerSpecs() throws Exception {
