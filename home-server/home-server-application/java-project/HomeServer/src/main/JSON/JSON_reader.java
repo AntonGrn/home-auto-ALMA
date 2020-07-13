@@ -4,6 +4,7 @@ import main.gadgets.*;
 import main.automations.*;
 import main.gadgets.plugins.Gadget_local_Pi_CPU_temp;
 import main.gadgets.plugins.Gadget_local_Pi_GPIO_onoff;
+import main.settings.Settings;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -35,18 +36,18 @@ public class JSON_reader {
     // =================================== HOME SERVER DATA ===================================================
 
     // Called by class Server at system boot
-    public String[] loadConfigData() throws Exception {
+    public Settings loadConfigData() throws Exception {
         synchronized (lock_configFile) {
             try {
-                String[] configData = new String[6];
                 JSONObject jsonSystemData = toJsonObject(configFileJSON);
-                configData[0] = ((Long) jsonSystemData.get("hub_ID")).toString();
-                configData[1] = (String) jsonSystemData.get("hub_alias");
-                configData[2] = (String) jsonSystemData.get("hub_password");
-                configData[3] = ((Boolean) jsonSystemData.get("hub_debug_mode")).toString();
-                configData[4] = (String) jsonSystemData.get("public_server_IP");
-                configData[5] = ((Long) jsonSystemData.get("public_server_port")).toString();
-                return configData;
+                boolean debugMode = (Boolean) jsonSystemData.get("debug_mode");
+                boolean remoteAccess = (Boolean) jsonSystemData.get("public_server_connection");
+                String hubAlias = (String) jsonSystemData.get("hub_alias");
+                int hubID = ((Long) jsonSystemData.get("hub_ID")).intValue();
+                String hubPwd = (String) jsonSystemData.get("hub_password");
+                String publServerIP = (String) jsonSystemData.get("public_server_IP");
+                int pubServerPort = ((Long) jsonSystemData.get("public_server_port")).intValue();
+                return new Settings(debugMode, remoteAccess, hubAlias, hubID, hubPwd, publServerIP, pubServerPort);
             } catch (Exception e) {
                 throw new Exception("Unable to read JSON file 'config.json'");
             }
