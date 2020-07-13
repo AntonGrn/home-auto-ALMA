@@ -31,7 +31,6 @@ public class LoginFragment extends Fragment implements Updatable {
     private EditText usernameInput;
     private EditText passwordInput;
     private ProgressBar spinner;
-    //private AnimatorSet animatorSet;
     private boolean userNameInputEmpty;
     private boolean passwordInputEmpty;
 
@@ -62,7 +61,6 @@ public class LoginFragment extends Fragment implements Updatable {
         passwordInput = (EditText) getView().findViewById(R.id.passwordText);
         spinner = (ProgressBar) getView().findViewById(R.id.login_progressbar);
         spinner.setVisibility(View.GONE); // Hide spinner
-        //String command = "1:username:password";
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,33 +100,6 @@ public class LoginFragment extends Fragment implements Updatable {
         });
     }
 
-    /*private void animationHandler (){
-        ImageView logoImg = getView().findViewById(R.id.logoNoText);
-        *//*ImageView logoImgGlow = getView().findViewById(R.id.logoNoText2);*//*
-        animatorSet = new AnimatorSet();
-
-        ObjectAnimator fadeInLogo = ObjectAnimator.ofFloat(logoImg, "alpha", 2f, 0.5f);
-        fadeInLogo.setDuration(1500);
-        ObjectAnimator fadeOutLogo = ObjectAnimator.ofFloat(logoImg, "alpha", 0.5f, 2f);
-        fadeOutLogo.setDuration(1500);
-
-        *//*ObjectAnimator fadeInGlow = ObjectAnimator.ofFloat(logoImgGlow, "alpha", 2f, 0.7f);
-        fadeInGlow.setDuration(1500);
-        ObjectAnimator fadeOutGlow = ObjectAnimator.ofFloat(logoImgGlow, "alpha", 0.7f, 2f);
-        fadeOutGlow.setDuration(1500);*//*
-
-        animatorSet.play(fadeInLogo).after(fadeOutLogo);
-        *//*animatorSet.play(fadeInGlow).after(fadeOutGlow);*//*
-        animatorSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                animatorSet.start();
-            }
-        });
-        animatorSet.start();
-    }*/
-
     private void setButtonState() {
         if (userNameInputEmpty || passwordInputEmpty) {
             btnLogin.setEnabled(false);
@@ -150,7 +121,7 @@ public class LoginFragment extends Fragment implements Updatable {
             spinner.setVisibility(View.VISIBLE);
             hideKeyboardFrom(main, passwordInput);
 
-            main.establishServerConnection(String.format("%s%s%s%s", "1:", usernameEntered,":", passwordEntered));
+            main.establishServerConnection(String.format("%s:%s:%s", "1", usernameEntered, passwordEntered));
         }
     }
 

@@ -324,7 +324,7 @@ public class HomeFragment extends Fragment implements Updatable {
         // Add gadget state request
         if (main.isBound && !main.demoMode) {
             try {
-                main.networkService.requestsToServer.put(String.format("%s%s%s%s", "8:", gadgetId, ":", requestedState));
+                main.networkService.requestsToServer.put(String.format("%s:%s:%s", "8", gadgetId, requestedState));
             } catch (InterruptedException e) {
                 main.writeToast("Unable to add gadget request");
             }
@@ -354,7 +354,7 @@ public class HomeFragment extends Fragment implements Updatable {
         // Add gadget state request
         if(main.isBound && !main.demoMode) {
             try {
-                main.networkService.requestsToServer.put(String.format("%s%s%s%s", "8:", gadgetId, ":", requestedState));
+                main.networkService.requestsToServer.put(String.format("%s:%s:%s", "8", gadgetId, requestedState));
             } catch (InterruptedException e) {
                 main.writeToast("Unable to add gadget request");
             }

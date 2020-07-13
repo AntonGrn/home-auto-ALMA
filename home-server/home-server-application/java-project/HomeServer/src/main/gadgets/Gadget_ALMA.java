@@ -23,7 +23,7 @@ public class Gadget_ALMA extends Gadget {
 
     @Override
     public void poll() {
-        String pollRequest = String.format("%s%s", "15:", requestSpec);
+        String pollRequest = String.format("%s:%s", "15", requestSpec);
         try {
             String[] response = (sendCommand(pollRequest)).split(":");
             if (response[0].equals("16")) {
@@ -40,7 +40,7 @@ public class Gadget_ALMA extends Gadget {
     @Override
     public void alterState(int requestedState) throws Exception {
         if (type == GadgetType.CONTROL_ONOFF || type == GadgetType.CONTROL_VALUE) {
-            String almaCommand = String.format("%s%s%s%s", "10:", requestedState, ":", requestSpec);
+            String almaCommand = String.format("%s:%s:%s", "10", requestedState, requestSpec);
             String[] response = (sendCommand(almaCommand)).split(":");
             if (response[0].equals("16")) {
                 setState(Integer.parseInt(response[1]));

@@ -156,7 +156,7 @@ public class Server {
                 crypto.generateSymmetricKeys();
 
                 // Distribute secret (symmetric) keys + send login request data
-                String loginRequest = String.format("%s%s%s%s%s%s", "6:", hub_ID, ":", hub_password, ":", homeServerAlias);
+                String loginRequest = String.format("%s:%s:%s:%s", "6", hub_ID, hub_password, homeServerAlias);
                 debugLog("Login request to public server", loginRequest);
                 writeToServer(crypto.createInitialMessage(loginRequest));
 
@@ -366,7 +366,7 @@ public class Server {
                             String exceptionMessage = "Unable to reach gadget " + gadget.alias;
                             System.out.println(exceptionMessage);
                             sendAllGadgetsToPublicServer(androidID);
-                            writeEncryptedToServer(String.format("%s%s%s%s", "19:", exceptionMessage, ":", androidID));
+                            writeEncryptedToServer(String.format("%s:%s:%s", "19", exceptionMessage, androidID));
                         }
                     }
                     break;
@@ -376,7 +376,7 @@ public class Server {
         if (!gadgetFound) {
             String exceptionMessage = "Unable to find gadget " + gadgetID;
             System.out.println(exceptionMessage);
-            writeEncryptedToServer(String.format("%s%s%s%s", "19:", exceptionMessage, ":", androidID));
+            writeEncryptedToServer(String.format("%s:%s:%s", "19", exceptionMessage, androidID));
         }
     }
 
@@ -384,7 +384,7 @@ public class Server {
     private void sendAllGadgetsToPublicServer(String androidConnID) {
         // This method will be used in two cases: (1) new user requests all gadget, and (2) a change has been detected on a gadget upon gadget poll.
         // androidConnID == -1: Send to all clients of the home server, else send to individual androidConnID.
-        String gadgetString = (androidConnID.equals("-1") ? "13:" : String.format("%s%s", "12:", androidConnID.concat(":")));
+        String gadgetString = (androidConnID.equals("-1") ? "13:" : String.format("%s:%s:", "12", androidConnID));
         synchronized (lock_gadgetList) {
             if (gadgetList.isEmpty()) {
                 gadgetString = gadgetString.concat("null");
@@ -398,7 +398,7 @@ public class Server {
                         String type = gadget.type.toString();
                         String currentState = String.valueOf(gadget.getState());
 
-                        gadgetString = gadgetString.concat(gadgetID + ":" + gadgetName + ":" + type + ":" + currentState + ":");
+                        gadgetString = gadgetString.concat(String.format("%s:%s:%s:%s:", gadgetID, gadgetName, type, currentState));
 
                         if (i == (gadgetList.size() - 1)) {
                             gadgetString = gadgetString.concat("null");
