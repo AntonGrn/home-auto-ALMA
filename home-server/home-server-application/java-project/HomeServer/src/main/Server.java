@@ -4,6 +4,7 @@ import main.JSON.JSON_reader;
 import main.cryptography.ClientCryptography;
 import main.gadgets.Gadget;
 import main.automations.AutomationHandler;
+import main.settings.Settings;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -26,11 +27,10 @@ import java.util.concurrent.BlockingQueue;
  */
 
 public class Server {
-    private String homeServerAlias;
     private volatile boolean terminateServer;
-    private volatile boolean debugMode;
+    private volatile Settings settings;
     private Socket publicServerSocket;
-    private DataInputStream publicServerInput;
+    private volatile DataInputStream publicServerInput;
     private DataOutputStream publicServerOutput;
     private ClientCryptography crypto;
     private List<Gadget> gadgetList;
@@ -47,8 +47,8 @@ public class Server {
     private final Object lock_debugLogs;
 
     // Worker threads
-    private Thread pollGadgetsThread;
     private Thread processRequestsThread;
+    private Thread publicServerInputThread;
 
     // Make Singleton
     private static Server instance = null;
@@ -61,7 +61,7 @@ public class Server {
     }
 
     private Server() {
-        homeServerAlias = null;
+        settings = null;
         publicServerSocket = null;
         publicServerInput = null;
         publicServerOutput = null;
@@ -71,7 +71,6 @@ public class Server {
         JSON_reader = new JSON_reader();
         requestsToHomeServer = new ArrayBlockingQueue<>(10);
         terminateServer = false;
-        debugMode = false;
 
         lock_gadgetList = new Object();
         lock_pollGadgets = new Object();
@@ -79,18 +78,6 @@ public class Server {
         lock_publicServer = new Object();
         lock_closeServer = new Object();
         lock_debugLogs = new Object();
-
-        pollGadgetsThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    pollGadgets();
-                } catch (Exception e) {
-                    System.out.println("Exception in pollGadgetThread");
-                    closeHomeServer();
-                }
-            }
-        });
 
         processRequestsThread = new Thread(new Runnable() {
             @Override
@@ -103,33 +90,37 @@ public class Server {
                 }
             }
         });
+
+        publicServerInputThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    listenForPublicServerInput();
+                } catch (Exception e) {
+                    System.out.println("Exception in publicServerInputThread");
+                    closeHomeServer();
+                }
+            }
+        });
     }
 
     public void launchHomeServer() {
         System.out.println("Home server running...");
         try {
-            // Read in config data from JSON file (config.json):
-            String[] configData = JSON_reader.loadConfigData();
-            // Process config data from JSON file (config.json)
-            int hub_ID = Integer.parseInt(configData[0]);
-            homeServerAlias = configData[1];
-            String hub_password = configData[2];
-            debugMode = configData[3].equals("true");
-            String public_server_IP = configData[4];
-            int public_server_port = Integer.parseInt(configData[5]);
-
-            debugLog("Read from 'config.json'",
-                    String.valueOf(hub_ID), homeServerAlias, hub_password, String.valueOf(debugMode),
-                    public_server_IP, String.valueOf(public_server_port));
-
-            populateGadgetList();
+            settings = JSON_reader.loadConfigData();
+            gadgetList = JSON_reader.loadAllGadgets();
             automations = new AutomationHandler(JSON_reader.loadAutomations());
-            connectToPublicServer(hub_ID, hub_password, public_server_IP, public_server_port);
             //Deploy worker threads
-            pollGadgetsThread.start();
             processRequestsThread.start();
-            //infinite loop listening for inputs from the public server
-            listenForPublicServerInput();
+            // Initiate remote access
+            if(settings.remoteAccess) {
+                connectToPublicServer();
+                publicServerInputThread.start();
+            } else {
+                System.out.println("Connection to public server disabled.");
+            }
+            // Gadget management
+            pollGadgets();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
@@ -140,11 +131,11 @@ public class Server {
 
     // =============================== PUBLIC SERVER CONNECTION =============================================
 
-    private void connectToPublicServer(int hub_ID, String hub_password, String public_server_IP, int public_server_port) throws Exception {
+    private void connectToPublicServer() throws Exception {
 
         synchronized (lock_publicServer) {
             try {
-                publicServerSocket = new Socket(public_server_IP, public_server_port);
+                publicServerSocket = new Socket(settings.publServerIP, settings.publServerPort);
 
                 // Obtaining input and output streams
                 publicServerInput = new DataInputStream(publicServerSocket.getInputStream());
@@ -156,7 +147,8 @@ public class Server {
                 crypto.generateSymmetricKeys();
 
                 // Distribute secret (symmetric) keys + send login request data
-                String loginRequest = String.format("%s:%s:%s:%s", "6", hub_ID, hub_password, homeServerAlias);
+                String loginRequest = String.format("%s:%s:%s:%s", "6", settings.hubID, settings.getHubPwd(), settings.hubAlias);
+                settings.clearHubPwd();
                 debugLog("Login request to public server", loginRequest);
                 writeToServer(crypto.createInitialMessage(loginRequest));
 
@@ -170,12 +162,12 @@ public class Server {
 
                 if (results[0].equals("7")) {
                     if (results[1].equals("ok")) {
-                        System.out.println("Connected to public server as: " + homeServerAlias);
+                        System.out.println("Connected to public server as: " + settings.hubAlias);
                     } else {
                         throw new Exception(results[2]);
                     }
                 } else {
-                    throw new Exception("Invalid login. Connection is good");
+                    throw new Exception("Invalid login. Connection to public server not granted.");
                 }
             } catch (IOException e) {
                 throw new Exception("Unable to setup connection to public server");
@@ -187,7 +179,7 @@ public class Server {
 
     // ====================== PUBLIC SERVER COMMUNICATION ==================================================
 
-    // Indefinite loop
+    // Executed by worker thread: publicServerInputThread
     private void listenForPublicServerInput() throws Exception {
         String request = "";
         try {
@@ -223,13 +215,13 @@ public class Server {
     }
 
     private void writeEncryptedToServer(String message) {
-
-        debugLog("Message to public server", message);
-
-        try {
-            writeToServer(crypto.symmetricEncryption(message));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        if(settings.remoteAccess) {
+            debugLog("Message to public server", message);
+            try {
+                writeToServer(crypto.symmetricEncryption(message));
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -247,18 +239,7 @@ public class Server {
 
     // ================================== MANAGE GADGET LIST ================================================
 
-    private void populateGadgetList() throws Exception{
-        synchronized (lock_gadgetList) {
-            try {
-                // Read in gadgets from JSON file:
-                gadgetList = JSON_reader.loadAllGadgets();
-            } catch (Exception e) {
-                throw new Exception("Error on reading gadgets from JSON file");
-            }
-        }
-    }
-
-    // Executed by worker thread: pollGadgetsThread
+    // Main loop. Gadget & automation management
     private void pollGadgets() throws Exception {
         synchronized (lock_pollGadgets) {
             int nbrOfGadgets = 0;
@@ -425,7 +406,7 @@ public class Server {
     }
 
     private void closePublicServerConnection() {
-        // Send log out message to cloud. Cloud terminates System’s client thread.
+        // Send log out message to server. Server terminates home server's client thread.
         writeEncryptedToServer("21");
 
         if (publicServerInput != null) {
@@ -463,11 +444,6 @@ public class Server {
         further method iteration.
          */
 
-        if (pollGadgetsThread.isAlive() && !pollGadgetsThread.isInterrupted()) {
-            // sleep() can be interrupted
-            pollGadgetsThread.interrupt();
-        }
-
         if (processRequestsThread.isAlive() && !processRequestsThread.isInterrupted()) {
             // queue.take() can be interrupted
             processRequestsThread.interrupt();
@@ -478,7 +454,7 @@ public class Server {
 
     private void debugLog(String title, String... content) {
         synchronized (lock_debugLogs) {
-            if(debugMode) {
+            if(settings.debugMode) {
                 for (String log : content) {
                     // Note: Standard output stream writes to log file.
                     System.out.println(String.format("%-40s%s", title.concat(":"), (log.length() > 60 ? log.substring(0, 59)+" [...]" : log )));
@@ -489,7 +465,7 @@ public class Server {
 
     private void debugLog(String gadgetName, boolean presence, int state) {
         synchronized (lock_debugLogs) {
-            if(debugMode) {
+            if(settings.debugMode) {
                 String log = String.format("%-39s [%s][state:%s]",
                         "Polling gadget: ".concat(gadgetName), (presence ? "present" : "not present"), state);
                 System.out.println(log);
