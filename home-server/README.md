@@ -47,7 +47,7 @@ java -jar HomeServer.jar
 
 ## Step 2: Settings
 
-Specify desired settings in `config.json`. See [main page](link).
+Specify desired settings in `config.json`.
 ```yaml
 {
   "debug_mode": Boolean. Trigger additional logging.
