@@ -1,8 +1,9 @@
 {
-  "hub_ID": 0,
+  "debug_mode": false,
+  "public_server_connection": false,
   "hub_alias": "My House",
+  "hub_ID": 0,
   "hub_password": "XXXXXXXXXX",
-  "hub_debug_mode": false,
   "public_server_IP": "XXX.XXX.XXX.XXX",
   "public_server_port": 0
 }

@@ -1,6 +1,6 @@
 
 # HomeServer
-The HomeServer instance is the key component of your ALMA home automation system. In fact, if you register your HomeServer instance to an active ALMA PublicServer, the HomeServer instance is all you need to start automating your home. With the ALMA AndroidClient you can also control and monitor your smart home remotely.
+The HomeServer instance is the key component of your ALMA home automation system. In fact, the HomeServer instance is all you need to start automating your home. By (optionally) connecting your HomeServer instance to an active ALMA PublicServer, you can also control and monitor your smart home remotely using the ALMA AndroidClient.
 
 See [main page](link) for more information.
 
@@ -45,17 +45,18 @@ Example bash script:
 java -jar HomeServer.jar
 ```
 
-## Step 2: Connection to PublicServer
+## Step 2: Settings
 
-Specify connection credentials in `config.json`. See [main page](link).
+Specify desired settings in `config.json`.
 ```yaml
 {
-  "hub_ID": Integer. Unique ID of your home server instance (hub),
-  "hub_alias": String. Optional name of your home server,
-  "hub_password": String. Password for public server authentication,
-  "hub_debug_mode": Boolean. Trigger additional log generations,
-  "public_server_IP": String. IP-address of public server,
-  "public_server_port": Integer. TCP-port of public server
+  "debug_mode": Boolean. Trigger additional logging.
+  "public_server_connection": Boolean. Enable/disable connection to public server.
+  "hub_alias": String. Optional naming of your home server instance.
+  "hub_ID": Integer. Unique ID of your home server instance. For public server connection.
+  "hub_password": String. Password for remote authentication. For public server connection.
+  "public_server_IP": String. IP-address of public server.
+  "public_server_port": Integer. TCP-port of public server.
 }
 ```
 **Note:** With an established connection to PublicServer, no port-forwarding is needed for remote access from an AndroidClient.
@@ -64,7 +65,7 @@ Specify connection credentials in `config.json`. See [main page](link).
 Since the ALMA home server is intended to be run on a Raspberry Pi (acting as the hub of your smart home system), the HomeServer application should be configured to launch as a Linux daemon. One suggested approach is to set it up as a `systemd` background service on your Raspberry Pi. This setup allows easy managagement and debugging with real-time log tracking, while still leaving your Pi available to run other/additional services and operations of your liking in parrallel.  to serve additional purposes of your liking
 
 # Get started with Gadgets and Automations
-Once the HomeServer is running inside your LAN with a successful connection to a PublicServer instance, you can start introducing and configuring gadgets and automations via their respective json files (`gadgets.json` and `automations.json`).
+Once the HomeServer is running inside your LAN, you can start introducing and configuring gadgets and automations via their respective json files (`gadgets.json` and `automations.json`).
 
 See [main page](link) for information about gadgets and automations.
 
