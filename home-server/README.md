@@ -50,13 +50,13 @@ java -jar HomeServer.jar
 Specify desired settings in `config.json`.
 ```yaml
 {
-  "debug_mode": Boolean. Trigger additional logging.
+  "debug_mode":               Boolean. Trigger additional logging.
   "public_server_connection": Boolean. Enable/disable connection to public server.
-  "hub_alias": String. Optional naming of your home server instance.
-  "hub_ID": Integer. Unique ID of your home server instance. For public server connection.
-  "hub_password": String. Password for remote authentication. For public server connection.
-  "public_server_IP": String. IP-address of public server.
-  "public_server_port": Integer. TCP-port of public server.
+  "hub_alias":                String. Optional naming of your home server instance.
+  "hub_ID":                   Integer. Unique ID of your home server instance. For public server connection.
+  "hub_password":             String. Password for remote authentication. For public server connection.
+  "public_server_IP":         String. IP-address of public server.
+  "public_server_port":       Integer. TCP-port of public server.
 }
 ```
 **Note:** With an established connection to PublicServer, no port-forwarding is needed for remote access from an AndroidClient.
