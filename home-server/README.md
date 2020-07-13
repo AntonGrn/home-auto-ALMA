@@ -45,9 +45,9 @@ Example bash script:
 java -jar HomeServer.jar
 ```
 
-## Step 2: Connection to PublicServer
+## Step 2: Settings
 
-Specify connection credentials in `config.json`. See [main page](link).
+Specify desired settings in `config.json`. See [main page](link).
 ```yaml
 {
   "debug_mode": Boolean. Trigger additional logging.
