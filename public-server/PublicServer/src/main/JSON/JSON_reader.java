@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.io.Reader;
 
 public class JSON_reader {
-    
+
     private static final String configFileJSON = "./config.json";
     private static final Object lock_configFile = new Object();
 

@@ -204,13 +204,13 @@ public class Server {
             //Add client to list of active Android clients
             addAndroidClient((Client_Android) client);
 
-            String clientOutput = String.format("%s%s%s%s%s%s%s%s",
-                    "2:ok:null:", userName, ":", admin, ":", getHomeServerName(homeServerID), ":", newSessionKey);
+            String clientOutput = String.format("%s%s:%s:%s:%s",
+                    "2:ok:null:", userName, admin, getHomeServerName(homeServerID), newSessionKey);
             outputToAndroidClients(true, false, clientOutput, client.getHomeServerID(),
                     ((Client_Android) client).getConnectionID());
 
             // Simulate client requesting all gadgets from associated Home System
-            String requestAllGadgets = String.format("%s%s", "11:", ((Client_Android) client).getConnectionID());
+            String requestAllGadgets = String.format("%s:%s", "11", ((Client_Android) client).getConnectionID());
             ClientRequest gadgetRequest = new ClientRequest(client, requestAllGadgets);
             clientRequests.put(gadgetRequest);
         } catch (Exception e) {
@@ -269,7 +269,7 @@ public class Server {
                     ((Client_Android) client).getConnectionID());
 
             // Simulate client requesting all gadgets from associated Home System
-            String requestAllGadgets = String.format("%s%s", "11:", ((Client_Android) client).getConnectionID());
+            String requestAllGadgets = String.format("%s:%s", "11", ((Client_Android) client).getConnectionID());
             ClientRequest gadgetRequest = new ClientRequest(client, requestAllGadgets);
             clientRequests.put(gadgetRequest);
         } catch (Exception e) {
@@ -454,7 +454,7 @@ public class Server {
     private void alterGadgetState(int androidConnectionID, String gadgetID, String requestedGadgetState, int homeServerID) {
         // Append client connectionID to the message to the home server
         String connectionID = String.valueOf(androidConnectionID);
-        String requestToHomeServer = String.format("%s%s%s%s%s%s", "9:", connectionID, ":", gadgetID, ":", requestedGadgetState);
+        String requestToHomeServer = String.format("%s:%s:%s:%s", "9", connectionID, gadgetID, requestedGadgetState);
         // Send request to specified home server
         outputToHomeServers(requestToHomeServer, homeServerID);
     }
@@ -470,7 +470,7 @@ public class Server {
         }
         message = message.substring(excludeBeforeIndex + 1);
         // Form a new request to Android client
-        message = String.format("%s%s", "14:", message);
+        message = String.format("%s:%s", "14", message);
 
         try {
             int receiverConnectionID = Integer.parseInt(androidConnectionID);
