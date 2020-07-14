@@ -95,16 +95,6 @@ Example illustrating gadgets of different architectures and types:
       "request_spec": "temperature"
     },
     {
-      "gadget_id": 3,
-      "alias": "Humidity (%)",
-      "type": "SENSOR_VALUE",
-      "poll_delay_seconds": 120,
-      "enabled": true,
-      "IP_address": "192.168.0.13",
-      "TCP_port": 8082,
-      "request_spec": "humidity"
-    },
-    {
       "gadget_id": 4,
       "alias": "Camera Servo",
       "type": "CONTROL_VALUE",
