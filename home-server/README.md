@@ -95,7 +95,7 @@ Example illustrating gadgets of different architectures and types:
       "request_spec": "temperature"
     },
     {
-      "gadget_id": 4,
+      "gadget_id": 3,
       "alias": "Camera Servo",
       "type": "CONTROL_VALUE",
       "poll_delay_seconds": 120,
@@ -104,11 +104,10 @@ Example illustrating gadgets of different architectures and types:
       "TCP_port": 8082,
       "request_spec": null
     },
-
   ],
   "tp_link": [
     {
-      "gadget_id": 5,
+      "gadget_id": 4,
       "alias": "Kitchen Lamp",
       "poll_delay_seconds": 30,
       "enabled": true,
@@ -119,7 +118,7 @@ Example illustrating gadgets of different architectures and types:
   ],
   "rf433MHz": [
     {
-      "gadget_id": 6,
+      "gadget_id": 5,
       "alias": "Bedroom Fan",
       "enabled": false,
       "gpio_BCM": 17,
@@ -131,14 +130,14 @@ Example illustrating gadgets of different architectures and types:
   ],
   "plugins": [
     {
-      "gadget_id": 7,
+      "gadget_id": 6,
       "alias": "System Pi CPU temp (C)",
       "poll_delay_seconds": 15,
       "enabled": true,
       "plugin_id": "local_pi_cpu_temp"
     },
     {
-      "gadget_id": 8,
+      "gadget_id": 7,
       "alias": "Raspberry Pi LED",
       "enabled": true,
       "plugin_id": "local_pi_gpio_onoff",
@@ -146,7 +145,6 @@ Example illustrating gadgets of different architectures and types:
     }
   ]
 }
-
 ```
 
 ### Example of `automations.json`
