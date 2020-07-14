@@ -70,6 +70,93 @@ Once the HomeServer is running inside your LAN, you can start introducing and co
 See [main page](link) for information about gadgets and automations.
 
 #### Example of `gadgets.json`
+```yaml
+{
+  "alma": [
+    {
+      "gadget_id": 1,
+      "alias": "TV Lamp",
+      "type": "CONTROL_ONOFF",
+      "poll_delay_seconds": 10,
+      "enabled": false,
+      "IP_address": "192.168.0.15",
+      "TCP_port": 8082,
+      "request_spec": null
+    },
+    {
+      "gadget_id": 2,
+      "alias": "Temperature (C)",
+      "type": "SENSOR_VALUE",
+      "poll_delay_seconds": 60,
+      "enabled": true,
+      "IP_address": "192.168.0.13",
+      "TCP_port": 8082,
+      "request_spec": "temperature"
+    },
+    {
+      "gadget_id": 3,
+      "alias": "Humidity (%)",
+      "type": "SENSOR_VALUE",
+      "poll_delay_seconds": 120,
+      "enabled": true,
+      "IP_address": "192.168.0.13",
+      "TCP_port": 8082,
+      "request_spec": "humidity"
+    },
+    {
+      "gadget_id": 4,
+      "alias": "Camera Servo",
+      "type": "CONTROL_VALUE",
+      "poll_delay_seconds": 120,
+      "enabled": true,
+      "IP_address": "192.168.0.23",
+      "TCP_port": 8082,
+      "request_spec": null
+    },
+
+  ],
+  "tp_link": [
+    {
+      "gadget_id": 5,
+      "alias": "TV Lamp",
+      "poll_delay_seconds": 30,
+      "enabled": true,
+      "IP_address": "192.168.0.12",
+      "TCP_port": 9999,
+      "model": "HS110"
+    }
+  ],
+  "rf433MHz": [
+    {
+      "gadget_id": 6,
+      "alias": "Kitchen lamp",
+      "enabled": false,
+      "gpio_BCM": 17,
+      "protocol": 1,
+      "pulse_length": 317,
+      "code_ON": "5587221",
+      "code_OFF": "5587220"
+    }
+  ],
+  "plugins": [
+    {
+      "gadget_id": 7,
+      "alias": "System Pi CPU temp (C)",
+      "poll_delay_seconds": 15,
+      "enabled": true,
+      "plugin_id": "local_pi_cpu_temp"
+    },
+    {
+      "gadget_id": 8,
+      "alias": "Raspberry Pi LED",
+      "enabled": true,
+      "plugin_id": "local_pi_gpio_onoff",
+      "gpio_BCM": 4,
+    }
+  ]
+}
+
+```
 
 #### Example of `automations.json`
 
