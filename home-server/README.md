@@ -159,4 +159,91 @@ See [main page](link) for information about gadgets and automations.
 ```
 
 #### Example of `automations.json`
+Below is an example of three automations:
+1. A coffee timer that turns itself off and turns on a lamp when the timer has expired.
+2. A fan being started once the temperature reaches a specified threshold.
+3. Night lights being turned on at 20:00 (8 PM).
+```yaml
+[
+  {
+    "name": "Cofee machine",
+    "enabled": true,
+    "trigger":
+    {
+      "type": "event",
+      "gadget_id": 12,
+      "state_condition": "equal_to",
+      "state": 1
+    },
+    "timer":
+    {
+      "hours": 0,
+      "minutes": 30,
+      "seconds": 0
+    },
+    "action": [
+      {
+        "gadget_id": 12,
+        "state": 0
+      },
+      {
+        "gadget_id": 10,
+        "state": 1
+      }
+    ]
+  },
+  {
+    "name": "Start fan",
+    "enabled": true,
+    "trigger":
+    {
+      "type": "event",
+      "gadget_id": 17,
+      "state_condition": "greater_than",
+      "state": 23
+    },
+    "timer":
+    {
+      "hours": 0,
+      "minutes": 0,
+      "seconds": 0
+    },
+    "action": [
+      {
+        "gadget_id": 11,
+        "state": 1
+      }
+    ]
+  },
+  {
+    "name": "Turn on night light",
+    "enabled": true,
+    "trigger":
+    {
+      "type": "time",
+      "time": "20:00"
+    },
+    "timer":
+    {
+      "hours": 0,
+      "minutes": 0,
+      "seconds": 0
+    },
+    "action": [
+      {
+        "gadget_id": 19,
+        "state": 1
+      },
+      {
+        "gadget_id": 20,
+        "state": 1
+      },
+      {
+        "gadget_id": 21,
+        "state": 1
+      }
+    ]
+  }
+]
+```
 
