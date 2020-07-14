@@ -291,7 +291,7 @@ public class Server {
         }
     }
 
-    //========================= PROCESS REQUESTS FROM PUBLIC SERVER ==================================
+    //================================ PROCESS GADGET REQUESTS ==============================================
 
     // Executed by worker thread: processRequestsThread
     private void processRequests() throws Exception {
@@ -311,7 +311,7 @@ public class Server {
                             sendAllGadgetsToPublicServer(commands[1]);
                             break;
                         default:
-                            System.out.println("Invalid command sent from public server: " + request);
+                            System.out.println("Invalid gadget request: " + request);
                             break;
                     }
                 } catch (InterruptedException e) {
