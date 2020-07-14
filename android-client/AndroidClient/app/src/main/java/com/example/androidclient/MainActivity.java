@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -17,17 +16,22 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import com.example.androidclient.fragments.AboutFragment;
 import com.example.androidclient.fragments.HomeFragment;
 import com.example.androidclient.fragments.LoginFragment;
 import com.example.androidclient.fragments.LogoutFragment;
 import com.example.androidclient.fragments.SettingsFragment;
 import com.example.androidclient.fragments.SetupFragment;
-
+import com.example.androidclient.utilities.Gadget;
+import com.example.androidclient.utilities.GadgetType;
+import com.example.androidclient.utilities.LoggedInUser;
+import com.example.androidclient.utilities.ServerSpec;
+import com.example.androidclient.utilities.Updatable;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
@@ -48,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements Updatable {
 
     // Holds data of logged in user, or null if on one is logged in
     public LoggedInUser loggedInUser;
+
+    // Holds ip and port of last established public server connection.
+    public volatile ServerSpec server;
+    public volatile boolean serverDefined;
 
     // Holds an updatable reference to the main activity (to be passed)
     private Updatable mainActivity = this;
@@ -75,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements Updatable {
         handler = new Handler();
         loginAttemptWithSessionKey = false;
         loggedInUser = null;
+        server = new ServerSpec("0", 0);
+        serverDefined = false;
         gadgetList = new ArrayList<>();
         demoMode = false;
         currentFragment = null;
@@ -95,7 +105,8 @@ public class MainActivity extends AppCompatActivity implements Updatable {
 
         // Default fragment SetupFragment is launched via onServiceConnected()
         //Create default fragment
-        fragmentTransaction("setup");
+        //fragmentTransaction("setup");
+        readServerSpecFromCache();
     }
 
     @Override
@@ -171,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements Updatable {
                                 // Client (UI thread) connected to Android bound service
                                 if (isBound && appInFocus) {
                                     // Connect to server, or ignore if already connected
-                                    networkService.connectToPublicServer(handler, mainActivity);
+                                    networkService.connectToPublicServer(handler, mainActivity, server.IP, server.port);
                                     // Verify successfully launched connection thread
                                     connected = networkService.inputThreadRunning;
                                     if (connected) {
@@ -246,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements Updatable {
             getSupportActionBar().show();
 
             writeUserToCache();
+            writeServerSpecToCache();
         } else {
             writeToast(commands[2]);
         }
@@ -402,6 +414,54 @@ public class MainActivity extends AppCompatActivity implements Updatable {
                 } catch (IOException e) {
                     writeToast("Unable to write user tho cache");
                 }
+            }
+        }).start();
+    }
+
+    private void writeServerSpecToCache() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String filePath = getCacheDir() + "serverSpec";
+                try (ObjectOutputStream objectOutput = new ObjectOutputStream(new FileOutputStream(new File(filePath)))) {
+                    objectOutput.writeObject(server);
+                } catch (IOException e) {
+                    writeToast("Unable to write server spec tho cache");
+                }
+            }
+        }).start();
+
+    }
+
+    private void readServerSpecFromCache() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean successfulCacheRead = false;
+                try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(new File(getCacheDir() + "serverSpec")))) {
+
+                    server = (ServerSpec) objectInputStream.readObject();
+                    successfulCacheRead = true;
+
+                } catch (Exception e) {
+                    successfulCacheRead = false;
+                } finally {
+                    postResult(successfulCacheRead);
+                }
+            }
+            private void postResult(final boolean successfulCacheRead) {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Process result of cache read operation
+                        serverDefined = successfulCacheRead;
+                        if(serverDefined) {
+                            fragmentTransaction("setup");
+                        } else {
+                            fragmentTransaction("login");
+                        }
+                    }
+                });
             }
         }).start();
     }

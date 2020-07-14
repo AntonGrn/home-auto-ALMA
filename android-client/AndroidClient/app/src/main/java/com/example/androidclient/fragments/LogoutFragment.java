@@ -15,10 +15,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.androidclient.LoggedInUser;
+import com.example.androidclient.utilities.LoggedInUser;
 import com.example.androidclient.MainActivity;
 import com.example.androidclient.R;
-import com.example.androidclient.Updatable;
+import com.example.androidclient.utilities.Updatable;
 
 
 /**

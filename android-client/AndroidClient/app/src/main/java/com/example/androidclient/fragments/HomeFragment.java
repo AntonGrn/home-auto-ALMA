@@ -25,11 +25,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.androidclient.Gadget;
-import com.example.androidclient.GadgetType;
+import com.example.androidclient.utilities.Gadget;
+import com.example.androidclient.utilities.GadgetType;
 import com.example.androidclient.MainActivity;
 import com.example.androidclient.R;
-import com.example.androidclient.Updatable;
+import com.example.androidclient.utilities.Updatable;
 
 import java.util.ArrayList;
 
