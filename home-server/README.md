@@ -155,7 +155,7 @@ Example of three automation entities illustrating the following use cases:
 ```yaml
 [
   {
-    "name": "Cofee machine",
+    "name": "Coffee machine",
     "enabled": true,
     "trigger":
     {
