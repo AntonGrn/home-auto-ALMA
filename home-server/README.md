@@ -70,7 +70,7 @@ Once the HomeServer is running inside your LAN, you can start introducing and co
 See [main page](link) for information about gadgets and automations.
 
 ### Example of `gadgets.json`
-Example illustrating gadgets of different architectures and types.
+Example illustrating gadgets of different architectures and types:
 ```yaml
 {
   "alma": [
