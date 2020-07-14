@@ -7,7 +7,7 @@
   "database_clients": {
     "ip": "localhost",
     "port": 3306,
-    "database": "XXXXXX",
+    "database": "XXXXXXX",
     "account": "XXXXXX",
     "password": "XXXXXX"
   },
