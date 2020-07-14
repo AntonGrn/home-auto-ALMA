@@ -161,7 +161,7 @@ Example illustrating gadgets of different architectures and types.
 
 #### Example of `automations.json`
 Example of three automation rules illustrating the following use cases:
-1. A coffee machine timer turning itself off and turning a lamp on when the timer has expired (30 min).
+1. A coffee machine timer turning the coffe machine off and turning a lamp on when the timer has expired (30 min).
 2. A fan being started once the temperature reaches a specified threshold (23 C).
 3. Night lights being turned on at 20:00 (8 PM).
 ```yaml
