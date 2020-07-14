@@ -86,16 +86,6 @@ Example illustrating gadgets of different architectures and types:
     },
     {
       "gadget_id": 2,
-      "alias": "Temperature (C)",
-      "type": "SENSOR_VALUE",
-      "poll_delay_seconds": 60,
-      "enabled": true,
-      "IP_address": "192.168.0.13",
-      "TCP_port": 8082,
-      "request_spec": "temperature"
-    },
-    {
-      "gadget_id": 3,
       "alias": "Camera Servo",
       "type": "CONTROL_VALUE",
       "poll_delay_seconds": 120,
@@ -104,6 +94,16 @@ Example illustrating gadgets of different architectures and types:
       "TCP_port": 8082,
       "request_spec": null
     },
+    {
+      "gadget_id": 3,
+      "alias": "Temperature (C)",
+      "type": "SENSOR_VALUE",
+      "poll_delay_seconds": 60,
+      "enabled": true,
+      "IP_address": "192.168.0.13",
+      "TCP_port": 8082,
+      "request_spec": "temperature"
+    }
   ],
   "tp_link": [
     {
@@ -138,7 +138,7 @@ Example illustrating gadgets of different architectures and types:
     },
     {
       "gadget_id": 7,
-      "alias": "Raspberry Pi LED",
+      "alias": "Raspberry Pi fan",
       "enabled": true,
       "plugin_id": "local_pi_gpio_onoff",
       "gpio_BCM": 4,
