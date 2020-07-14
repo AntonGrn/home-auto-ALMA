@@ -393,7 +393,7 @@ public class Server {
         writeEncryptedToServer(gadgetString);
     }
 
-    // ============================== CLOSE RESOURCES =================================================
+    // ================================= CLOSE RESOURCES ====================================================
 
     public void closeHomeServer() {
         synchronized (lock_closeServer) {
@@ -450,7 +450,7 @@ public class Server {
         }
     }
 
-    // ================================== DEBUG LOGS =====================================================
+    // ===================================== DEBUG LOGS =======================================================
 
     private void debugLog(String title, String... content) {
         synchronized (lock_debugLogs) {
