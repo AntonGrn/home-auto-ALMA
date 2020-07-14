@@ -70,7 +70,7 @@ Once the HomeServer is running inside your LAN, you can start introducing and co
 See [main page](link) for information about gadgets and automations.
 
 #### Example of `gadgets.json`
-Below is an example illustrating gadgets of different architectures and types.
+Example illustrating gadgets of different architectures and types.
 ```yaml
 {
   "alma": [
@@ -160,7 +160,7 @@ Below is an example illustrating gadgets of different architectures and types.
 ```
 
 #### Example of `automations.json`
-Below is an example of three automations illustrating the following use cases:
+Example of three automation rules illustrating the following use cases:
 1. A coffee timer that turns itself off and turns on a lamp when the timer has expired (30 min).
 2. A fan being started once the temperature reaches a specified threshold (23 C).
 3. Night lights being turned on at 20:00 (8 PM).
