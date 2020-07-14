@@ -15,4 +15,5 @@
     <color name="colorGradientStart">#303030</color>
     <color name="colorGradientMiddle">#99161616</color>
     <color name="colorGradientEnd">#97000000</color>
+    <color name="lightGrayBox">#444444</color>
 </resources>
