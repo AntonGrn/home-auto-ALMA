@@ -171,7 +171,7 @@ public class DB_Clients {
             connect();
             int results = 0;
             // Update sessionKey to DB_Clients
-            preparedStatement = connection.prepareStatement("UPDATE User SET sessionKey = 'Key destroyed' WHERE name = ?;");
+            preparedStatement = connection.prepareStatement("UPDATE Client_Android SET sessionKey = 'Key destroyed' WHERE name = ?;");
             preparedStatement.setString(1, userName);
             results = preparedStatement.executeUpdate();
 
