@@ -15,10 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.example.androidclient.LoggedInUser;
+import com.example.androidclient.utilities.LoggedInUser;
 import com.example.androidclient.MainActivity;
 import com.example.androidclient.R;
-import com.example.androidclient.Updatable;
+import com.example.androidclient.utilities.Updatable;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -76,10 +76,10 @@ public class SetupFragment extends Fragment implements Updatable {
 
                 try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(new File(main.getCacheDir() + "userdata")))) {
 
-                    //Reads from "file" and casts to LoggedInUser-object.
+                    //Read serializable from cache
                     main.loggedInUser = (LoggedInUser) objectInputStream.readObject();
 
-                    //Retrieves information needed to reconnect.
+                    //Retrieve information needed to reconnect.
                     String userName = main.loggedInUser.getName();
                     String sessionKey = main.loggedInUser.getSessionKey();
                     if(userName.equals("")) {

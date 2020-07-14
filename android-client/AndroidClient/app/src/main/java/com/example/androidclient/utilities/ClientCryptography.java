@@ -1,4 +1,4 @@
-package com.example.androidclient;
+package com.example.androidclient.utilities;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;

@@ -9,6 +9,9 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.androidclient.utilities.ClientCryptography;
+import com.example.androidclient.utilities.Updatable;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -92,9 +95,9 @@ public class NetworkService extends Service {
 
     public volatile boolean connectionException = false;
 
-    public void connectToPublicServer(Handler handler, Updatable updatable) {
+    public void connectToPublicServer(Handler handler, Updatable updatable, String ip, int port) {
         if (inputThread == null) {
-            inputThread = new Thread(new ClientInputThread(handler, updatable));
+            inputThread = new Thread(new ClientInputThread(handler, updatable, ip, port));
             inputThread.start();
         }
     }
@@ -127,6 +130,8 @@ public class NetworkService extends Service {
     // outputThread is terminated by thread.interrupt() -> InterruptedException
 
     private class ClientInputThread implements Runnable {
+        private String ip;
+        private int port;
         // To reach method update() of UI thread (main activity)
         private Updatable updatableInstance;
         // Get a reference to UI thread's message queue
@@ -137,7 +142,9 @@ public class NetworkService extends Service {
         private Thread outputThread;
         boolean outputThreadRunning;
 
-        ClientInputThread(Handler handler, Updatable updatableInstance) {
+        ClientInputThread(Handler handler, Updatable updatableInstance, String ip, int port) {
+            this.ip = ip;
+            this.port = port;
             this.handler = handler;
             this.updatableInstance = updatableInstance;
             socket = null;
@@ -154,7 +161,7 @@ public class NetworkService extends Service {
 
                 Log.d(TAG, "Input thread started " + Thread.currentThread().getName());
                 // Try to establish the connection with public server (IOException if not possible)
-                socket = new Socket("134.209.198.123", 8082);
+                socket = new Socket(ip, port);
 
                 connectedToServer = true;
 

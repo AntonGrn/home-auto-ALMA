@@ -1,4 +1,4 @@
-package com.example.androidclient;
+package com.example.androidclient.utilities;
 
 public class Gadget {
     private final int gadgetID;
