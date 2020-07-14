@@ -118,7 +118,7 @@ See [main page](link) for information about gadgets and automations.
   "tp_link": [
     {
       "gadget_id": 5,
-      "alias": "TV Lamp",
+      "alias": "Kitchen Lamp",
       "poll_delay_seconds": 30,
       "enabled": true,
       "IP_address": "192.168.0.12",
@@ -129,7 +129,7 @@ See [main page](link) for information about gadgets and automations.
   "rf433MHz": [
     {
       "gadget_id": 6,
-      "alias": "Kitchen lamp",
+      "alias": "Bedroom Fan",
       "enabled": false,
       "gpio_BCM": 17,
       "protocol": 1,
