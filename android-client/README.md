@@ -1,5 +1,5 @@
 # AndroidClient
-The Android application connects to ALMA PublicServer for remote access to a HomeServer instance. When logging in, your user credentials are used by the PublicServer for mapping to an associated HomeServer instance.
+The Android application connects to *ALMA PublicServer* for remote access to a *HomeServer* instance. When logging in, your user credentials are used by the *PublicServer* for mapping to an associated *HomeServer* instance.
 
 <img src="./images/app_overview.png" height="500">
 
