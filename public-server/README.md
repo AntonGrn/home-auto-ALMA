@@ -37,8 +37,11 @@ Table: `Client_Traffic`
 
 ## ALMA web admin tool
 * Admin tool to track the traffic on the ALMA PublicServer.
-* To identify potential attackers and other suspiscious traffic.
-* The purpose of database table `Client_Traffic`.
+  * Detect suspiscious traffic.
+  * Survey the load of the server.
+* Based on database table `Client_Traffic`.
+  * Logging both successful and unsuccesful login attempts.
+  * Links repeated server visitors.
 
 
 
