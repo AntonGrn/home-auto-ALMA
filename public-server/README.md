@@ -7,7 +7,13 @@ See [main page](LINK) for more information about the PublicServer.
 ## Database
 Below is the database tables required to run ALMA PublicServer.
 
-| Command | Description |
-| --- | --- |
-| git status | List all new or modified files |
-| git diff | Show file differences that haven't been staged |
+Table: **Client_Android**
+| Column name | Data type | Note |
+| --- | --- | --- |
+| name | String | PRIM.KEY |
+| systemID | Integer | - |
+| admin | Boolean | - |
+| password | String | - |
+| sessionKey | String | - |
+| isBanned | Boolean | - |
+
