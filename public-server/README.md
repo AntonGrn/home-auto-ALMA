@@ -5,6 +5,7 @@ ALMA PublicServer is a service running on a public network. Its purpose is to co
 See [main page](LINK) for more information about the PublicServer.
 
 ## Database tables
+The database tables required to run ALMA PublicServer are listed below.
 
 Table name: **Client_Android**
 | Column name | Data type | Note |
