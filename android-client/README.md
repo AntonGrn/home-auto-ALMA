@@ -14,7 +14,7 @@ The first time you log in to an ALMA PublicServer using the AndroidClient, you m
 **Figure 2**: Specify ALMA PublicServer
 
 ### Manual and Automatic login
-Once a server has been selected, you can go ahead and enter your user credentials (Figure 3), which are used by the PublicServer for mapping to a specific HomeServer instance. 
+Once a server has been selected, you can manually enter your user credentials (Figure 3). These are used by the PublicServer for mapping to a specific HomeServer instance. 
 
 <img src="./images/app_login.png" height="500">
 
