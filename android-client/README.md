@@ -14,13 +14,13 @@ The first time you log in using the AndroidClient, you must specify the *IP-addr
 **Figure 2**: Specify ALMA PublicServer
 
 ### 2. Manual and Automatic login
-Once a server has been selected, you can manually enter your user credentials (Figure 3). These are used by the PublicServer for mapping to a specific HomeServer instance. 
+**Manual login:** Once a server has been selected, you can manually enter your user credentials (Figure 3). These are used by the PublicServer for mapping to a specific HomeServer instance. 
 
 <img src="./images/app_login.png" height="500">
 
 **Figure 3**: Manual login
 
-Upon successful login, the PublicServer returns a unique hash-generated *session key*. The key is stored on your phone's cache memory and will be used for *automatic login* henceforth. This means that the next time you open the app you need not enter any login credentials. Instead an automatic login attempt will be carried out with no user interaction required. The session key is erased from the  phone's memory when clicking the *Log out* button. After this is done; manual login is again required.
+**Automatic login:** Upon successful manual login, the PublicServer returns a unique hash-generated *session key*. The key is stored on your phone's cache memory and will be used for *automatic login* henceforth. This means that the next time you open the app you need not enter any login credentials. Instead an automatic login attempt will be carried out with no user interaction required. The session key is erased from the  phone's memory when clicking the *Log out* button. After this is done; manual login is again required.
 
 ## Data communication
 When the AndroidClient is mapped to a HomeServer, the HomeServer will update the connected AndroidClient to display those of its gadgets from ```gadgets.json```that are enabled and confirmed to be present (accessible) in the home network. The AndroidClient is notified by the HomeServer (via the PublicServer) whenever a change in a gadget state is detected, and whenever a request to alter a gadget state has been successfully executed. A conceptual figure of the communication between AndroidClient, PublicServer and HomeServer can be found below (Figure X).
