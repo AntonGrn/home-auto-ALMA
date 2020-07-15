@@ -45,5 +45,7 @@ Table: `Client_Traffic`
 
 <img src="./images/web_admin_login.png">
 
+<img src="./images/web_admin_activity.png">
+
 
 
