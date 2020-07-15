@@ -7,7 +7,7 @@ See [main page](LINK) for more information about the PublicServer.
 ## Database
 Below is the database tables required to run ALMA PublicServer.
 
-Table: **Client_Android**
+**Client_Android**
 | Column name | Data type | Note |
 | --- | --- | --- |
 | name | String | PRIM.KEY |
