@@ -4,10 +4,9 @@ ALMA PublicServer is a service running on a public network. Its purpose is to co
 
 See [main page](LINK) for more information about the PublicServer.
 
-## Database
-Below is the database tables required to run ALMA PublicServer.
+## Database tables
 
-**Client_Android**
+Table name: **Client_Android**
 | Column name | Data type | Note |
 | --- | --- | --- |
 | name | String | PRIM.KEY |
@@ -17,14 +16,14 @@ Below is the database tables required to run ALMA PublicServer.
 | sessionKey | String | - |
 | banned | Boolean | - |
 
-**Client_HomeServer**
+Table name: **Client_HomeServer**
 | Column name | Data type | Note |
 | --- | --- | --- |
 | systemID | Integer | PRIM.KEY |
 | password | String | - |
 | banned | Boolean | - |
 
-**Client_Traffic**
+Table name: **Client_Traffic**
 | Column name | Data type | Note |
 | --- | --- | --- |
 | clientName | String| PRIM.KEY |
