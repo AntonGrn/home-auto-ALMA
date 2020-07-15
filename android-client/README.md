@@ -7,7 +7,7 @@ The AndroidClient application connects to an ALMA PublicServer for remote access
 
 ## Logging in
 ### 1. Specify Server
-The first time you log in to an ALMA PublicServer using the AndroidClient, you must specify the *IP-address* and *port number* of the dedicated ALMA PublicServer (Figure 2). This information is saved to the phone's cache memory upon successful login, and need therefor only be entered once. It is however possible to edit the server specifics at any time.
+The first time you log in using the AndroidClient, you must specify the *IP-address* and *port number* of the dedicated ALMA PublicServer (Figure 2). This information is saved to the phone's cache memory upon successful login, and need therefor only be entered once. It is however possible to edit the server specifics at any time.
 
 <img src="./images/app_server_spec.png" height="500">
 
