@@ -3,7 +3,7 @@ The AndroidClient application connects to an ALMA PublicServer for remote access
 
 Figure 1 below shows the Android represenation of HomeServer gadgets.
 
-<img src="./images/app_overview.png" height="620">
+<img src="./images/app_overview.png" height="550">
 
 ## Logging in
 ### Specify Server
