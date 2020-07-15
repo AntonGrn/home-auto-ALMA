@@ -1,1 +1,24 @@
-# README to be updated
+# Android Client
+## Concept
+The AndroidClient application connects to an ALMA PublicServer for remote access to a HomeServer instance. When logging in using your AndroidClient, your user credentials are used by the PublicServer for mapping to an associated HomeServer instance.
+
+
+Figure 1 below shows the represenation of HomeServer gadgets (using the AndroidClient).
+
+## Logging in
+**Specify an ALMA PublicServer**
+The first time you log in to an ALMA PublicServer using the AndroidClient, you must specify the *IP-address* and *port number* of the dedicated ALMA PublicServer (Figure 2). This information is saved to the phone's cache memory upon successful login, and need therefor only be entered once. It is however possible to edit the server specifics at any time.
+
+**Manual and automatic login**
+Once a server has been selected, you can go ahead and enter your user credentials (name and password), which are used by the PublicServer for mapping to a specific HomeServer instance. 
+
+Upon successful login, the PublicServer will genereate and return a unique *session key*. The key will be stored on your phone's cache memory together with your user name. This information will be used for *automatic login* henceforth. This means that the next time you open the app you need not enter any login credentials. Instead an automatic login attempt will be carried out with no user interaction required. The user information stored on the phone's memory (name and session key) is erased when clicking the *log out* button. After this is done; manual login is required.
+
+## Data communication
+When the AndroidClient is mapped to a HomeServer, the HomeServer will update the connected AndroidClient to display those of its gadgets from ```gadgets.json```that are enabled and confirmed to be present (accessible) in the home network. The AndroidClient is notified by the HomeServer (via the PublicServer) whenever a change in a gadget state is detected, and whenever a request to alter a gadget state has been successfully executed. A conceptual figure of the communication between AndroidClient, PublicServer and HomeServer can be found below (Figure X).
+
+## Note reguarding security
+The purpose of the session key mentioned above is to provide convenient, fast and secure automatic login without the use of your secret password. This means your password is never stored locally on the phone, and is only transmitted once upon manual login.
+
+All traffic between your phone and the PublicServer, as well as between the PublicServer and your HomeServer, is encrypted. The session key has nothing to do with the encryption, and your information (user name, password, session key, gadget data) is never sent in plain text. The unique encryption keys used for each new TCP session protects not only the confidentiality of the data being sent (the readability of the data), but also protects against replay attacks (attempts by any attacker to achieve any usable effect by capturing the encrypted data during its tranfer and sending it to the server again).
+
