@@ -42,6 +42,10 @@ Table: `Client_Traffic`
 * Based on database table `Client_Traffic`.
   * Logging both successful and unsuccesful login attempts.
   * Links repeated server visitors.
+  
+<img src="./images/web_admin_login.png">
+
+<img src="./images/web_admin_activity.png">
 
 
 
