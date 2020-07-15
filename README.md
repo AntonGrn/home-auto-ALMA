@@ -19,8 +19,8 @@ See conceptual [figure](LINK).
   * Unique secret keys are distributed using asymmetric encryption (RSA) at the initialization of each TCP session.
 * [HomeServer](LINK) :left_right_arrow: [Gadgets](LINK)
   * Data transmission: Private network (LAN).
-  * *Native ALMA gadgets*: XOR with iterating keys.
-  * *TP-Link smart plugs*: XOR with Autokey (keystream) cipher.
+  * *Native ALMA gadgets*: XOR encryption with iterating keys.
+  * *TP-Link smart plugs*: XOR encryption with Autokey (keystream) cipher.
   * *RF 433 MHz modules*: No encryption.
 
 # Software Components
