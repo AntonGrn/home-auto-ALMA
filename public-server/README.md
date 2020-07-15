@@ -15,5 +15,25 @@ Below is the database tables required to run ALMA PublicServer.
 | admin | Boolean | - |
 | password | String | - |
 | sessionKey | String | - |
-| isBanned | Boolean | - |
+| banned | Boolean | - |
+
+**Client_HomeServer**
+| Column name | Data type | Note |
+| --- | --- | --- |
+| systemID | Integer | PRIM.KEY |
+| password | String | - |
+| banned | Boolean | - |
+
+**Client_Traffic**
+| Column name | Data type | Note |
+| --- | --- | --- |
+| clientName | String| PRIM.KEY |
+| clientType| String | - |
+| clientIP | Integer | PRIM.KEY |
+| nbrOfConnections | Integer | - |
+| lastConnStart | DateTime | - |
+| lastConnClose | DateTime | - |
+| firstConn | DateTime | - |
+
+
 
