@@ -30,6 +30,6 @@ All traffic between your phone, the PublicServer and your HomeServer is encrypte
 ## Data communication
 When the AndroidClient is mapped to a HomeServer, the HomeServer will update the connected AndroidClient to display those of its gadgets from ```gadgets.json```that are enabled and confirmed to be present (accessible) in the home network. The AndroidClient is notified by the HomeServer whenever a change in a gadget state is detected, and whenever a request to alter a gadget state has been successfully executed. A conceptual figure of the communication between AndroidClient, PublicServer and HomeServer can be found below (Figure 4).
 
-<img src="./images/concept_2">
+<img src="./images/concept_2.png">
 
 **Figure 4**: Data communication
