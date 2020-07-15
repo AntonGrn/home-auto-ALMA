@@ -1,4 +1,4 @@
-# <img src="./demo-images/logo.png"> ALMA Home Automation v2.0
+# <img src="./android-client/images/logo.png"> ALMA Home Automation v2.0
 ## Concept
 A modular home automation system, including software for:
 * [Android client](LINK): Remote control and real-time monitoring of home server gadgets.  
