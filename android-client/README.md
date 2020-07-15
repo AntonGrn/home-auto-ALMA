@@ -22,11 +22,14 @@ The first time you log in using the AndroidClient, you must specify the *IP-addr
 
 **Automatic login:** Upon successful manual login, the PublicServer returns a unique hash-generated *session key*. The key is stored in your phone's cache memory and will be used for *automatic login* henceforth. This means that the next time you open the app you need not enter any login credentials. Instead an automatic login attempt will be carried out with no user interaction required. The session key is erased from the  phone's memory when clicking the *Log out* button. After this is done; manual login is again required.
 
-## Data communication
-When the AndroidClient is mapped to a HomeServer, the HomeServer will update the connected AndroidClient to display those of its gadgets from ```gadgets.json```that are enabled and confirmed to be present (accessible) in the home network. The AndroidClient is notified by the HomeServer whenever a change in a gadget state is detected, and whenever a request to alter a gadget state has been successfully executed. A conceptual figure of the communication between AndroidClient, PublicServer and HomeServer can be found below (Figure X).
-
 ## Note reguarding security
 The purpose of the *session key* mentioned above is to provide convenient, fast and secure automatic login without the use of your secret password. This means your password is never stored locally on the phone, and is only transmitted once upon manual login.
 
 All traffic between your phone, the PublicServer and your HomeServer is encrypted. The session key has nothing to do with the encryption, and your information (user name, password, session key, gadget data) is never sent in plain text. The unique encryption keys used for each new TCP session protects not only the *confidentiality* of the data being sent (the readability of the data), but also protects against *replay attacks* (attempts by any attacker to achieve any usable effect by capturing the encrypted data during its tranfer and sending it to the server again).
 
+## Data communication
+When the AndroidClient is mapped to a HomeServer, the HomeServer will update the connected AndroidClient to display those of its gadgets from ```gadgets.json```that are enabled and confirmed to be present (accessible) in the home network. The AndroidClient is notified by the HomeServer whenever a change in a gadget state is detected, and whenever a request to alter a gadget state has been successfully executed. A conceptual figure of the communication between AndroidClient, PublicServer and HomeServer can be found below (Figure 4).
+
+<img src="./images/concept_2">
+
+**Figure 4**: Data communication
