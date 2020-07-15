@@ -30,7 +30,7 @@ Table: `Client_Traffic`
 | clientName | String| PRIM.KEY |
 | clientType| String | - |
 | clientIP | String | PRIM.KEY |
-| nbrOfConnections | Integer | - |
+| nbrOfConns | Integer | - |
 | lastConnStart | DateTime | - |
 | lastConnClose | DateTime | - |
 | firstConn | DateTime | - |
