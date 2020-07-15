@@ -1,8 +1,8 @@
-# Android Client
+# AndroidClient
 The AndroidClient application connects to an ALMA PublicServer for remote access to a HomeServer instance. When logging in using your AndroidClient, your user credentials are used by the PublicServer for mapping to an associated HomeServer instance.
 
 
-Figure 1 below shows the represenation of HomeServer gadgets (using the AndroidClient).
+Figure 1 below shows the Android represenation of HomeServer gadgets.
 
 ## Logging in
 ### Specify an ALMA PublicServer
