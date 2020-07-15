@@ -69,7 +69,170 @@ Once the HomeServer is running inside your LAN, you can start introducing and co
 
 See [main page](link) for information about gadgets and automations.
 
-#### Example of `gadgets.json`
+### Example of `gadgets.json`
+Example illustrating gadgets of different architectures and types:
+```yaml
+{
+  "alma": [
+    {
+      "gadget_id": 1,
+      "alias": "TV Lamp",
+      "type": "CONTROL_ONOFF",
+      "poll_delay_seconds": 10,
+      "enabled": false,
+      "IP_address": "192.168.0.15",
+      "TCP_port": 8082,
+      "request_spec": null
+    },
+    {
+      "gadget_id": 2,
+      "alias": "Camera Servo",
+      "type": "CONTROL_VALUE",
+      "poll_delay_seconds": 120,
+      "enabled": true,
+      "IP_address": "192.168.0.23",
+      "TCP_port": 8082,
+      "request_spec": null
+    },
+    {
+      "gadget_id": 3,
+      "alias": "Temperature (C)",
+      "type": "SENSOR_VALUE",
+      "poll_delay_seconds": 60,
+      "enabled": true,
+      "IP_address": "192.168.0.13",
+      "TCP_port": 8082,
+      "request_spec": "temperature"
+    }
+  ],
+  "tp_link": [
+    {
+      "gadget_id": 4,
+      "alias": "Kitchen Lamp",
+      "poll_delay_seconds": 30,
+      "enabled": true,
+      "IP_address": "192.168.0.12",
+      "TCP_port": 9999,
+      "model": "HS110"
+    }
+  ],
+  "rf433MHz": [
+    {
+      "gadget_id": 5,
+      "alias": "Bedroom Fan",
+      "enabled": false,
+      "gpio_BCM": 17,
+      "protocol": 1,
+      "pulse_length": 317,
+      "code_ON": "5587221",
+      "code_OFF": "5587220"
+    }
+  ],
+  "plugins": [
+    {
+      "gadget_id": 6,
+      "alias": "System Pi CPU temp (C)",
+      "poll_delay_seconds": 15,
+      "enabled": true,
+      "plugin_id": "local_pi_cpu_temp"
+    },
+    {
+      "gadget_id": 7,
+      "alias": "Raspberry Pi fan",
+      "enabled": true,
+      "plugin_id": "local_pi_gpio_onoff",
+      "gpio_BCM": 4,
+    }
+  ]
+}
+```
 
-#### Example of `automations.json`
+### Example of `automations.json`
+Example of three automation entities illustrating the following use cases:
+1. A coffee machine timer turning the coffe machine off and turning a lamp on when the timer has expired (30 min).
+2. A fan being started once the temperature reaches a specified threshold (23 C).
+3. Night lights being turned on at 20:00 (8 PM).
+```yaml
+[
+  {
+    "name": "Coffee machine",
+    "enabled": true,
+    "trigger":
+    {
+      "type": "event",
+      "gadget_id": 12,
+      "state_condition": "equal_to",
+      "state": 1
+    },
+    "timer":
+    {
+      "hours": 0,
+      "minutes": 30,
+      "seconds": 0
+    },
+    "action": [
+      {
+        "gadget_id": 12,
+        "state": 0
+      },
+      {
+        "gadget_id": 10,
+        "state": 1
+      }
+    ]
+  },
+  {
+    "name": "Start fan",
+    "enabled": true,
+    "trigger":
+    {
+      "type": "event",
+      "gadget_id": 17,
+      "state_condition": "greater_than",
+      "state": 23
+    },
+    "timer":
+    {
+      "hours": 0,
+      "minutes": 0,
+      "seconds": 0
+    },
+    "action": [
+      {
+        "gadget_id": 11,
+        "state": 1
+      }
+    ]
+  },
+  {
+    "name": "Turn on night light",
+    "enabled": true,
+    "trigger":
+    {
+      "type": "time",
+      "time": "20:00"
+    },
+    "timer":
+    {
+      "hours": 0,
+      "minutes": 0,
+      "seconds": 0
+    },
+    "action": [
+      {
+        "gadget_id": 19,
+        "state": 1
+      },
+      {
+        "gadget_id": 20,
+        "state": 1
+      },
+      {
+        "gadget_id": 21,
+        "state": 1
+      }
+    ]
+  }
+]
+```
 
