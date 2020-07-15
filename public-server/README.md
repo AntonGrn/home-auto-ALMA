@@ -35,5 +35,10 @@ Table: `Client_Traffic`
 | lastConnClose | DateTime | - |
 | firstConn | DateTime | - |
 
+## ALMA web admin tool
+* Admin tool to track the traffic on the ALMA PublicServer.
+* To identify potential attackers and other suspiscious traffic.
+* The purpose of database table `Client_Traffic`.
+
 
 
