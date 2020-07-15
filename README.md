@@ -29,7 +29,7 @@ See conceptual [figure](LINK).
 * Android application for remote control and monitoring of gadget states.
 * Connects to [PublicServer](LINK) (for remote access to a [HomeServer](LINK) instance).
 * Notified when any changes to a gadget state is detected or successfully requested.
-* Android [layout and communication](LINK).
+* See: Android [layout and communication](LINK).
 
 ## PublicServer (remotely accessible)
 * Service running on public network (e.g. as daemon on a VPS).
