@@ -28,7 +28,7 @@ Table name: **Client_Traffic**
 | --- | --- | --- |
 | clientName | String| PRIM.KEY |
 | clientType| String | - |
-| clientIP | Integer | PRIM.KEY |
+| clientIP | String | PRIM.KEY |
 | nbrOfConnections | Integer | - |
 | lastConnStart | DateTime | - |
 | lastConnClose | DateTime | - |
