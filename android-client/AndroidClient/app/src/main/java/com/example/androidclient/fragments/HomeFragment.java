@@ -365,14 +365,14 @@ public class HomeFragment extends Fragment implements Updatable {
 
         ArrayList<Gadget> demoModeGadgetList = new ArrayList<>();
 
-        demoModeGadgetList.add(new Gadget(0, "Kitchen lamp", 1, GadgetType.CONTROL_ONOFF));
-        demoModeGadgetList.add(new Gadget(0, "Raspberry Pi", 0, GadgetType.CONTROL_ONOFF));
+        demoModeGadgetList.add(new Gadget(0, "Kitchen Lamp", 1, GadgetType.CONTROL_ONOFF));
         demoModeGadgetList.add(new Gadget(0, "Camera stream", 0, GadgetType.CONTROL_ONOFF));
-        demoModeGadgetList.add(new Gadget(0, "Camera servo", 100, GadgetType.CONTROL_VALUE));
+        demoModeGadgetList.add(new Gadget(0, "Front door lock", 1, GadgetType.CONTROL_ONOFF));
+        demoModeGadgetList.add(new Gadget(0, "Camera servo", 180, GadgetType.CONTROL_VALUE));
         demoModeGadgetList.add(new Gadget(0, "Temp threshold", 21, GadgetType.CONTROL_VALUE));
-        demoModeGadgetList.add(new Gadget(0, "Front door lock", 0, GadgetType.SENSOR_ONOFF));
-        demoModeGadgetList.add(new Gadget(0, "Temperature  (C)", 22, GadgetType.SENSOR_VALUE));
-        demoModeGadgetList.add(new Gadget(0, "Solar pwr today  (kWh)", 11, GadgetType.SENSOR_VALUE));
+        demoModeGadgetList.add(new Gadget(0, "Roof window open", 0, GadgetType.SENSOR_ONOFF));
+        demoModeGadgetList.add(new Gadget(0, "Temperature (C)", 22, GadgetType.SENSOR_VALUE));
+        demoModeGadgetList.add(new Gadget(0, "Solar pwr today (kWh)", 11, GadgetType.SENSOR_VALUE));
         demoModeGadgetList.add(new Gadget(0, "System Pi CPU temp (C)", 48, GadgetType.SENSOR_VALUE));
 
         for (int i = 0; i < demoModeGadgetList.size(); i++) {
