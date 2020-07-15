@@ -6,10 +6,10 @@ The AndroidClient application connects to an ALMA PublicServer for remote access
 Figure 1 below shows the represenation of HomeServer gadgets (using the AndroidClient).
 
 ## Logging in
-**Specify an ALMA PublicServer**
+### Specify an ALMA PublicServer
 The first time you log in to an ALMA PublicServer using the AndroidClient, you must specify the *IP-address* and *port number* of the dedicated ALMA PublicServer (Figure 2). This information is saved to the phone's cache memory upon successful login, and need therefor only be entered once. It is however possible to edit the server specifics at any time.
 
-**Manual and automatic login**
+### Manual and automatic login
 Once a server has been selected, you can go ahead and enter your user credentials (name and password), which are used by the PublicServer for mapping to a specific HomeServer instance. 
 
 Upon successful login, the PublicServer will genereate and return a unique *session key*. The key will be stored on your phone's cache memory together with your user name. This information will be used for *automatic login* henceforth. This means that the next time you open the app you need not enter any login credentials. Instead an automatic login attempt will be carried out with no user interaction required. The user information stored on the phone's memory (name and session key) is erased when clicking the *log out* button. After this is done; manual login is required.
