@@ -68,6 +68,8 @@ Example of `config.json`
   }
 }
 ```
+See also: [ALMA web admin tool](LINK).
+
 ## HomeServer (local hub)
 * The key component of the home automation system.
 * Service running inside private local network (e.g. as daemon on a Raspberry Pi).
