@@ -36,7 +36,7 @@ Table: `Client_Traffic`
 | firstConn | DateTime | - |
 
 ## ALMA web admin tool
-* A public web interface with login for admin use.
+* Public web interface with login feature for admin use.
 * Track the traffic on the ALMA PublicServer.
   * Detect suspiscious activity.
   * Survey the load of the server.
