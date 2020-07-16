@@ -279,41 +279,41 @@ See also: [ALMA web admin tool](https://github.com/AntonGrn/home-auto-ALMA-v2.0/
 - :page_facing_up: [ALMA application layer protocol](https://github.com/AntonGrn/home-auto-ALMA-v2.0/blob/master/public-server/images/communication-protocol.pdf)
 
 **Home Server (hub)**
-- :page_facing_up: [Get started](link) *(Home Server setup)*
-- :page_facing_up: Example: [*automations.json*](link)
-- :page_facing_up: Example: [*gadgets.json*](link)
-- :file_folder: [Home Server Application](link) *(Deployable)*
-- :file_folder: [Home Server Application](link) *(Java)*
+- :page_facing_up: [Get started](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) *(Home Server setup)*
+- :page_facing_up: Example: [*gadgets.json*](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#get-started-with-gadgets-and-automations)
+- :page_facing_up: Example: [*automations.json*](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#example-of-automationsjson)
+- :file_folder: [Home Server Application](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/home-server-application/deployable-setup) *(Deployable)*
+- :file_folder: [Home Server Application](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/home-server-application/java-project/HomeServer/src/main) *(Java)*
   - :page_facing_up: Cryptography scheme
-  - :file_folder: [Automations](link)
-  - :file_folder: [Gadgets](link)
+  - :file_folder: [Automations](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/home-server-application/java-project/HomeServer/src/main/automations)
+  - :file_folder: [Gadgets](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/home-server-application/java-project/HomeServer/src/main/gadgets)
       - :page_facing_up: Native ALMA
       - :page_facing_up: TP-Link switches (HS100 & HS110)
       - :page_facing_up: RF 433 MHz 
       - :file_folder: Plugins
         - :page_facing_up: Local Pi CPU temp 
         - :page_facing_up: Local Pi GPIO
-- :file_folder: [JSON files](link)
+- :file_folder: [JSON files](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/json)
   - :page_facing_up: automations.json *(template)*
   - :page_facing_up: config.json *(template)*
   - :page_facing_up: gadgets.json *(template)*
-- :file_folder: [Native ALMA gadget examples](link)
+- :file_folder: [Native ALMA gadget examples](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/gadget-examples)
   - :page_facing_up: ESP8266 CONTROL_ONOFF
   - :page_facing_up: ESP8266 CONTROL_VALUE
   - :page_facing_up: ESP8266 SENSOR_VALUE 
   - :page_facing_up: Remote Pi CPU temp SENSOR_VALUE
-- :file_folder: [Python scripts](link)
+- :file_folder: [Python scripts](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/python-scripts)
   - :page_facing_up: Pi GPIO
   
 **Android Client**
-- :page_facing_up: [Android screen shots](link)
-- :file_folder: [Android Client Application](link) (Java)
+- :page_facing_up: [Android layout and communication](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient)
+- :file_folder: [Android Client Application](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client/AndroidClient/app/src/main/java/com/example/androidclient) (Java)
 
 **Public Server**
-- :file_folder: [Public Server Application](link) (Java)
+- :file_folder: [Public Server Application](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/public-server/PublicServer/src/main) (Java)
 
 **Related resources**
-- :page_facing_up: [ALMA web admin tool](link)
+- :page_facing_up: [ALMA web admin tool](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/public-server#alma-web-admin-tool)
 
 ## Updates
 * **2020-06-17:** Support for TP-Link smart plugs HS100 & HS110.
