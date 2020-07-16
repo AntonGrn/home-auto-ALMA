@@ -11,14 +11,14 @@ The first time you log in using the AndroidClient, you must specify the *IP-addr
 
 <img src="./images/app_server_spec.png" height="500">
 
-**Figure 2**: Specify ALMA PublicServer
+**Figure 2**: Specify ALMA PublicServer.
 
 ### 2. Manual and Automatic login
 **Manual login:** Once a server has been selected, you can manually enter your user credentials (Figure 3). These are used by the PublicServer for mapping to a specific HomeServer instance. 
 
 <img src="./images/app_login.png" height="500">
 
-**Figure 3**: Manual login
+**Figure 3**: Manual login.
 
 **Automatic login:** Upon successful manual login, the PublicServer returns a unique hash-generated *session key*. The key is stored in your phone's cache memory and will be used for *automatic login* henceforth. This means that the next time you open the app you need not enter any login credentials. Instead an automatic login attempt will be carried out with no user interaction required. The session key is erased from the  phone's memory when clicking the *Log out* button. After this is done; manual login is again required.
 
@@ -27,7 +27,7 @@ When the AndroidClient is mapped to a HomeServer, the HomeServer will update the
 
 <img src="./images/concept_2.png">
 
-**Figure 4**: Data communication
+**Figure 4**: Data communication.
 
 ## Note reguarding security
 The purpose of the *session key* mentioned above is to provide convenient, fast and secure automatic login without the use of your secret password. This means your password is never stored locally on the phone, and is only transmitted once upon manual login.
