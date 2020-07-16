@@ -95,7 +95,7 @@ Example of `config.json`:
   "public_server_port": 8084
 }
 ```
-[Get started](LINK) with HomeServer.
+See also: [Get started](LINK) with HomeServer.
 
 ## Gadgets
 * Managed by [HomeServer](LINK).
