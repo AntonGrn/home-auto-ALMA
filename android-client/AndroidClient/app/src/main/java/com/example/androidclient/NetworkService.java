@@ -251,7 +251,6 @@ public class NetworkService extends Service {
             Log.d(TAG, "Output thread started " + Thread.currentThread().getName());
 
             try {
-
                 synchronized (lockObjectCrypto) {
                     // Distribute symmetric keys + send login request data
                     String loginRequest = requestsToServer.take();
