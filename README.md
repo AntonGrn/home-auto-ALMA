@@ -213,6 +213,7 @@ Example of one automation in `automations.json`:
   ]
 }
 ```
+See extended [example](link) of `automations.json`.
 
 ### Automation-trigger
 * Specifies the condition required to trigger automation actions.
