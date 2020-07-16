@@ -6,12 +6,9 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-
 import androidx.annotation.Nullable;
-
 import com.example.androidclient.utilities.ClientCryptography;
 import com.example.androidclient.utilities.Updatable;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
