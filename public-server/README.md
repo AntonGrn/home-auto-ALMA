@@ -36,13 +36,13 @@ Table: `Client_Traffic`
 | firstConn | DateTime | - |
 
 ## ALMA web admin tool
-* Public web interface with login feature for admin use.
+* Web interface with login feature for admin use.
 * Track connection activity on the ALMA PublicServer.
 * Based on database table `Client_Traffic`.
   * Logs both successful and unsuccesful login attempts.
   * Links repeated server visitors.
 * Usage:
-  * Click any entity to search for matches in the server history.
+  * Click any entity to search and display matches in the server history.
   * Green rows: Successful logins.
   * Red rows: Unsuccessful logins and the cause:
     * *Invalid cryptography*: Client does not conform to the cryptography scheme of distributing secure keys.
