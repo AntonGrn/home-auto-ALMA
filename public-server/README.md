@@ -37,14 +37,12 @@ Table: `Client_Traffic`
 
 ## ALMA web admin tool
 * Public web interface with login feature for admin use.
-* Track the traffic on the ALMA PublicServer.
-  * Detect suspiscious activity.
-  * Survey the load of the server.
+* Track connection activity on the ALMA PublicServer.
 * Based on database table `Client_Traffic`.
   * Logs both successful and unsuccesful login attempts.
   * Links repeated server visitors.
 * Usage:
-  * Click an entity to search for matches in the server history.
+  * Click any entity to search for matches in the server history.
   * Green rows: Successful logins.
   * Red rows: Unsuccessful logins and the cause:
     * *Invalid cryptography*: Client does not conform to the cryptography scheme of distributing secure keys.
@@ -52,8 +50,3 @@ Table: `Client_Traffic`
     * *Unsuccessful login attempt*: Client has entered invalid login credentials.
 
 <img src="./images/web_admin_activity.png">
-
-
-
-
-
