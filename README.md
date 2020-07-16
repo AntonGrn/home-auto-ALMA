@@ -272,7 +272,8 @@ See extended [example](link) of `automations.json`.
 ## Notable repository content
 
 **Overall**
-- :page_facing_up: [ALMA concept diagram](link)
+- :page_facing_up: [ALMA basic conceptual figure](link)
+- :page_facing_up: [ALMA data communication conceptual figure](link)
 - :page_facing_up: [ALMA application layer protocol](link)
 
 **Home Server (hub)**
