@@ -2,7 +2,7 @@
 # HomeServer
 The HomeServer instance is the key component of your ALMA home automation system. In fact, the HomeServer instance is all you need to start automating your home. By connecting your HomeServer instance to an active ALMA PublicServer, you can also control and monitor your smart home remotely using the ALMA AndroidClient.
 
-See [main page](link) for more information about the HomeServer.
+See [main page](https://github.com/AntonGrn/home-auto-ALMA-v2.0#software-components) for more information about the HomeServer.
 
 # Get started with your ALMA HomeServer
 
@@ -12,14 +12,14 @@ There are no hard-coding involved in setting up your ALMA HomeServer. However, t
 
 **Approach 1:** Complete files setup (ready to deploy)
 
-Unzip [home-server-ALMA](link), containing:
+Unzip [home-server-ALMA](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/home-server-application/deployable-setup), containing:
 * Required files and file structure.
 * Executable JAR instance of the HomeServer application.
 
 **Approach 2:** Manual files setup
 
-1. Copy the [*json* folder](link) and the [*python-scripts* folder](link) into a directory of your choosing.
-2. Create an executable JAR file from the HomeServer [java project](link).
+1. Copy the [*json* folder](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/json) and the [*python-scripts* folder](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/python-scripts) into a directory of your choosing.
+2. Create an executable JAR file from the HomeServer [java project](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/home-server-application/java-project).
 3. (Optional) For daemon deployment; create a bash script that can be called to launch the executable JAR.
 4. Place the JAR-file (and the optional bash script) in the same directory as the *json* folder and *python-scripts* folder. 
 
@@ -67,7 +67,7 @@ Since the ALMA home server is intended to be run on a Raspberry Pi (acting as th
 # Get started with Gadgets and Automations
 Once the HomeServer is running inside your LAN, you can start introducing and configuring gadgets and automations via their respective json files (`gadgets.json` and `automations.json`).
 
-See [main page](link) for information about gadgets and automations.
+See [main page](https://github.com/AntonGrn/home-auto-ALMA-v2.0#homeserver-local-hub) for information about gadgets and automations.
 
 ### Example of `gadgets.json`
 Example illustrating gadgets of different architectures and types:
