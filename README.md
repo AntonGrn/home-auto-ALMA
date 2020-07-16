@@ -1,23 +1,23 @@
 # <img src="./android-client/images/logo.png"> ALMA Home Automation v2.0
 ## Concept
 A modular home automation system, including software for:
-* [Home server](LINK): Hub for gadget management within a home network. 
-* [Gadgets](LINK): Native ALMA software or supported "off-the-shelf" smart home devices.
-* [Automations](LINK): Trigger actions based on local time, timers or states of gadgets.
-* [Android client](LINK): Remote control and real-time monitoring of home server gadgets.  
-* [Public server](LINK): Connects remote Android clients to associated home servers (hubs).
+* [Home server](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver): Hub for gadget management within a home network. 
+* [Gadgets](https://github.com/AntonGrn/home-auto-ALMA-v2.0#gadgets): Native ALMA software or supported "off-the-shelf" smart home devices.
+* [Automations](https://github.com/AntonGrn/home-auto-ALMA-v2.0#automations): Trigger actions based on local time, timers or states of gadgets.
+* [Android client](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient): Remote control and real-time monitoring of home server gadgets.  
+* [Public server](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible): Connects remote Android clients to associated home servers (hubs).
 
-See conceptual [figure](LINK).
+See conceptual [figure](https://github.com/AntonGrn/home-auto-ALMA-v2.0/blob/master/public-server/images/alma-concept.png).
 
 ## ALMA Application Layer Protocol (v2.0)
-* Communication protocol for the ALMA nodes ([AndroidClients](LINK), [PublicServer](LINK), [HomeServer](LINK), [ALMA gadgets](LINK)).
+* Communication protocol for the ALMA nodes ([AndroidClients](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient), [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible), [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver), [ALMA gadgets](https://github.com/AntonGrn/home-auto-ALMA-v2.0#gadgets)).
 
 ## Encryption
-* [AndroidClients](LINK) :left_right_arrow: [PublicServer](LINK) :left_right_arrow: [HomeServers](LINK)
+* [AndroidClients](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient) :left_right_arrow: [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible) :left_right_arrow: [HomeServers](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver)
   * Data transmission: Public network.
   * Symmetric encrypition (AES with CBC) and message authentication (MAC).
   * Unique secret keys are distributed using asymmetric encryption (RSA) at the initialization of each TCP session.
-* [HomeServer](LINK) :left_right_arrow: [Gadgets](LINK)
+* [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) :left_right_arrow: [Gadgets](https://github.com/AntonGrn/home-auto-ALMA-v2.0#gadgets)
   * Data transmission: Private network (LAN).
   * *Native ALMA gadgets*: XOR encryption with iterating keys.
   * *TP-Link smart plugs*: XOR encryption with Autokey (keystream) cipher.
@@ -28,7 +28,7 @@ See conceptual [figure](LINK).
 ## HomeServer (local hub)
 * The key component of the home automation system.
 * Service running inside LAN (e.g. as daemon on a Raspberry Pi).
-* Connects to [PublicServer](LINK) (via user authentication).
+* Connects to [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible) (via user authentication).
 * Handles:
   * Gadget initialization and communication.
   * Periodically polling gadget states and connectivity.
@@ -50,10 +50,10 @@ Example of `config.json`:
   "public_server_port": 8084
 }
 ```
-See also: [Get started](LINK) with HomeServer.
+See also: [Get started](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) with HomeServer.
 
 ## Gadgets
-* Managed by [HomeServer](LINK).
+* Managed by [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver).
 * Polled at intervals set uniquelly for each gadget.
 * Fast response on request to alter gadget state.
 * `gadgets.json`
@@ -92,7 +92,7 @@ Example of `gadgets.json`:
   "plugins": []
 }
 ```
-See extended [example](link) of `gadgets.json`.
+See extended [example](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#get-started-with-gadgets-and-automations) of `gadgets.json`.
 
 ### Supported gadget architectures
 Each gadget architecture conforms to a property in `gadgets.json` for easy configuration:
@@ -137,7 +137,7 @@ public enum GadgetType {CONTROL_ONOFF, CONTROL_VALUE, SENSOR_ONOFF, SENSOR_VALUE
   * E.g. Temperature sensor.
   
 ## Automations
-* Managed by [HomeServer](LINK).
+* Managed by [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver).
 * Trigger actions based on local time, timers or states of gadgets.
 * `automations.json`
   * Setup-file for all automations in the HomeServer system. 
@@ -170,7 +170,7 @@ Example of one automation in `automations.json`:
   ]
 }
 ```
-See extended [example](link) of `automations.json`.
+See extended [example](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#example-of-automationsjson) of `automations.json`.
 
 ### Automation-trigger
 * Specifies the condition required to trigger automation actions.
@@ -228,13 +228,13 @@ See extended [example](link) of `automations.json`.
 
 ## AndroidClient
 * Android application for remote control and monitoring of gadget states.
-* Connects to [PublicServer](LINK) (for remote access to a [HomeServer](LINK) instance).
+* Connects to [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible) (for remote access to a [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) instance).
 * Notified when any changes to a gadget state is detected or successfully requested.
-* See: Android [layout and communication](LINK).
+* See: Android [layout and communication](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient).
 
 ## PublicServer (remotely accessible)
 * Service running on public network (e.g. as daemon on a VPS).
-* Connects [AndroidClients](LINK) to [HomeServers (hubs)](LINK).
+* Connects [AndroidClients](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient) to [HomeServers (hubs)](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver).
 * Verifies user authentication to (strictly) map AndroidClients to correct HomeServer (hub).
 * Eliminates the need of port-forwarding HomeServers.
 * Client management using thread pool for asynchronous client connections and communications.
@@ -269,14 +269,14 @@ Example of `config.json`
   }
 }
 ```
-See also: [ALMA web admin tool](LINK).
+See also: [ALMA web admin tool](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/public-server#alma-web-admin-tool).
 
 ## Notable repository content
 
 **Overall**
-- :page_facing_up: [ALMA basic conceptual figure](link)
-- :page_facing_up: [ALMA data communication figure](link)
-- :page_facing_up: [ALMA application layer protocol](link)
+- :page_facing_up: [ALMA basic conceptual figure](https://github.com/AntonGrn/home-auto-ALMA-v2.0/blob/master/public-server/images/alma-concept.png)
+- :page_facing_up: [ALMA data communication figure](https://github.com/AntonGrn/home-auto-ALMA-v2.0/blob/master/android-client/images/concept_2.png)
+- :page_facing_up: [ALMA application layer protocol](https://github.com/AntonGrn/home-auto-ALMA-v2.0/blob/master/public-server/images/communication-protocol.pdf)
 
 **Home Server (hub)**
 - :page_facing_up: [Get started](link) *(Home Server setup)*
