@@ -135,6 +135,8 @@ Example of `gadgets.json`:
   "plugins": []
 }
 ```
+See extended [example](link) of `gadgets.json`.
+
 ### Supported gadget architectures
 Each gadget architecture conforms to a property in `gadgets.json` for easy configuration:
 
@@ -153,7 +155,6 @@ Each gadget architecture conforms to a property in `gadgets.json` for easy confi
   * Plugin gadgets include Raspberry Pi GPIO control and Raspberry Pi CPU temperature monitor.
 
 **Note:** All gadget configurations and introductions are done in `gadgets.json`.
-See extended [example](link).
 
 ### Supported gadget types
 * Each gadget must be configured (`gadgets.json`) to be of one of the supported gadget types.
