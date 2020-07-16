@@ -40,7 +40,7 @@ Table: `Client_Traffic`
 * Track the traffic on the ALMA PublicServer.
   * Detect suspiscious activity.
   * Survey the load of the server.
-  * Click an entity to search for matches in the history.
+  * Click an entity to search for matches in the server history.
 * Based on database table `Client_Traffic`.
   * Logs both successful and unsuccesful login attempts.
   * Links repeated server visitors.
