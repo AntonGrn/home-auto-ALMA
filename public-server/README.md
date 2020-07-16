@@ -45,11 +45,11 @@ Table: `Client_Traffic`
   * Links repeated server visitors.
 * Usage:
   * Click an entity to search for matches in the server history.
-  * Green rows: Successful logins
+  * Green rows: Successful logins.
   * Red rows: Unsuccessful logins and the cause:
     * *Invalid cryptography*: Client does not conform to the cryptography scheme of distributing secure keys.
     * *Invalid connection format*: Client does not conform to the ALMA communication protocol.
-    * *Unsuccessful login attempt*: Client has entered invalid login credentials
+    * *Unsuccessful login attempt*: Client has entered invalid login credentials.
 
 <img src="./images/web_admin_activity.png">
 
