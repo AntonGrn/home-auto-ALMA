@@ -25,51 +25,6 @@ See conceptual [figure](LINK).
 
 # Software Components
 
-## AndroidClient
-* Android application for remote control and monitoring of gadget states.
-* Connects to [PublicServer](LINK) (for remote access to a [HomeServer](LINK) instance).
-* Notified when any changes to a gadget state is detected or successfully requested.
-* See: Android [layout and communication](LINK).
-
-## PublicServer (remotely accessible)
-* Service running on public network (e.g. as daemon on a VPS).
-* Connects [AndroidClients](LINK) to [HomeServers (hubs)](LINK).
-* Verifies user authentication to (strictly) map AndroidClients to correct HomeServer (hub).
-* Eliminates the need of port-forwarding HomeServers.
-* Client management using thread pool for asynchronous client connections and communications.
-* MySQL:
-  * Client authentication data.
-  * Map AndroidClients to correct HomeServer instance.
-  * Log client traffic (for tracking invalid server access attempts).
-* `config.json`
-  * Setup-file for PublicServer.
-  
-Example of `config.json`
-```yaml
-{
-  "public_server": {
-    "tcp_port": 8084,
-    "thread_pool": 10,
-    "debug_mode": false
-  },
-  "database_clients": {
-    "ip": "localhost",
-    "port": 3306,
-    "database": "XXXXXX",
-    "account": "XXXXXX",
-    "password": "XXXXXX"
-  },
-  "database_traffic_logs": {
-    "ip": "localhost",
-    "port": 3306,
-    "database": "XXXXXX",
-    "account": "XXXXXX",
-    "password": "XXXXXX"
-  }
-}
-```
-See also: [ALMA web admin tool](LINK).
-
 ## HomeServer (local hub)
 * The key component of the home automation system.
 * Service running inside private local network (e.g. as daemon on a Raspberry Pi).
@@ -270,6 +225,51 @@ See extended [example](link) of `automations.json`.
   },  
 ]
 ```
+
+## AndroidClient
+* Android application for remote control and monitoring of gadget states.
+* Connects to [PublicServer](LINK) (for remote access to a [HomeServer](LINK) instance).
+* Notified when any changes to a gadget state is detected or successfully requested.
+* See: Android [layout and communication](LINK).
+
+## PublicServer (remotely accessible)
+* Service running on public network (e.g. as daemon on a VPS).
+* Connects [AndroidClients](LINK) to [HomeServers (hubs)](LINK).
+* Verifies user authentication to (strictly) map AndroidClients to correct HomeServer (hub).
+* Eliminates the need of port-forwarding HomeServers.
+* Client management using thread pool for asynchronous client connections and communications.
+* MySQL:
+  * Client authentication data.
+  * Map AndroidClients to correct HomeServer instance.
+  * Log client traffic (for tracking invalid server access attempts).
+* `config.json`
+  * Setup-file for PublicServer.
+  
+Example of `config.json`
+```yaml
+{
+  "public_server": {
+    "tcp_port": 8084,
+    "thread_pool": 10,
+    "debug_mode": false
+  },
+  "database_clients": {
+    "ip": "localhost",
+    "port": 3306,
+    "database": "XXXXXX",
+    "account": "XXXXXX",
+    "password": "XXXXXX"
+  },
+  "database_traffic_logs": {
+    "ip": "localhost",
+    "port": 3306,
+    "database": "XXXXXX",
+    "account": "XXXXXX",
+    "password": "XXXXXX"
+  }
+}
+```
+See also: [ALMA web admin tool](LINK).
 
 ## Notable repository content
 
