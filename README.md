@@ -1,11 +1,11 @@
 # <img src="./android-client/images/logo.png"> ALMA Home Automation v2.0
 ## Concept
 A modular home automation system, including software for:
-* [Android client](LINK): Remote control and real-time monitoring of home server gadgets.  
-* [Public server](LINK): Connects remote Android clients to associated home servers (hubs).
 * [Home server (hub)](LINK): Gadget management within LAN. 
 * [Gadgets](LINK): Native ALMA software or supported "off-the-shelf" smart home devices.
 * [Automations](LINK): Trigger actions based on local time, timers or states of gadgets.
+* [Android client](LINK): Remote control and real-time monitoring of home server gadgets.  
+* [Public server](LINK): Connects remote Android clients to associated home servers (hubs).
 
 See conceptual [figure](LINK).
 
