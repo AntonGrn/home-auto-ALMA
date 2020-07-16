@@ -9,7 +9,7 @@ A modular home automation system, including software for:
 
 See conceptual [figure](https://github.com/AntonGrn/home-auto-ALMA-v2.0/blob/master/public-server/images/alma-concept.png).
 
-## ALMA Application Layer Protocol (v2.0)
+## ALMA Application Layer Protocol
 * Communication protocol for the ALMA nodes ([AndroidClients](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient), [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible), [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver), [ALMA gadgets](https://github.com/AntonGrn/home-auto-ALMA-v2.0#gadgets)).
 
 ## Encryption
