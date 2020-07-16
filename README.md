@@ -31,11 +31,10 @@ See conceptual [figure](LINK).
 * Connects to [PublicServer](LINK) (via user authentication).
 * Handles:
   * Gadget initialization and communication.
-  * Periodically examine (poll) gadgets' state and connectivity.
-  * Reporting changes in gadgets' state and connectivity to AndroidClients (via PublicServer).
-  * Process and execute requests from AndroidClients (e.g. alter a gadget state).
-  * Scanning and execution of automation rules.
-  * Scanning automation rules periodically and upon changes in gadget states.
+  * Periodically polling gadget states and connectivity.
+  * Reporting changes in gadget states and connectivity to AndroidClients (via PublicServer).
+  * Processing and executing requests from AndroidClients (e.g. alter a gadget state).
+  * Scanning automation triggers and executing automation actions.
 * `config.json`
   * Setup-file for HomeServer.
 
