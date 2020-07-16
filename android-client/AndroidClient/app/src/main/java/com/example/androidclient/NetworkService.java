@@ -71,7 +71,6 @@ public class NetworkService extends Service {
         stopSelf();
     }
 
-
     // ============= CUSTOM UTILITY THREADS AND METHODS ==========================
     // inputThread will launch outputThread
     // inputThread will terminate outputThread when itself is terminated.
