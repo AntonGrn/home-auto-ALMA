@@ -62,10 +62,8 @@ public class NetworkService extends Service {
         }
     }
 
-    /*
-    onTaskRemoved will be called when the application is removed from the recently used applications list
-    -> stopSelf = a hard stop (used as precaution).
-     */
+    // onTaskRemoved will be called when the application is removed from the recently used applications list
+    // -> stopSelf = a hard stop (used as precaution).
     @Override
     public void onTaskRemoved(Intent rootIntent) {
         super.onTaskRemoved(rootIntent);
