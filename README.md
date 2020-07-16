@@ -27,13 +27,14 @@ See conceptual [figure](LINK).
 
 ## HomeServer (local hub)
 * The key component of the home automation system.
-* Service running inside private local network (e.g. as daemon on a Raspberry Pi).
+* Service running inside LAN (e.g. as daemon on a Raspberry Pi).
 * Connects to [PublicServer](LINK) (via user authentication).
 * Handles:
   * Gadget initialization and communication.
   * Periodically examine (poll) gadgets' state and connectivity.
   * Reporting changes in gadgets' state and connectivity to AndroidClients (via PublicServer).
   * Process and execute requests from AndroidClients (e.g. alter a gadget state).
+  * Scanning and execution of automation rules.
   * Scanning automation rules periodically and upon changes in gadget states.
 * `config.json`
   * Setup-file for HomeServer.
