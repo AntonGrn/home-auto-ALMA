@@ -1,11 +1,11 @@
 # <img src="./android-client/images/logo.png"> ALMA Home Automation v2.0
 ## Concept
 A modular home automation system, including software for:
+* [Android client](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient): Remote control and real-time monitoring of home server gadgets.  
+* [Public server](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible): Connects remote Android clients to associated home servers (hubs).
 * [Home server](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver): Hub for gadget management within a home network. 
 * [Gadgets](https://github.com/AntonGrn/home-auto-ALMA-v2.0#gadgets): Native ALMA software or supported "off-the-shelf" smart home devices.
 * [Automations](https://github.com/AntonGrn/home-auto-ALMA-v2.0#automations): Trigger actions based on local time, timers or states of gadgets.
-* [Android client](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient): Remote control and real-time monitoring of home server gadgets.  
-* [Public server](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible): Connects remote Android clients to associated home servers (hubs).
 
 ## ALMA Application Layer Protocol
 * Communication protocol for the ALMA nodes ([AndroidClients](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient), [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible), [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver), [ALMA gadgets](https://github.com/AntonGrn/home-auto-ALMA-v2.0#gadgets)).
