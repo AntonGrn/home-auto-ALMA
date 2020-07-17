@@ -7,8 +7,6 @@ A modular home automation system, including software for:
 * [Android client](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient): Remote control and real-time monitoring of home server gadgets.  
 * [Public server](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible): Connects remote Android clients to associated home servers (hubs).
 
-<img src="./public-server/images/alma-concept.png" width="600">
-
 ## ALMA Application Layer Protocol
 * Communication protocol for the ALMA nodes ([AndroidClients](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient), [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible), [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver), [ALMA gadgets](https://github.com/AntonGrn/home-auto-ALMA-v2.0#gadgets)).
 
@@ -26,6 +24,51 @@ A modular home automation system, including software for:
 # Software Components
 
 <img src="./public-server/images/alma-concept.png" width="600">
+
+## AndroidClient
+* Android application for remote control and monitoring of gadget states.
+* Connects to [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible) (for remote access to a [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) instance).
+* Notified when any changes to a gadget state is detected or successfully requested.
+* See: Android [layout and communication](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient).
+
+## PublicServer (remotely accessible)
+* Service running on public network (e.g. as daemon on a VPS).
+* Connects [AndroidClients](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient) to [HomeServers (hubs)](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver).
+* Verifies user authentication to (strictly) map AndroidClients to correct HomeServer (hub).
+* Eliminates the need of port-forwarding HomeServers.
+* Client management using thread pool for asynchronous client connections and communications.
+* MySQL:
+  * Client authentication data.
+  * Map AndroidClients to correct HomeServer instance.
+  * Log client traffic (for tracking invalid server access attempts).
+* `config.json`
+  * Setup-file for PublicServer.
+  
+Example of `config.json`
+```yaml
+{
+  "public_server": {
+    "tcp_port": 8084,
+    "thread_pool": 10,
+    "debug_mode": false
+  },
+  "database_clients": {
+    "ip": "localhost",
+    "port": 3306,
+    "database": "XXXXXX",
+    "account": "XXXXXX",
+    "password": "XXXXXX"
+  },
+  "database_traffic_logs": {
+    "ip": "localhost",
+    "port": 3306,
+    "database": "XXXXXX",
+    "account": "XXXXXX",
+    "password": "XXXXXX"
+  }
+}
+```
+See also: [ALMA web admin tool](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/public-server#alma-web-admin-tool).
 
 ## HomeServer (local hub)
 * The key component of the home automation system.
@@ -227,51 +270,6 @@ See extended [example](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/mast
   },  
 ]
 ```
-
-## AndroidClient
-* Android application for remote control and monitoring of gadget states.
-* Connects to [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible) (for remote access to a [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) instance).
-* Notified when any changes to a gadget state is detected or successfully requested.
-* See: Android [layout and communication](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient).
-
-## PublicServer (remotely accessible)
-* Service running on public network (e.g. as daemon on a VPS).
-* Connects [AndroidClients](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient) to [HomeServers (hubs)](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver).
-* Verifies user authentication to (strictly) map AndroidClients to correct HomeServer (hub).
-* Eliminates the need of port-forwarding HomeServers.
-* Client management using thread pool for asynchronous client connections and communications.
-* MySQL:
-  * Client authentication data.
-  * Map AndroidClients to correct HomeServer instance.
-  * Log client traffic (for tracking invalid server access attempts).
-* `config.json`
-  * Setup-file for PublicServer.
-  
-Example of `config.json`
-```yaml
-{
-  "public_server": {
-    "tcp_port": 8084,
-    "thread_pool": 10,
-    "debug_mode": false
-  },
-  "database_clients": {
-    "ip": "localhost",
-    "port": 3306,
-    "database": "XXXXXX",
-    "account": "XXXXXX",
-    "password": "XXXXXX"
-  },
-  "database_traffic_logs": {
-    "ip": "localhost",
-    "port": 3306,
-    "database": "XXXXXX",
-    "account": "XXXXXX",
-    "password": "XXXXXX"
-  }
-}
-```
-See also: [ALMA web admin tool](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/public-server#alma-web-admin-tool).
 
 ## Notable repository content
 
