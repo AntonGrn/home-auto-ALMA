@@ -29,11 +29,11 @@ A modular home automation system, including software for:
 * Android application for remote control and monitoring of gadget states.
 * Connects to [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible) (for remote access to a [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) instance).
 * Notified when any changes to a gadget state is detected or successfully requested.
-* See: Android [layout and communication](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient).
+* See: Android [design and communications](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient).
 
 ## PublicServer (remotely accessible)
 * Service running on public network (e.g. as daemon on a VPS).
-* Connects [AndroidClients](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient) to [HomeServers (hubs)](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver).
+* Connects [AndroidClients](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient) to [HomeServers](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) (hubs).
 * Verifies user authentication to (strictly) map AndroidClients to correct HomeServer (hub).
 * Eliminates the need of port-forwarding HomeServers.
 * Client management using thread pool for asynchronous client connections and communications.
@@ -306,7 +306,7 @@ See extended [example](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/mast
   - :page_facing_up: Pi GPIO
   
 **Android Client**
-- :page_facing_up: [Android layout and communication](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient)
+- :page_facing_up: [Android design and communications](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient)
 - :file_folder: [Android Client Application](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client/AndroidClient/app/src/main/java/com/example/androidclient) (Java)
 
 **Public Server**
