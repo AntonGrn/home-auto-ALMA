@@ -25,6 +25,8 @@ A modular home automation system, including software for:
 
 # Software Components
 
+<img src="./public-server/images/alma-concept.png" width="600">
+
 ## HomeServer (local hub)
 * The key component of the home automation system.
 * Service running inside LAN (e.g. as daemon on a Raspberry Pi).
