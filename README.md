@@ -29,7 +29,7 @@ A modular home automation system, including software for:
 * Android application for remote control and monitoring of gadget states.
 * Connects to [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible) (for remote access to a [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) instance).
 * Notified when any changes to a gadget state is detected or successfully requested.
-* See: Android [design and communications](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient).
+* See also: Android [design and communications](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient).
 
 ## PublicServer (remotely accessible)
 * Service running on public network (e.g. as daemon on a VPS).
