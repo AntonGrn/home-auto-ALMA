@@ -103,9 +103,7 @@ public class MainActivity extends AppCompatActivity implements Updatable {
         // Each successful cloud connection will request the latest gadget states
         gadgetList.clear();
 
-        // Default fragment SetupFragment is launched via onServiceConnected()
-        //Create default fragment
-        //fragmentTransaction("setup");
+        // Decide direction to manual or automatic login operation.
         readServerSpecFromCache();
     }
 
@@ -130,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements Updatable {
         // BIND_AUTO_CREATE: The service will be created if it hasn't already been created
     }
 
-    // WIll be called once the client-server connection (connection to the Service) has been established or disconnected
+    // Will be called once the client-server connection (connection to the Service) has been established or disconnected
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {

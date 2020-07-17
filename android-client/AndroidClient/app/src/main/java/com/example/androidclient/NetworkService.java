@@ -6,12 +6,9 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-
 import androidx.annotation.Nullable;
-
 import com.example.androidclient.utilities.ClientCryptography;
 import com.example.androidclient.utilities.Updatable;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -49,9 +46,7 @@ public class NetworkService extends Service {
         crypto = new ClientCryptography();
     }
 
-    // Facilitates the communication between the client (ex Activity) and the service
-    // When we bind a client to the service; this binder object will be returned (for bound service)
-    // That can be used by the client to get a reference to the service from inside the client (ex the activity)
+    // binder: Used by the client (e.g. Activity) as reference to the service.
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -60,34 +55,21 @@ public class NetworkService extends Service {
 
     // Custom inner class that extends Binder
     // Binder: For retrieving a service instance, used by the client to communicate with the service
-    //Ex if MainActivity wants to bind to the service: MainActivity will be the client
-    // The Binder will facilitate that binding/connection between the client and the service
     public class MyBinder extends Binder {
         NetworkService getService() {
-            //Return an instance of the service. Just like a Singleton.
+            //Return an instance of the service. Like a Singleton.
             return NetworkService.this;
         }
     }
 
-    /*
-    onTaskRemoved will be called when the application is removed from the recently used applications list
-    = When the app is terminated from the list of open apps (seen by the user)
-    With bound services the service will continue running until the last client has unBound from the service.
-    That is ok, BUT this can be used instead of waiting for the last client to unBound.
-    Instead we stop the service manually from within the service.
-    -> stopSelf = a hard stop.
-    -> Avoid having the service running in the background even though the application has been closed.
-    -> Avoid having the application running even after it's been swiped out by the user.
-    -> Adapted for start AND bind service, not so much just bound services, where the client unbinds
-       and the service automatically terminates after last client has unbound. (Still a good safety measure)
-     */
+    // onTaskRemoved will be called when the application is removed from the recently used applications list
+    // -> stopSelf = a hard stop (used as precaution).
     @Override
     public void onTaskRemoved(Intent rootIntent) {
         super.onTaskRemoved(rootIntent);
         // + stop threads running
         stopSelf();
     }
-
 
     // ============= CUSTOM UTILITY THREADS AND METHODS ==========================
     // inputThread will launch outputThread
@@ -269,7 +251,6 @@ public class NetworkService extends Service {
             Log.d(TAG, "Output thread started " + Thread.currentThread().getName());
 
             try {
-
                 synchronized (lockObjectCrypto) {
                     // Distribute symmetric keys + send login request data
                     String loginRequest = requestsToServer.take();

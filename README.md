@@ -1,23 +1,21 @@
-# <img src="./android-client/images/logo.png"> ALMA Home Automation v2.0
+# <img src="./android-client/images/logo.png"> ALMA Home Automation
 ## Concept
 A modular home automation system, including software for:
-* [Android client](LINK): Remote control and real-time monitoring of home server gadgets.  
-* [Public server](LINK): Connects remote Android clients to associated home servers (hubs).
-* [Home server (hub)](LINK): Gadget management within LAN. 
-* [Gadgets](LINK): Native ALMA software or supported "off-the-shelf" smart home devices.
-* [Automations](LINK): Trigger actions based on local time, timers or states of gadgets.
+* [Android client](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient): Remote control and real-time monitoring of home server gadgets.  
+* [Public server](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible): Connects remote Android clients to associated home servers (hubs).
+* [Home server](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver): Hub for gadget management within a home network. 
+* [Gadgets](https://github.com/AntonGrn/home-auto-ALMA-v2.0#gadgets): Native ALMA software or supported "off-the-shelf" smart home devices.
+* [Automations](https://github.com/AntonGrn/home-auto-ALMA-v2.0#automations): Trigger actions based on local time, timers or states of gadgets.
 
-See conceptual [figure](LINK).
-
-## ALMA Application Layer Protocol (v2.0)
-* Communication protocol for the ALMA nodes ([AndroidClients](LINK), [PublicServer](LINK), [HomeServer](LINK), [ALMA gadgets](LINK)).
+## ALMA Application Layer Protocol
+* Communication [protocol](https://github.com/AntonGrn/home-auto-ALMA/blob/master/public-server/images/communication-protocol.pdf) for the ALMA nodes (AndroidClients, PublicServer, HomeServer, ALMA gadgets).
 
 ## Encryption
-* [AndroidClients](LINK) :left_right_arrow: [PublicServer](LINK) :left_right_arrow: [HomeServers](LINK)
+* [AndroidClients](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient) :left_right_arrow: [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible) :left_right_arrow: [HomeServers](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver)
   * Data transmission: Public network.
   * Symmetric encrypition (AES with CBC) and message authentication (MAC).
   * Unique secret keys are distributed using asymmetric encryption (RSA) at the initialization of each TCP session.
-* [HomeServer](LINK) :left_right_arrow: [Gadgets](LINK)
+* [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) :left_right_arrow: [Gadgets](https://github.com/AntonGrn/home-auto-ALMA-v2.0#gadgets)
   * Data transmission: Private network (LAN).
   * *Native ALMA gadgets*: XOR encryption with iterating keys.
   * *TP-Link smart plugs*: XOR encryption with Autokey (keystream) cipher.
@@ -25,15 +23,17 @@ See conceptual [figure](LINK).
 
 # Software Components
 
+<img src="./public-server/images/alma-concept.png" width="600">
+
 ## AndroidClient
 * Android application for remote control and monitoring of gadget states.
-* Connects to [PublicServer](LINK) (for remote access to a [HomeServer](LINK) instance).
+* Connects to [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible) (for remote access to a [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) instance).
 * Notified when any changes to a gadget state is detected or successfully requested.
-* See: Android [layout and communication](LINK).
+* See: Android [design and communications](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient).
 
 ## PublicServer (remotely accessible)
 * Service running on public network (e.g. as daemon on a VPS).
-* Connects [AndroidClients](LINK) to [HomeServers (hubs)](LINK).
+* Connects [AndroidClients](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient) to [HomeServers](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) (hubs).
 * Verifies user authentication to (strictly) map AndroidClients to correct HomeServer (hub).
 * Eliminates the need of port-forwarding HomeServers.
 * Client management using thread pool for asynchronous client connections and communications.
@@ -68,16 +68,18 @@ Example of `config.json`
   }
 }
 ```
+See also: [ALMA web admin tool](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/public-server#alma-web-admin-tool).
+
 ## HomeServer (local hub)
 * The key component of the home automation system.
-* Service running inside private local network (e.g. as daemon on a Raspberry Pi).
-* Connects to [PublicServer](LINK) (via user authentication).
+* Service running inside LAN (e.g. as daemon on a Raspberry Pi).
+* Connects to [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible) (via user authentication).
 * Handles:
   * Gadget initialization and communication.
-  * Periodically examine (poll) gadgets' state and connectivity.
-  * Reporting changes in gadgets' state and connectivity to AndroidClients (via PublicServer).
-  * Process and execute requests from AndroidClients (e.g. alter a gadget state).
-  * Scanning automation rules periodically and upon changes in gadget states.
+  * Periodically polling gadget states and connectivity.
+  * Reporting changes in gadget states and connectivity to AndroidClients (via PublicServer).
+  * Processing and executing requests from AndroidClients (e.g. alter a gadget state).
+  * Scanning automation triggers and executing automation actions.
 * `config.json`
   * Setup-file for HomeServer.
 
@@ -93,10 +95,10 @@ Example of `config.json`:
   "public_server_port": 8084
 }
 ```
-[Get started](LINK) with HomeServer.
+See also: [Get started](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) with HomeServer.
 
 ## Gadgets
-* Managed by [HomeServer](LINK).
+* Managed by [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver).
 * Polled at intervals set uniquelly for each gadget.
 * Fast response on request to alter gadget state.
 * `gadgets.json`
@@ -135,12 +137,14 @@ Example of `gadgets.json`:
   "plugins": []
 }
 ```
+See extended [example](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#get-started-with-gadgets-and-automations) of `gadgets.json`.
+
 ### Supported gadget architectures
 Each gadget architecture conforms to a property in `gadgets.json` for easy configuration:
 
 * `alma`
   * Native ALMA gadgets: Obeys to the ALMA Application Layer Protocol for communication.
-  * Easily modular to represent resources ranging from hardware devices (e.g. via ESP8266) to software states (e.g. CPU temperature) and web scraping data.
+  * Easily modular to represent resources ranging from hardware devices (e.g. via [ESP8266](https://www.espressif.com/en/products/socs/esp8266/overview)) to software states (e.g. CPU temperature) and web scraping data.
   * Gadget communication via TCP Sockets.
 * `tp_link`
   * TP-Link smart plugs ([HS100](https://www.tp-link.com/se/home-networking/smart-plug/hs100/) & [HS110](https://www.tp-link.com/se/home-networking/smart-plug/hs110/))
@@ -153,7 +157,6 @@ Each gadget architecture conforms to a property in `gadgets.json` for easy confi
   * Plugin gadgets include Raspberry Pi GPIO control and Raspberry Pi CPU temperature monitor.
 
 **Note:** All gadget configurations and introductions are done in `gadgets.json`.
-See extended [example](link).
 
 ### Supported gadget types
 * Each gadget must be configured (`gadgets.json`) to be of one of the supported gadget types.
@@ -179,7 +182,7 @@ public enum GadgetType {CONTROL_ONOFF, CONTROL_VALUE, SENSOR_ONOFF, SENSOR_VALUE
   * E.g. Temperature sensor.
   
 ## Automations
-* Managed by [HomeServer](LINK).
+* Managed by [HomeServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver).
 * Trigger actions based on local time, timers or states of gadgets.
 * `automations.json`
   * Setup-file for all automations in the HomeServer system. 
@@ -212,6 +215,7 @@ Example of one automation in `automations.json`:
   ]
 }
 ```
+See extended [example](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#example-of-automationsjson) of `automations.json`.
 
 ### Automation-trigger
 * Specifies the condition required to trigger automation actions.
@@ -270,45 +274,46 @@ Example of one automation in `automations.json`:
 ## Notable repository content
 
 **Overall**
-- :page_facing_up: [ALMA concept diagram](link)
-- :page_facing_up: [ALMA application layer protocol](link)
+- :page_facing_up: [ALMA basic conceptual figure](https://github.com/AntonGrn/home-auto-ALMA-v2.0/blob/master/public-server/images/alma-concept.png)
+- :page_facing_up: [ALMA data communications figure](https://github.com/AntonGrn/home-auto-ALMA-v2.0/blob/master/android-client/images/concept_2.png)
+- :page_facing_up: [ALMA application layer protocol](https://github.com/AntonGrn/home-auto-ALMA-v2.0/blob/master/public-server/images/communication-protocol.pdf)
 
 **Home Server (hub)**
-- :page_facing_up: [Get started](link) *(Home Server setup)*
-- :page_facing_up: Example: [*automations.json*](link)
-- :page_facing_up: Example: [*gadgets.json*](link)
-- :file_folder: [Home Server Application](link) *(Deployable)*
-- :file_folder: [Home Server Application](link) *(Java)*
+- :page_facing_up: [Get started](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver) *(Home Server setup)*
+- :page_facing_up: Example: [*gadgets.json*](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#get-started-with-gadgets-and-automations)
+- :page_facing_up: Example: [*automations.json*](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#example-of-automationsjson)
+- :file_folder: [Home Server Application](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/home-server-application/deployable-setup) *(Deployable)*
+- :file_folder: [Home Server Application](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/home-server-application/java-project/HomeServer/src/main) *(Java)*
   - :page_facing_up: Cryptography scheme
-  - :file_folder: [Automations](link)
-  - :file_folder: [Gadgets](link)
+  - :file_folder: [Automations](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/home-server-application/java-project/HomeServer/src/main/automations)
+  - :file_folder: [Gadgets](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/home-server-application/java-project/HomeServer/src/main/gadgets)
       - :page_facing_up: Native ALMA
       - :page_facing_up: TP-Link switches (HS100 & HS110)
       - :page_facing_up: RF 433 MHz 
       - :file_folder: Plugins
         - :page_facing_up: Local Pi CPU temp 
         - :page_facing_up: Local Pi GPIO
-- :file_folder: [JSON files](link)
+- :file_folder: [JSON files](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/json)
   - :page_facing_up: automations.json *(template)*
   - :page_facing_up: config.json *(template)*
   - :page_facing_up: gadgets.json *(template)*
-- :file_folder: [Native ALMA gadget examples](link)
+- :file_folder: [Native ALMA gadget examples](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/gadget-examples)
   - :page_facing_up: ESP8266 CONTROL_ONOFF
   - :page_facing_up: ESP8266 CONTROL_VALUE
   - :page_facing_up: ESP8266 SENSOR_VALUE 
   - :page_facing_up: Remote Pi CPU temp SENSOR_VALUE
-- :file_folder: [Python scripts](link)
+- :file_folder: [Python scripts](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server/python-scripts)
   - :page_facing_up: Pi GPIO
   
 **Android Client**
-- :page_facing_up: [Android screen shots](link)
-- :file_folder: [Android Client Application](link) (Java)
+- :page_facing_up: [Android design and communications](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient)
+- :file_folder: [Android Client Application](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client/AndroidClient/app/src/main/java/com/example/androidclient) (Java)
 
 **Public Server**
-- :file_folder: [Public Server Application](link) (Java)
+- :file_folder: [Public Server Application](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/public-server/PublicServer/src/main) (Java)
 
 **Related resources**
-- :page_facing_up: [ALMA web admin tool](link)
+- :page_facing_up: [ALMA web admin tool](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/public-server#alma-web-admin-tool)
 
 ## Updates
 * **2020-06-17:** Support for TP-Link smart plugs HS100 & HS110.
