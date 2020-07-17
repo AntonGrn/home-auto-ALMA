@@ -275,7 +275,7 @@ See extended [example](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/mast
 
 **Overall**
 - :page_facing_up: [ALMA basic conceptual figure](https://github.com/AntonGrn/home-auto-ALMA-v2.0/blob/master/public-server/images/alma-concept.png)
-- :page_facing_up: [ALMA data communication figure](https://github.com/AntonGrn/home-auto-ALMA-v2.0/blob/master/android-client/images/concept_2.png)
+- :page_facing_up: [ALMA data communications figure](https://github.com/AntonGrn/home-auto-ALMA-v2.0/blob/master/android-client/images/concept_2.png)
 - :page_facing_up: [ALMA application layer protocol](https://github.com/AntonGrn/home-auto-ALMA-v2.0/blob/master/public-server/images/communication-protocol.pdf)
 
 **Home Server (hub)**
