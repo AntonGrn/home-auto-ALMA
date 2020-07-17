@@ -144,7 +144,7 @@ Each gadget architecture conforms to a property in `gadgets.json` for easy confi
 
 * `alma`
   * Native ALMA gadgets: Obeys to the ALMA Application Layer Protocol for communication.
-  * Easily modular to represent resources ranging from hardware devices (e.g. via ESP8266) to software states (e.g. CPU temperature) and web scraping data.
+  * Easily modular to represent resources ranging from hardware devices (e.g. via [ESP8266](https://www.espressif.com/en/products/socs/esp8266/overview)) to software states (e.g. CPU temperature) and web scraping data.
   * Gadget communication via TCP Sockets.
 * `tp_link`
   * TP-Link smart plugs ([HS100](https://www.tp-link.com/se/home-networking/smart-plug/hs100/) & [HS110](https://www.tp-link.com/se/home-networking/smart-plug/hs110/))
