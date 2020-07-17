@@ -8,7 +8,7 @@ A modular home automation system, including software for:
 * [Automations](https://github.com/AntonGrn/home-auto-ALMA-v2.0#automations): Trigger actions based on local time, timers or states of gadgets.
 
 ## ALMA Application Layer Protocol
-* Communication [protocol](link) for the ALMA nodes (AndroidClients, PublicServer, HomeServer, ALMA gadgets).
+* Communication [protocol](https://github.com/AntonGrn/home-auto-ALMA/blob/master/public-server/images/communication-protocol.pdf) for the ALMA nodes (AndroidClients, PublicServer, HomeServer, ALMA gadgets).
 
 ## Encryption
 * [AndroidClients](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/android-client#androidclient) :left_right_arrow: [PublicServer](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible) :left_right_arrow: [HomeServers](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/home-server#homeserver)
