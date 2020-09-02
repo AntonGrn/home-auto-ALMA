@@ -2,7 +2,7 @@
 # HomeServer
 The HomeServer instance is the key component of your ALMA home automation system. In fact, the HomeServer instance is all you need to start automating your home. By connecting your HomeServer instance to an active ALMA PublicServer, you can also control and monitor your smart home remotely using the ALMA AndroidClient.
 
-See [main page](https://github.com/AntonGrn/home-auto-ALMA-v2.0#software-components) for more information about the HomeServer.
+See [main page](https://github.com/AntonGrn/home-auto-ALMA#homeserver-local-hub) for more information about the HomeServer.
 
 # Get started with your ALMA HomeServer
 
