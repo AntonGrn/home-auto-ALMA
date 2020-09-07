@@ -29,7 +29,7 @@ When the AndroidClient is mapped to a HomeServer, the HomeServer will update the
 
 **Figure 4**: Data communication.
 
-## Note reguarding security
+## Note regarding security
 The purpose of the *session key* mentioned above is to provide convenient, fast and secure automatic login without the use of your secret password. This means your password is never stored locally on the phone, and is only transmitted once upon manual login.
 
 All traffic between your phone, the PublicServer and your HomeServer is encrypted. The session key has nothing to do with the encryption, and your information (user name, password, session key, gadget data) is never sent in plain text. The unique encryption keys used for each new TCP session protects not only the *confidentiality* of the data being sent (the readability of the data), but also protects against *replay attacks* (attempts by any attacker to achieve any usable effect by capturing the encrypted data during its tranfer and sending it to the server again).
