@@ -68,7 +68,7 @@ Example of `config.json`
   }
 }
 ```
-See also: [ALMA web admin tool](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/public-server#alma-web-admin-tool).
+See also: [ALMA web admin tool](https://github.com/AntonGrn/home-auto-ALMA/blob/master/public-server/web-admin.md#alma-web-admin-tool).
 
 ## HomeServer (local hub)
 * The key component of the home automation system.
