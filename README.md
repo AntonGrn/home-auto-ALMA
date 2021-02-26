@@ -312,7 +312,7 @@ See extended [example](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/mast
 - :file_folder: [Public Server Application](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/public-server/PublicServer/src/main) (Java)
 
 **Related resources**
-- :page_facing_up: [ALMA web admin tool](https://github.com/AntonGrn/home-auto-ALMA-v2.0/tree/master/public-server#alma-web-admin-tool)
+- :page_facing_up: [ALMA web admin tool](https://github.com/AntonGrn/home-auto-ALMA/blob/master/public-server/web-admin.md#alma-web-admin-tool)
 
 ## Updates
 * **2020-06-17:** Support for TP-Link smart plugs HS100 & HS110.
