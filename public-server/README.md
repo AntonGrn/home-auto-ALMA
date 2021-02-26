@@ -7,38 +7,9 @@ See [main page](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-rem
 ## Database tables
 Listed below are the database tables required to run ALMA PublicServer.
 
-Table: `Client_Android`
-| Column name | Data type | Note |
-| --- | --- | --- |
-| name | String | PRIM.KEY |
-| systemID | Integer | - |
-| admin | Boolean | - |
-| password | String | - |
-| sessionKey | String | - |
-| banned | Boolean | - |
-
-Table: `Client_HomeServer`
-| Column name | Data type | Note |
-| --- | --- | --- |
-| systemID | Integer | PRIM.KEY |
-| password | String | - |
-| banned | Boolean | - |
-
-Table: `Client_Traffic`
-| Column name | Data type | Note |
-| --- | --- | --- |
-| clientName | String| PRIM.KEY |
-| clientType| String | - |
-| clientIP | String | PRIM.KEY |
-| nbrOfConns | Integer | - |
-| lastConnStart | DateTime | - |
-| lastConnClose | DateTime | - |
-| firstConn | DateTime | - |
-
 ## ALMA web admin tool
 * Web interface with login feature for admin use.
 * Track connection activity on the ALMA PublicServer.
-* Based on database table `Client_Traffic`.
   * Logs both successful and unsuccesful login attempts.
   * Links repeated server visitors.
 * Usage:
