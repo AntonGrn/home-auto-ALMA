@@ -4,9 +4,6 @@ ALMA PublicServer is a service running on a public network. Its purpose is to co
 
 See [main page](https://github.com/AntonGrn/home-auto-ALMA-v2.0#publicserver-remotely-accessible) for more information about the PublicServer.
 
-## Database tables
-Listed below are the database tables required to run ALMA PublicServer.
-
 ## ALMA web admin tool
 * Web interface with login feature for admin use.
 * Track connection activity on the ALMA PublicServer.
